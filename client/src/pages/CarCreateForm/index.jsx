@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { createCar } from "../../models/Car";
+import { createGame } from "../../models/Game";
 
 import React from 'react'
 
@@ -10,7 +10,7 @@ export default function CarCreateForm() {
   const navigate = useNavigate();
 
   const postForm = async () => {
-    const car = await createCar(formData);
+    const car = await createGame(formData);
     if (car.status === 201) {
       return navigate();
     }

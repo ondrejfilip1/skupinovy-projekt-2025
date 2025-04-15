@@ -1,5 +1,5 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { deleteCar, getCarById } from "../../models/Car";
+import { deleteGame, getGameById } from "../../models/Game";
 import { useState, useEffect } from "react";
 
 export default function CarView() {
@@ -11,7 +11,7 @@ export default function CarView() {
   const navigate = useNavigate();
 
   const load = async () => {
-    const data = await getCarById(id);
+    const data = await getGameById(id);
     if (data.status === 500 || data.status === 404) return setLoaded(null);
     if (data.status === 200) {
       setCar(data.payload);
@@ -26,7 +26,7 @@ export default function CarView() {
   const handleDelete = async (e) => {
     e.preventDefault();
     if (car.name === formData) {
-      const data = await deleteCar(id);
+      const data = await deleteGame(id);
       if (data.status === 200) {
         alert("Car deleted successfully!");
         navigate(`/`);

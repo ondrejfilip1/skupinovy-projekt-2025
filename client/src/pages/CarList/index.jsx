@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getAllCars } from "../../models/Car";
+import { getAllGames } from "../../models/Game";
 import CarLink from "./CarLink";
 
 export default function Home() {
@@ -8,7 +8,7 @@ export default function Home() {
   const [isLoaded, setLoaded] = useState(false);
 
   const load = async () => {
-    const data = await getAllCars();
+    const data = await getAllGames();
     if (data.status === 404 || data.status === 500) return setLoaded(null);
     if (data.status === 200) {
       setCars(data.payload);

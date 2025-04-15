@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Rajdhani:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -117,4 +118,82 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+:root {
+  --text-color: #d0ff57;
+  --background-color: #1a1019;
+}
+
+.background_bg {
+  background-color: var(--background-color);
+}
+
+.background_text {
+  background-color: var(--text-color);
+}
+
+.text_text {
+  color: var(--text-color);
+}
+
+.text_bg {
+  color: var(--background-color);
+}
+
+.button_cyberpunk {
+  clip-path: polygon(
+    10px 0%,
+    100% 0,
+    100% 10px,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    10px 100%,
+    0 100%,
+    0% 10px
+  );
+  border-radius: 0 !important;
+}
+
+.button_hover:hover {
+  background-color: var(--text-color) !important;
+  color: var(--background-color) !important;
+}
+
+.border_main {
+  background-color: #cfff5769;
+  position: relative;
+  padding: 2px;
+  margin: 22px;
+  clip-path: polygon(
+    60px 0%,
+    100% 0,
+    100% 10px,
+    100% calc(100% - 60px),
+    calc(100% - 60px) 100%,
+    60px 100%,
+    0 100%,
+    0% 60px
+  );
+}
+
+.border_main_child {
+  background-color: var(--background-color);
+  padding: 2px;
+  clip-path: polygon(
+    60px 0%,
+    100% 0,
+    100% 10px,
+    100% calc(100% - 60px),
+    calc(100% - 60px) 100%,
+    60px 100%,
+    0 100%,
+    0% 60px
+  );
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: "Rajdhani", sans-serif;
 }

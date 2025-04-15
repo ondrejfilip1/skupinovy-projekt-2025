@@ -1,6 +1,6 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { updateCar, getCarById } from "../../models/Car";
+import { updateGame, getGameById } from "../../models/Game";
 
 export default function CarUpdateForm() {
   const { id } = useParams();
@@ -11,7 +11,7 @@ export default function CarUpdateForm() {
   const navigate = useNavigate();
 
   const load = async () => {
-    const data = await getCarById(id);
+    const data = await getGameById(id);
     if (data.status === 500 || data.status === 404) return setLoaded(null);
     if (data.status === 200) {
       setCar(data.payload);
@@ -20,7 +20,7 @@ export default function CarUpdateForm() {
   };
 
   const updateForm = async () => {
-    const data = await updateCar(id, formData);
+    const data = await updateGame(id, formData);
     if (data.status === 200) return navigate(`/car/${id}`);
     setInfo(data.message);
   };
