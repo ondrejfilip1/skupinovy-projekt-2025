@@ -192,6 +192,10 @@
   );
 }
 
+.min_h_screen_fix {
+  min-height: calc(100vh - 200px);
+}
+
 body {
   background-color: var(--background-color);
   color: var(--text-color);

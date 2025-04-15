@@ -11,6 +11,6 @@ router.post('/', gamesRouter.createGame);
 
 router.put('/:id', gamesRouter.updateGame);
 
-router.delete('/:id', gamesRouter.deleteGameCar);
+router.delete('/:id', gamesRouter.deleteGame);
 
 module.exports = router;
