@@ -123,6 +123,7 @@
 :root {
   --text-color: #d0ff57;
   --background-color: #1a1019;
+  --background-color-2: #21131a;
 }
 
 .background_bg {
@@ -179,6 +180,8 @@
 
 .border_main_child {
   background-color: var(--background-color);
+  background-image: linear-gradient(to bottom, var(--background-color-2), var(--background-color));
+  background-attachment: fixed;
   padding: 2px;
   clip-path: polygon(
     60px 0%,
@@ -192,12 +195,18 @@
   );
 }
 
+.h_screen_fix {
+  height: calc(100vh - 200px);
+}
+
 .min_h_screen_fix {
   min-height: calc(100vh - 200px);
 }
 
 body {
   background-color: var(--background-color);
+  background-image: linear-gradient(to bottom, var(--background-color-2), var(--background-color));
+  background-attachment: fixed;
   color: var(--text-color);
   font-family: "Rajdhani", sans-serif;
 }

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 
-export default function CarLink(props) {
+export default function ProductLink(props) {
   return (
     <>
-        <Link to={`/car/${props._id}`}>
+        <Link to={`/product/${props._id}`}>
             <p>{props.name}</p>
         </Link>
     </>

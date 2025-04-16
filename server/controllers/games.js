@@ -36,8 +36,9 @@ exports.createGame = async (req, res, next) => {
   try {
     const data = new Game({
       name: req.body.name,
-      brand: req.body.brand,
-      color: req.body.color,
+      category: req.body.category,
+      description: req.body.description,
+      imagePath: req.body.imagePath,
       price: req.body.price,
     });
     const result = await data.save();
@@ -58,8 +59,9 @@ exports.updateGame = async (req, res, next) => {
   try {
     const data = {
       name: req.body.name,
-      brand: req.body.brand,
-      color: req.body.color,
+      category: req.body.category,
+      description: req.body.description,
+      imagePath: req.body.imagePath,
       price: req.body.price,
     };
     const result = await Game.findByIdAndUpdate(req.params.id, data);

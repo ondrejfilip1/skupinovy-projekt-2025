@@ -2,9 +2,9 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { updateGame, getGameById } from "../../models/Game";
 
-export default function CarUpdateForm() {
+export default function ProductUpdateForm() {
   const { id } = useParams();
-  const [ car, setCar ] = useState();
+  const [ product, setProduct ] = useState();
   const [ isLoaded, setLoaded ] = useState();
   const [ info, setInfo ] = useState();
   const [ formData, setFormData ] = useState();
@@ -14,7 +14,7 @@ export default function CarUpdateForm() {
     const data = await getGameById(id);
     if (data.status === 500 || data.status === 404) return setLoaded(null);
     if (data.status === 200) {
-      setCar(data.payload);
+      setProduct(data.payload);
       setLoaded(true);
     }
   };
@@ -41,7 +41,7 @@ export default function CarUpdateForm() {
   if (isLoaded === null) {
     return (
       <>
-        <p>Car not found</p>
+        <p>Product not found</p>
       </>
     )
   }
@@ -49,22 +49,22 @@ export default function CarUpdateForm() {
   if (!isLoaded) {
     return (
       <>
-        <p>Car is loading...</p>
+        <p>Product is loading...</p>
       </>
     )
   }
 
   return (
     <>
-      <h1>Car update form</h1>
+      <h1>Product update form</h1>
       <p>{id}</p>
       <form>
-      <input type="text" name="name" required placeholder="Enter name" onChange={handleChange} defaultValue={car.name}/>
-        <input type="text" name="brand" required placeholder="Enter brand" onChange={handleChange} defaultValue={car.brand}/>
-        <input type="text" name="color" required placeholder="Enter color" onChange={handleChange} defaultValue={car.color}/>
-        <input type="number" name="price" required placeholder="Enter price" onChange={handleChange} defaultValue={car.price}/>
+      <input type="text" name="name" required placeholder="Enter name" onChange={handleChange} defaultValue={product.name}/>
+        <input type="text" name="brand" required placeholder="Enter brand" onChange={handleChange} defaultValue={product.brand}/>
+        <input type="text" name="color" required placeholder="Enter color" onChange={handleChange} defaultValue={product.color}/>
+        <input type="number" name="price" required placeholder="Enter price" onChange={handleChange} defaultValue={product.price}/>
         <button onClick={handleUpdate}>
-          Update Car
+          Update Product
         </button>
       </form>
     </>

@@ -2,9 +2,9 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { deleteGame, getGameById } from "../../models/Game";
 import { useState, useEffect } from "react";
 
-export default function CarView() {
+export default function ProductView() {
   const { id } = useParams();
-  const [car, setCar] = useState();
+  const [product, setProduct] = useState();
   const [isLoaded, setLoaded] = useState(false);
   const [info, setInfo] = useState();
   const [formData, setFormData] = useState();
@@ -14,21 +14,21 @@ export default function CarView() {
     const data = await getGameById(id);
     if (data.status === 500 || data.status === 404) return setLoaded(null);
     if (data.status === 200) {
-      setCar(data.payload);
+      setProduct(data.payload);
       setLoaded(true);
     }
-  }
+  };
 
   const handleChange = (e) => {
     setFormData(e.target.value);
-  }
+  };
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    if (car.name === formData) {
+    if (product.name === formData) {
       const data = await deleteGame(id);
       if (data.status === 200) {
-        alert("Car deleted successfully!");
+        alert("Product deleted successfully!");
         navigate(`/`);
       } else {
         setInfo(data.message);
@@ -36,7 +36,7 @@ export default function CarView() {
     } else {
       setInfo("Špatný vstup");
     }
-  }
+  };
 
   useEffect(() => {
     load();
@@ -45,39 +45,57 @@ export default function CarView() {
   if (isLoaded === null) {
     return (
       <>
-        <p>Car not found</p>
+        <p>Produkt nenalezen</p>
       </>
-    )
+    );
   }
 
   if (!isLoaded) {
     return (
       <>
-        <p>Car is loading...</p>
+        <p>Produkt se načítá...</p>
       </>
-    )
+    );
   }
 
   return (
     <>
-        <h1>Car view</h1>
-        <p>{id}</p>
-        <p>Název auta {car.name}</p>
-        <p>Značka: {car.brand}</p>
-        <p>Barva: {car.color}</p>
-        <p>Cena: {car.price}</p>
-        <form>
-          <input type="text" placeholder={car.name} onChange={handleChange} />
-          <button onClick={handleDelete}>Smazat auto</button>
-        </form>
-        <p>{info}</p>
-        <Link to={`/update-car/${id}`}>
-          <p>Aktualizovat auto</p>
-        </Link>
+      <h1>Zobrazení produktu</h1>
+      <p>{id}</p>
+      <p>
+        Název:
+        <br /> {product.name}
+      </p>
+      <p>
+        Kategorie:
+        <br /> {product.category}
+      </p>
+      <p>
+        Popisek:
+        <br /> {product.description}
+      </p>
+      <p>
+        Cesta k obrázku:
+        <br />
+        {product.imagePath}
+      </p>
+      <p>
+        Cena:
+        <br />
+        {product.price}
+      </p>
+      <form>
+        <input type="text" placeholder={product.name} onChange={handleChange} />
+        <button onClick={handleDelete}>Smazat produkt</button>
+      </form>
+      <p>{info}</p>
+      <Link to={`/update-car/${id}`}>
+        <p>Aktualizovat produkt</p>
+      </Link>
 
-        <Link to={"/"}>
-          <p>Go home</p>
-        </Link>
+      <Link to={"/"}>
+        <p>Go home</p>
+      </Link>
     </>
-  )
+  );
 }
