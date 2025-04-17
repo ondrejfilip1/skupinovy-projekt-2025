@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import croppedQr from "@/assets/qr1.svg";
+import { Button } from "@/components/ui/button";
+import { ShoppingCart } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
   Carousel,
@@ -50,7 +52,7 @@ export default function Home() {
     <>
       <Header />
       <div className="h_screen_fix border_main">
-        <div className="h_screen_fix border_main_child relative">
+        <div className="h_screen_fix max-h-full border_main_child relative">
           <div className="text-xs absolute -left-13.5 top-30 -rotate-90">
             NIGHTGRID PROTOCOL 0.2.1
           </div>
@@ -67,34 +69,41 @@ export default function Home() {
             alt="qr1"
             className="absolute left-1/2 transform -translate-x-1/2 top-1.5"
           />
-          <Carousel className="w-full transform top-1/2 -translate-y-1/2">
-            <CarouselContent>
+          <Carousel className="w-full h-full transform top-1/2 -translate-y-1/2">
+            <CarouselContent className="h-full">
               {games.map((item, index) => (
-                <CarouselItem key={index} className="flex">
-                  <div className="w-1/2 p-1 flex items-center justify-center">
+                <CarouselItem key={index} className="flex gap-10">
+                  <div className="w-1/2 p-1 h-full my-auto">
                     <img
                       src={`${item.imagePath}1.png`}
                       alt={item.name}
-                      className="h-fit w-full max-w-2xl"
+                      className="h-full w-full max-w-2xl mx-auto py-10 object-contain"
                     />
                   </div>
-                  <div className="w-1/2 p-1 flex items-center justify-center flex-col mr-10">
-                    <div>
-                      <div className="font-medium text-5xl mb-2">
-                        {item.name}
-                      </div>
-                      <div
-                        className="text-xl text-justify"
-                        dangerouslySetInnerHTML={{ __html: item.description }}
-                      ></div>
+                  <div className="w-1/2 p-1 h-fit my-auto py-10 mr-10">
+                    <div className="font-medium text-5xl mb-2">{item.name}</div>
+                    <div className="font-medium text-xl button_cyberpunk px-2 py-1 text_bg background_text inline-block mb-3">
+                      Kategorie: {item.category}
                     </div>
+                    <div className="font-medium text-3xl mb-2">{item.price} $</div>
+                    <div
+                      className="text-xl text-justify max-h-96 overflow-y-auto pr-2"
+                      dangerouslySetInnerHTML={{ __html: item.description }}
+                    />
+                    <Button
+                      className="text-xl button_hover button_cyberpunk !py-5 mt-3"
+                      variant="ghost"
+                    >
+                      <ShoppingCart />
+                      Přidat do košíku
+                    </Button>
                   </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="absolute bottom-0 left-1/2">
-              <CarouselPrevious className="rounded-none button_hover button_cyberpunk" />
-              <CarouselNext className="rounded-none button_hover button_cyberpunk" />
+            <div className="absolute bottom-10 left-1/2">
+              <CarouselPrevious className="rounded-none button_cyberpunk background_text text_bg border-none" />
+              <CarouselNext className="rounded-none button_cyberpunk background_text text_bg border-none" />
             </div>
           </Carousel>
           {/* 
