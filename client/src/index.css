@@ -143,7 +143,7 @@ svg.svg_loading_anim {
   stroke-dasharray: 100;
 }
 
-svg.svg_loading_anim rect  {
+svg.svg_loading_anim rect {
   stroke: var(--text-color);
 }
 
@@ -157,11 +157,7 @@ svg.svg_loading_anim rect  {
 }
 
 .header_mask {
-  mask: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1) 85%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  mask: linear-gradient(to bottom, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0) 100%);
 }
 
 .text_bg {
@@ -206,7 +202,11 @@ svg.svg_loading_anim rect  {
 
 .border_main_child {
   background-color: var(--background-color);
-  background-image: linear-gradient(to bottom, var(--background-color-2), var(--background-color));
+  background-image: linear-gradient(
+    to bottom,
+    var(--background-color-2),
+    var(--background-color)
+  );
   background-attachment: fixed;
   padding: 2px;
   clip-path: polygon(
@@ -231,10 +231,18 @@ svg.svg_loading_anim rect  {
 
 body {
   background-color: var(--background-color);
-  background-image: linear-gradient(to bottom, var(--background-color-2), var(--background-color));
+  background-image: linear-gradient(
+    to bottom,
+    var(--background-color-2),
+    var(--background-color)
+  );
   background-attachment: fixed;
   color: var(--text-color);
   font-family: "Rajdhani", sans-serif;
+}
+
+* {
+  cursor: none !important;
 }
 
 ::-webkit-scrollbar {

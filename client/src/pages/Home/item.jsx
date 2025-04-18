@@ -23,7 +23,7 @@ export default function Item(props) {
           <img
             src={`${props.imagePath}1.png`}
             alt={props.name}
-            className="h-full w-full max-w-2xl mx-auto py-10 object-contain"
+            className="h-full w-full max-w-2xl mx-auto py-10 object-contain select-none"
           />
         </div>
         <div className="w-1/2 p-1 h-fit my-auto py-10 mr-10">
@@ -44,6 +44,7 @@ export default function Item(props) {
           <Button
             className="text-xl button_hover button_cyberpunk !py-5 mt-3"
             variant="ghost"
+            id="hover"
           >
             <ShoppingCart />
             Přidat do košíku

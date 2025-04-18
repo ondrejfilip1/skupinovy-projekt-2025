@@ -18,6 +18,7 @@ export default function Header() {
             <Button
               className="text-2xl button_hover button_cyberpunk !py-5"
               variant="ghost"
+              id="hover"
             >
               <Gamepad />
               Hry
@@ -29,6 +30,7 @@ export default function Header() {
             <Button
               className="text-2xl button_hover button_cyberpunk !py-5"
               variant="ghost"
+              id="hover"
             >
               <ShoppingCart />
               Nákupní košík
@@ -38,6 +40,7 @@ export default function Header() {
             <Button
               className="text-2xl button_hover button_cyberpunk !py-5"
               variant="ghost"
+              id="hover"
             >
               <Menu />
               Účet

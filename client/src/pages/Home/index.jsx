@@ -1,16 +1,11 @@
-import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import croppedQr from "@/assets/qr1.svg";
 import qr2 from "@/assets/qr2.svg";
-import { useScramble } from "use-scramble";
-import { Button } from "@/components/ui/button";
-import { ShoppingCart } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
   Carousel,
   CarouselContent,
-  CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
@@ -89,8 +84,8 @@ export default function Home() {
               ))}
             </CarouselContent>
             <div className="absolute bottom-10 left-1/2">
-              <CarouselPrevious className="rounded-none button_cyberpunk background_text text_bg border-none" />
-              <CarouselNext className="rounded-none button_cyberpunk background_text text_bg border-none" />
+              <CarouselPrevious className="rounded-none button_cyberpunk background_text text_bg border-none" id="hover" />
+              <CarouselNext className="rounded-none button_cyberpunk background_text text_bg border-none" id="hover" />
             </div>
           </Carousel>
           {/* 
