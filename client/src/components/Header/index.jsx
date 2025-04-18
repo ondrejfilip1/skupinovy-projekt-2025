@@ -6,11 +6,11 @@ import { Button } from "../ui/button";
 export default function Header() {
   return (
     <>
-      <div className="flex justify-between items-center sticky w-full px-12 py-10 text-2xl relative backdrop-blur-lg">
+      <div className="flex justify-between items-center sticky top-0 left-0 w-full px-12 pt-10 pb-12 text-2xl backdrop-blur-lg z-20 header_mask">
         <img
           src={Logo}
-          alt="logo"
-          className="h-24 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          alt="NIGHTGRID"
+          className="h-24 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -mt-1"
           draggable={false}
         />
         <div className="flex gap-4">

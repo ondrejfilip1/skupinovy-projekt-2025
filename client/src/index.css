@@ -138,6 +138,32 @@
   color: var(--text-color);
 }
 
+svg.svg_loading_anim {
+  animation: 1s infinite svg_loading_anim;
+  stroke-dasharray: 100;
+}
+
+svg.svg_loading_anim rect  {
+  stroke: var(--text-color);
+}
+
+@keyframes svg_loading_anim {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 200;
+  }
+}
+
+.header_mask {
+  mask: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 85%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
 .text_bg {
   color: var(--background-color);
 }

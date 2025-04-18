@@ -13,10 +13,10 @@ export default function NotFound() {
       <Header />
       <div className="min_h_screen_fix border_main">
         <div className="min_h_screen_fix border_main_child flex justify-between items-center flex-col">
-          <div className="text-xs absolute -left-13.5 top-30 -rotate-90">
+          <div className="text-xs absolute -left-13.5 top-30 -rotate-90 z-10">
             NIGHTGRID PROTOCOL 0.2.1
           </div>
-          <div className="text-xs absolute left-1.5 bottom-1.5 text-[0.6rem]">
+          <div className="text-xs absolute left-1.5 bottom-1.5 text-[0.6rem] z-10">
             CUSTOM GLITCHES ON UI MAY APPEAR. BASED ON THIS ANALYSIS.
             <br />
             DOCUMENT/D/8b547b967cc90266ddc55d7ddc36567f
@@ -27,8 +27,15 @@ export default function NotFound() {
             draggable={false}
             src={croppedQr}
             alt="qr1"
-            className="absolute left-1/2 transform -translate-x-1/2 top-1.5"
+            className="absolute left-1/2 transform -translate-x-1/2 top-1.5 z-10"
           />
+          <div className="text-xs text-[0.6rem] absolute right-1 transform top-1.5 z-10">
+            <img draggable={false} src={qr2} alt="qr2" className="w-14" />
+            <div className="scale-x-125 w-fit ml-[7px]">
+            PROTOCOL
+            <br />
+            6520-A44</div>
+          </div>
           <div className="text-center m-auto">
             <div className="text-6xl">404</div>
             <div className="text-xl font-medium">Nenalezeno</div>

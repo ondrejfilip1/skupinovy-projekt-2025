@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import croppedQr from "@/assets/qr1.svg";
+import qr2 from "@/assets/qr2.svg";
+import { useScramble } from "use-scramble";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -12,6 +14,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Loading from "@/components/Loading";
+import Item from "./item";
 
 import React from "react";
 import { getAllGames } from "@/models/Game";
@@ -44,7 +48,7 @@ export default function Home() {
   if (!isLoaded) {
     return (
       <>
-        <p>Produkt se načítá...</p>
+        <Loading />
       </>
     );
   }
@@ -53,10 +57,10 @@ export default function Home() {
       <Header />
       <div className="h_screen_fix border_main">
         <div className="h_screen_fix max-h-full border_main_child relative">
-          <div className="text-xs absolute -left-13.5 top-30 -rotate-90">
+          <div className="text-xs absolute -left-13.5 top-30 -rotate-90 z-10">
             NIGHTGRID PROTOCOL 0.2.1
           </div>
-          <div className="text-xs absolute left-1.5 bottom-1.5 text-[0.6rem]">
+          <div className="text-xs absolute left-1.5 bottom-1.5 text-[0.6rem] z-10">
             CUSTOM GLITCHES ON UI MAY APPEAR. BASED ON THIS ANALYSIS.
             <br />
             DOCUMENT/D/8b547b967cc90266ddc55d7ddc36567f
@@ -67,38 +71,21 @@ export default function Home() {
             draggable={false}
             src={croppedQr}
             alt="qr1"
-            className="absolute left-1/2 transform -translate-x-1/2 top-1.5"
+            className="absolute left-1/2 transform -translate-x-1/2 top-1.5 z-10"
           />
+          <div className="text-xs text-[0.6rem] absolute right-1 transform top-1.5 z-10">
+            <img draggable={false} src={qr2} alt="qr2" className="w-14" />
+            <div className="scale-x-125 w-fit ml-[7px]">
+              PROTOCOL
+              <br />
+              6520-A44
+            </div>
+          </div>
+
           <Carousel className="w-full h-full transform top-1/2 -translate-y-1/2">
             <CarouselContent className="h-full">
               {games.map((item, index) => (
-                <CarouselItem key={index} className="flex gap-10">
-                  <div className="w-1/2 p-1 h-full my-auto">
-                    <img
-                      src={`${item.imagePath}1.png`}
-                      alt={item.name}
-                      className="h-full w-full max-w-2xl mx-auto py-10 object-contain"
-                    />
-                  </div>
-                  <div className="w-1/2 p-1 h-fit my-auto py-10 mr-10">
-                    <div className="font-medium text-5xl mb-2">{item.name}</div>
-                    <div className="font-medium text-xl button_cyberpunk px-2 py-1 text_bg background_text inline-block mb-3">
-                      Kategorie: {item.category}
-                    </div>
-                    <div className="font-medium text-3xl mb-2">{item.price} $</div>
-                    <div
-                      className="text-xl text-justify max-h-96 overflow-y-auto pr-2"
-                      dangerouslySetInnerHTML={{ __html: item.description }}
-                    />
-                    <Button
-                      className="text-xl button_hover button_cyberpunk !py-5 mt-3"
-                      variant="ghost"
-                    >
-                      <ShoppingCart />
-                      Přidat do košíku
-                    </Button>
-                  </div>
-                </CarouselItem>
+                <Item key={index} {...item} />
               ))}
             </CarouselContent>
             <div className="absolute bottom-10 left-1/2">
