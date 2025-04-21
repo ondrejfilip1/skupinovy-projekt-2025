@@ -6,6 +6,11 @@
 
 Skupinový projekt s Cyberpunk 2077 tématikou
 
+## Technologie
+
+**Client:** React + Vite, shadcn/ui, TailwindCSS
+
+**Server:** Node, Express, MongoDB
 
 ## Instalace a spuštění
 
@@ -23,7 +28,6 @@ Server
   npm install
   npm start
 ```
-
 
 ## Autoři
 
