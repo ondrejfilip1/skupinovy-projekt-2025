@@ -6,6 +6,7 @@ import ProductList from "./ProductList";
 import ProductView from "./ProductView";
 import ProductUpdateForm from "./ProductUpdateForm";
 import NotFound from "./NotFound";
+import Cart from "./Cart";
 
 export default function AppRoutes() {
   return (
@@ -18,6 +19,7 @@ export default function AppRoutes() {
           <Route path="/view-products" element={<ProductList />} />
           <Route path="/product/:id" element={<ProductView />} />
           <Route path="/update-product/:id" element={<ProductUpdateForm />} />
+          <Route path="/kosik" element={<Cart />} />
         </Routes>
       </BrowserRouter>
     </>

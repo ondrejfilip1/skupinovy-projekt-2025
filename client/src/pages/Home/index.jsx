@@ -10,7 +10,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Loading from "@/components/Loading";
-import Item from "./item";
+import Item from "./Item";
 
 import React from "react";
 import { getAllGames } from "@/models/Game";

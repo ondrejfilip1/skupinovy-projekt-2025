@@ -2,6 +2,7 @@ import { CarouselItem } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import { useScramble } from "use-scramble";
+import { useState } from "react";
 
 export default function Item(props) {
   const { ref, replay } = useScramble({
@@ -15,6 +16,35 @@ export default function Item(props) {
     overdrive: false,
     overflow: true,
   });
+
+  // kod zkopirovany zcasti z rocnikovky lol
+  const addToCart = () => {
+    const cartItem = {
+      productId: props._id,
+      amount: 1,
+    };
+
+    let a = [];
+    a = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let duplicate = false;
+    for (let i = 0; i < a.length; i++) {
+      if (props._id === a[i].productId) {
+        a[i].amount++;
+        const newItems = JSON.stringify(a);
+        localStorage.setItem("cart", newItems) || "[]";
+        duplicate = true;
+      } else if (i === a.length - 1) {
+        // neni duplikat
+        break;
+      }
+    }
+    // jestli neni duplikat tak muzu normalne pridat dalsi polozku
+    if (!duplicate) {
+      a.push(cartItem);
+      localStorage.setItem("cart", JSON.stringify(a));
+    }
+  };
 
   return (
     <>
@@ -42,9 +72,10 @@ export default function Item(props) {
             dangerouslySetInnerHTML={{ __html: props.description }}
           />
           <Button
-            className="text-xl button_hover button_cyberpunk !py-5 mt-3"
+            className="text-xl button_hover button_cyberpunk !py-5 mt-3 text_bg background_text"
             variant="ghost"
             id="hover"
+            onClick={addToCart}
           >
             <ShoppingCart />
             Přidat do košíku

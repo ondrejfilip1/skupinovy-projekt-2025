@@ -9,13 +9,15 @@ export default function Cursor() {
 
   useEffect(() => {
     const move = (e) => {
+      // nastavovani pozice kurzoru
       setPos({ x: e.clientX, y: e.clientY });
 
-      // nastavovani kurzoru podle idcka
+      // nastavovani obrazku kurzoru podle idcka
       if (e.target.id === "hover") setCursorPath(pointerCur);
       else setCursorPath(defaultCur);
     };
 
+    // jestli ma nebo nema byt kurzor viditelny
     const show = () => {
       setVisible("inline");
     };
@@ -24,6 +26,7 @@ export default function Cursor() {
       setVisible("none");
     };
 
+    // event listenery
     document.addEventListener("mousemove", move);
     document.addEventListener("mouseenter", show);
     document.addEventListener("mouseleave", hide);
@@ -34,12 +37,11 @@ export default function Cursor() {
       <img
         src={cursorPath}
         style={{
-          left: pos.x,
-          top: pos.y,
+          transform: `translate(${pos.x}px, ${pos.y}px)`,
           zIndex: 99,
           display: visible,
         }}
-        className="w-10 fixed pointer-events-none"
+        className="w-10 fixed pointer-events-none drop-shadow-[0_0px_4px_rgba(0,0,0,0.75)]"
       />
     </>
   );

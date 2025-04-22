@@ -1,7 +1,23 @@
 import { Link } from "react-router-dom";
 import Logo from "@/assets/logo.png";
-import { Gamepad, ShoppingCart, Menu } from "lucide-react";
+import {
+  Gamepad,
+  ShoppingCart,
+  Menu,
+  Clapperboard,
+  Users,
+  History,
+  Settings,
+} from "lucide-react";
 import { Button } from "../ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Header() {
   return (
@@ -36,16 +52,41 @@ export default function Header() {
               Nákupní košík
             </Button>
           </Link>
-          <Link to="/kosik">
-            <Button
-              className="text-2xl button_hover button_cyberpunk !py-5"
-              variant="ghost"
-              id="hover"
-            >
-              <Menu />
-              Účet
-            </Button>
-          </Link>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Button
+                className="text-2xl button_hover button_cyberpunk !py-5"
+                variant="ghost"
+                id="hover"
+              >
+                <Menu />
+                Účet
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="button_cyberpunk background_text border-none text-black">
+              <DropdownMenuLabel className="text-xl">
+                Váš účet
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator className="bg-black mx-2" />
+              <DropdownMenuItem className="text-xl">
+                <Clapperboard className="text-black" />
+                Příběhy
+              </DropdownMenuItem>
+              <DropdownMenuItem className="text-xl">
+                <Users className="text-black" />
+                Postavy
+              </DropdownMenuItem>
+              <DropdownMenuItem className="text-xl">
+                <History className="text-black" />
+                Historie plateb
+              </DropdownMenuItem>
+              <DropdownMenuItem className="text-xl">
+                <Settings className="text-black" />
+                Nastavení
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </>
