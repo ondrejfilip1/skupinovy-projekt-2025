@@ -1,6 +1,7 @@
 import { getGameById } from "@/models/Game";
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function CartBox(props) {
   const [product, setProduct] = useState();
@@ -13,6 +14,14 @@ export default function CartBox(props) {
       setProduct(data.payload);
       setLoaded(true);
     }
+  };
+
+  const handleDelete = () => {
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    cart.splice(props.index, 1);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    window.dispatchEvent(new Event("reloadCart"));
   };
 
   useEffect(() => {
@@ -50,7 +59,14 @@ export default function CartBox(props) {
           <div className="text-xl">{props.amount}x</div>
         </div>
         <div className="p-1 h-8 w-8 absolute right-0 top-0">
-        <X id="hover" />
+          <Button
+            className="text_text !bg-transparent"
+            variant="ghost"
+            onClick={handleDelete}
+            id="hover"
+          >
+            <X />
+          </Button>
         </div>
       </div>
       <div className="background_text h-[1px] mx-12 opacity-50" />

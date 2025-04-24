@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import croppedQr from "@/assets/qr1.svg";
@@ -10,13 +10,29 @@ import CartBox from "./CartBox";
 import { cn } from "@/lib/utils";
 
 export default function Cart() {
-  const [cart, setCart] = useState(localStorage.getItem("cart") || []);
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
+  useEffect(() => {
+    const reloadCart = () => {
+      setCart(JSON.parse(localStorage.getItem("cart")));
+    };
+
+    window.addEventListener("reloadCart", reloadCart);
+  }, []);
 
   return (
     <>
       <Header />
       <div className="min_h_screen_fix border_main">
-        <div className={cn("min_h_screen_fix max-h-full border_main_child relative", cart && cart.length > 0 ? "" : "flex flex-col justify-center items-center")}>
+        <div
+          className={cn(
+            "min_h_screen_fix max-h-full border_main_child relative",
+            cart && cart.length > 0
+              ? ""
+              : "flex flex-col justify-center items-center"
+          )}
+        >
           <div className="text-xs absolute -left-13.5 top-30 -rotate-90 z-10">
             NIGHTGRID PROTOCOL 0.2.1
           </div>
@@ -44,13 +60,14 @@ export default function Cart() {
           <div className="h-8" />
           {cart && cart.length > 0 ? (
             <>
-              {JSON.parse(cart).map((value, index) => (
-                <CartBox {...value} key={index} />
+              {cart.map((value, index) => (
+                <CartBox {...value} key={`${value.productId}-${index}`} index={index} />
               ))}
             </>
           ) : (
             <div className="m-auto text-center text-2xl">Košík je prázdný</div>
           )}
+          <div className="h-16" />
         </div>
       </div>
       <Footer />
