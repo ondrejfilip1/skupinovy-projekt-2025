@@ -227,7 +227,7 @@ svg.svg_loading_anim rect {
 }
 
 .h_screen_fix {
-  height: calc(100vh - 200px);
+  height: calc(103.5vh - 200px);
 }
 
 .min_h_screen_fix {

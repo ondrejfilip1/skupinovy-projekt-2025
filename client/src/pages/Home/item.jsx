@@ -58,21 +58,21 @@ export default function Item(props) {
         </div>
         <div className="w-1/2 p-1 h-fit my-auto py-10 mr-10">
           <div
-            className="font-medium text-5xl mb-2"
+            className="font-medium sm:text-4xl text-2xl mb-2"
             ref={ref}
             onMouseOver={replay}
             onFocus={replay}
           />
-          <div className="font-medium text-xl button_cyberpunk px-2 py-1 text_bg background_text inline-block mb-3">
+          <div className="font-medium sm:text-lg text-md button_cyberpunk px-2 py-1 text_bg background_text inline-block mb-3">
             Kategorie: {props.category}
           </div>
-          <div className="font-medium text-3xl mb-2">{props.price} $</div>
+          <div className="font-medium sm:text-2xl text-xl mb-2">{props.price} $</div>
           <div
-            className="text-xl text-justify max-h-96 overflow-y-auto pr-2"
+            className="sm:text-lg text-sm text-justify max-h-96 overflow-y-auto pr-2"
             dangerouslySetInnerHTML={{ __html: props.description }}
           />
           <Button
-            className="text-xl button_hover button_cyberpunk !py-5 mt-3 text_bg background_text"
+            className="sm:text-lg text-md button_hover button_cyberpunk !py-5 mt-3 text_bg background_text"
             variant="ghost"
             id="hover"
             onClick={addToCart}

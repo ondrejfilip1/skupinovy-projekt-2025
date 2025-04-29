@@ -76,7 +76,7 @@ export default function Home() {
               6520-A44
             </div>
           </div>
-
+          
           <Carousel className="w-full h-full transform top-1/2 -translate-y-1/2">
             <CarouselContent className="h-full">
               {games.map((item, index) => (
