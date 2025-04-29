@@ -69,10 +69,11 @@ export default function Header() {
                 Váš účet
               </DropdownMenuLabel>
               <DropdownMenuSeparator className="bg-black mx-2" />
+              <Link to="/pribeh">
               <DropdownMenuItem className="text-xl">
                 <Clapperboard className="text-black" />
                 Příběhy
-              </DropdownMenuItem>
+              </DropdownMenuItem></Link>
               <DropdownMenuItem className="text-xl">
                 <Users className="text-black" />
                 Postavy

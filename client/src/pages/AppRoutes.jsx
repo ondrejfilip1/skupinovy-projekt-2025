@@ -7,6 +7,7 @@ import ProductView from "./ProductView";
 import ProductUpdateForm from "./ProductUpdateForm";
 import NotFound from "./NotFound";
 import Cart from "./Cart";
+import Chat from "./Pribeh";
 
 export default function AppRoutes() {
   return (
@@ -20,6 +21,7 @@ export default function AppRoutes() {
           <Route path="/product/:id" element={<ProductView />} />
           <Route path="/update-product/:id" element={<ProductUpdateForm />} />
           <Route path="/kosik" element={<Cart />} />
+          <Route path="/pribeh" element={<Chat />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -61,7 +61,11 @@ export default function Cart() {
           {cart && cart.length > 0 ? (
             <>
               {cart.map((value, index) => (
-                <CartBox {...value} key={`${value.productId}-${index}`} index={index} />
+                <CartBox
+                  {...value}
+                  key={`${value.productId}-${index}`}
+                  index={index}
+                />
               ))}
             </>
           ) : (
