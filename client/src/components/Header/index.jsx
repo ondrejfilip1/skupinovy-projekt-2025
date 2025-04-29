@@ -23,12 +23,6 @@ export default function Header() {
   return (
     <>
       <div className="flex justify-between items-center sticky top-0 left-0 w-full px-12 pt-10 pb-12 text-2xl backdrop-blur-lg z-20 header_mask">
-        <img
-          src={Logo}
-          alt="NIGHTGRID"
-          className="h-24 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -mt-1"
-          draggable={false}
-        />
         <div className="flex gap-4">
           <Link to="/hry">
             <Button
@@ -41,6 +35,14 @@ export default function Header() {
             </Button>
           </Link>
         </div>
+        <Link to="/">
+          <img
+            src={Logo}
+            alt="NIGHTGRID"
+            className="h-24 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -mt-1 cursor-pointer"
+            draggable={false}
+          />
+        </Link>
         <div className="flex gap-4">
           <Link to="/kosik">
             <Button
@@ -49,7 +51,7 @@ export default function Header() {
               id="hover"
             >
               <ShoppingCart />
-              Nákupní košík
+              <p className="md:block hidden">Nákupní košík</p>
             </Button>
           </Link>
 
@@ -61,7 +63,7 @@ export default function Header() {
                 id="hover"
               >
                 <Menu />
-                Účet
+                <p className="md:block hidden">Účet</p>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="button_cyberpunk background_text border-none text-black">
@@ -69,10 +71,11 @@ export default function Header() {
                 Váš účet
               </DropdownMenuLabel>
               <DropdownMenuSeparator className="bg-black mx-2" />
+              <Link to="/pribeh">
               <DropdownMenuItem className="text-xl">
                 <Clapperboard className="text-black" />
                 Příběhy
-              </DropdownMenuItem>
+              </DropdownMenuItem></Link>
               <DropdownMenuItem className="text-xl">
                 <Users className="text-black" />
                 Postavy
