@@ -294,8 +294,13 @@ body {
   padding: 1rem;
 }
 
-hr {
+.message hr {
   border-color: var(--text-color);
   margin: 1rem;
   opacity: 0.5;
+}
+
+.message ul {
+  list-style: square;
+  margin-left: 30px;
 }
