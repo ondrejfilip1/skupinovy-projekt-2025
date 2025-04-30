@@ -8,6 +8,7 @@ import ProductUpdateForm from "./ProductUpdateForm";
 import NotFound from "./NotFound";
 import Cart from "./Cart";
 import Chat from "./Pribeh";
+import Menu from "./Pribeh/Menu";
 
 export default function AppRoutes() {
   return (
@@ -22,6 +23,7 @@ export default function AppRoutes() {
           <Route path="/update-product/:id" element={<ProductUpdateForm />} />
           <Route path="/kosik" element={<Cart />} />
           <Route path="/pribeh" element={<Chat />} />
+          <Route path="/pribehy" element={<Menu />} />
         </Routes>
       </BrowserRouter>
     </>

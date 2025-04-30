@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { marked } from "marked";
 import { AI_API } from "@/../secret";
 import Header from "@/components/Header";
-import { Sparkles, SendHorizontal } from "lucide-react";
+import { Sparkles, SendHorizontal, Clapperboard } from "lucide-react";
 import Loading from "./Loading";
 import { cn } from "@/lib/utils";
 
@@ -109,7 +109,7 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
       <Header />
       {!messages ||
         (messages.length <= 0 && (
-          <div className="flex flex-col gap-5 text-center items-center justify-center text-3xl absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="flex flex-col gap-5 text-center items-center justify-center text-3xl h_screen_fix">
             <Sparkles strokeWidth={1} className="w-20 h-20" />
             Tvůj cyberpunkový příběh začíná teď
           </div>
@@ -117,20 +117,30 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
       <div className="mx-auto container text-xl py-2">
         <div className="message-container pb-16 mx-2">
           {messages.map((message, index) => (
-            <div className={cn("mb-6 anim_scale", message.user === "bot" && ` background_text p-[1px] button_cyberpunk` )}>
+            <div
+              key={index}
+              className={cn(
+                "mb-6 anim_scale",
+                message.user === "bot" &&
+                  ` background_text p-[1px] button_cyberpunk`
+              )}
+            >
               <div
-                key={index}
-                className={cn(`message ${message.user}`, message.user === "bot" && ` background_bg button_cyberpunk`)}
+                className={cn(
+                  `message ${message.user}`,
+                  message.user === "bot" && ` background_bg button_cyberpunk`
+                )}
                 dangerouslySetInnerHTML={{ __html: marked.parse(message.text) }}
               />
             </div>
           ))}
-          {isGenerating ? <Loading /> : ""}
+          {isGenerating && <Loading />}
         </div>
         <div className="fixed bottom-4 w-full">
           {!hasGenerated && (
-            <div className="background_text p-[1px] button_cyberpunk w-fit mb-2">
+            <div className="background_text p-[1px] button_cyberpunk w-fit mb-4">
               <Button
+                id="hover"
                 onClick={async () => {
                   const userMessage = [
                     ...messages,
@@ -149,9 +159,11 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
                 className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
               >
                 Vygeneruj náhodný příběh
+                <Clapperboard />
               </Button>
             </div>
           )}
+
           <div className="container background_text p-[1px] button_cyberpunk">
             <div className="button_cyberpunk flex justify-between background_bg relative">
               <Input

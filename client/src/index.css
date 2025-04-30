@@ -227,7 +227,7 @@ svg.svg_loading_anim rect {
 }
 
 .h_screen_fix {
-  height: calc(103.5vh - 200px);
+  height: calc(100vh - 210px);
 }
 
 .min_h_screen_fix {
@@ -290,7 +290,6 @@ body {
 }
 
 .bot {
-  border: 1px solid #cfff57;
   padding: 1rem;
 }
 
