@@ -124,6 +124,7 @@
   --text-color: #d0ff57;
   --background-color: #1a1019;
   --background-color-2: #21131a;
+  --border-color: #d0ff57;
 }
 
 .background_bg {
@@ -136,6 +137,10 @@
 
 .text_text {
   color: var(--text-color);
+}
+
+.border_color {
+  border-color: var(--border-color);
 }
 
 .text_text::placeholder {

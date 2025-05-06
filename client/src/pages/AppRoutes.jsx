@@ -9,6 +9,7 @@ import NotFound from "./NotFound";
 import Cart from "./Cart";
 import Chat from "./Pribeh";
 import Menu from "./Pribeh/Menu";
+import Games from "./Games";
 
 export default function AppRoutes() {
   return (
@@ -17,6 +18,7 @@ export default function AppRoutes() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/*" element={<NotFound />} />
+          <Route path="/hry" element={<Games />} />
           <Route path="/add-product" element={<ProductCreateForm />} />
           <Route path="/view-products" element={<ProductList />} />
           <Route path="/product/:id" element={<ProductView />} />
