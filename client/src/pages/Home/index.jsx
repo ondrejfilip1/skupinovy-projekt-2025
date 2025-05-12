@@ -7,6 +7,7 @@ import Game from "/game/game.png";
 
 import React from "react";
 import { PowerGlitch } from "powerglitch";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const [value, setValue] = useState(0);
@@ -92,14 +93,15 @@ export default function Home() {
       return (
         <>
           <Header />
-          <div className="flex bg-[#d0ff57]">
-            <div className="text-5xl font-bold">
-              <h1 className="text-[#1a1019]">Welcome to the NIGHTGRID</h1>
+            <div className="flex justify-around bg-[#d0ff57]">
+              <div className="text-5xl font-bold flex flex-col justify-center">
+                <h1 className="text-[#1a1019] mb-4">Welcome to the NIGHTGRID</h1>
+                <Button className="button_cyberpunk background_bg">START THE JOURNEY</Button>
+              </div>
+              <div>
+                <img src={Game} alt="" />
+              </div>
             </div>
-            <div>
-              <img src={Game} alt="" />
-            </div>
-          </div>
           <Footer />
         </>
       );

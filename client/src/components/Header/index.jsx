@@ -51,7 +51,7 @@ export default function Header() {
               id="hover"
             >
               <ShoppingCart />
-              <p className="md:block hidden">Nákupní košík</p>
+              <p className="md:block hidden" id="hover">Nákupní košík</p>
             </Button>
           </Link>
 
@@ -62,8 +62,8 @@ export default function Header() {
                 variant="ghost"
                 id="hover"
               >
-                <Menu />
-                <p className="md:block hidden">Účet</p>
+                <Menu className="w-32"/>
+                <p className="md:block hidden" id="hover">Účet</p>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="button_cyberpunk background_text border-none text-black">
