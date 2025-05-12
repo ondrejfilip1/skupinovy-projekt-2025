@@ -8,7 +8,7 @@ import { Sparkles, SendHorizontal, Clapperboard } from "lucide-react";
 import Loading from "./Loading";
 import { cn } from "@/lib/utils";
 
-export default function Chat() {
+export default function Chat(props) {
   const [messages, setMessages] = useState([]);
   const [hasGenerated, setHasGenerated] = useState(false);
   const [input, setInput] = useState("");
@@ -96,6 +96,29 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
         behavior: "smooth",
       });
     }, 10);
+
+    let stories = JSON.parse(localStorage.getItem("stories")) || [];
+
+    let newStory = {
+      messages: messages,
+      created: data.created,
+    };
+  
+    let currentIndex;
+    if (props.storyIndex === undefined || props.storyIndex === null) {
+      if (!hasGenerated) {
+        currentIndex = stories.length;
+        stories.push(newStory);
+      } else {
+        currentIndex = stories.length - 1;
+        stories[currentIndex] = newStory;
+      }
+    } else {
+      currentIndex = props.storyIndex;
+      stories[currentIndex] = newStory;
+    }
+  
+    localStorage.setItem("stories", JSON.stringify(stories));
 
     return result;
   };
