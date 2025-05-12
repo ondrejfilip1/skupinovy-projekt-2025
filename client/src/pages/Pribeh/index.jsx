@@ -14,6 +14,7 @@ export default function Chat(props) {
   const [input, setInput] = useState("");
   const [currentResponse, setCurrentResponse] = useState();
   const [isGenerating, setIsGenerating] = useState(false);
+  const [hasSaved, setHasSaved] = useState(false);
 
   const sendMessage = async () => {
     if (!input) return;
@@ -102,8 +103,9 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
     let newStory = {
       messages: messages,
       created: data.created,
+      name: `Konverzace č.${stories.length + (hasSaved ? 0 : 1)}`,
     };
-  
+
     let currentIndex;
     if (props.storyIndex === undefined || props.storyIndex === null) {
       if (!hasGenerated) {
@@ -117,8 +119,9 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
       currentIndex = props.storyIndex;
       stories[currentIndex] = newStory;
     }
-  
+
     localStorage.setItem("stories", JSON.stringify(stories));
+    setHasSaved(true);
 
     return result;
   };

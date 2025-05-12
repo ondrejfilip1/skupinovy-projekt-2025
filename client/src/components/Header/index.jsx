@@ -71,20 +71,20 @@ export default function Header() {
                 Váš účet
               </DropdownMenuLabel>
               <DropdownMenuSeparator className="bg-black mx-2" />
-              <Link to="/pribeh">
-              <DropdownMenuItem className="text-xl">
+              <Link to="/pribehy">
+              <DropdownMenuItem className="text-xl background_hover_darker" id="hover">
                 <Clapperboard className="text-black" />
                 Příběhy
               </DropdownMenuItem></Link>
-              <DropdownMenuItem className="text-xl">
+              <DropdownMenuItem className="text-xl background_hover_darker" id="hover">
                 <Users className="text-black" />
                 Postavy
               </DropdownMenuItem>
-              <DropdownMenuItem className="text-xl">
+              <DropdownMenuItem className="text-xl background_hover_darker" id="hover">
                 <History className="text-black" />
                 Historie plateb
               </DropdownMenuItem>
-              <DropdownMenuItem className="text-xl">
+              <DropdownMenuItem className="text-xl background_hover_darker" id="hover">
                 <Settings className="text-black" />
                 Nastavení
               </DropdownMenuItem>

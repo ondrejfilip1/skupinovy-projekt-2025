@@ -125,6 +125,7 @@
   --background-color: #1a1019;
   --background-color-2: #21131a;
   --border-color: #d0ff57;
+  --text-color-darker: #00000015;
 }
 
 .background_bg {
@@ -141,6 +142,10 @@
 
 .border_color {
   border-color: var(--border-color);
+}
+
+.background_hover_darker:hover {
+  background-color: var(--text-color-darker);
 }
 
 .text_text::placeholder {
