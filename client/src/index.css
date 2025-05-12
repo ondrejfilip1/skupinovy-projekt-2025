@@ -140,6 +140,10 @@
   color: var(--text-color);
 }
 
+.text_text_hover:hover {
+  color: var(--text-color);
+}
+
 .border_color {
   border-color: var(--border-color);
 }

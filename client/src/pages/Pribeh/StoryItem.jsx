@@ -1,6 +1,18 @@
 import moment from "moment";
 import { ArrowUpRight, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 
 export default function StoryItem(props) {
   const handleChange = (e) => {
@@ -17,8 +29,32 @@ export default function StoryItem(props) {
             .locale("cs")
             .format("D.M.YYYY H:MM")}
         </div>
-        <div className="absolute top-3 -right-3 background_bg z-10 border border_color">
-          <X className="p-1"/>
+        <div className="absolute top-3 -right-3 background_bg z-10 border border_color h-6.5">
+          <AlertDialog>
+            <AlertDialogTrigger>
+              <X className="p-1" />
+            </AlertDialogTrigger>
+            <AlertDialogContent className="background_bg border-none background_text p-[1px] button_cyberpunk">
+              <div className="button_cyberpunk background_bg relative text_text p-4">
+                <AlertDialogHeader>
+                  <AlertDialogTitle>
+                    Opravdu chcete smazat tento příběh?
+                  </AlertDialogTitle>
+                  <AlertDialogDescription className="text_text">
+                    Tato akce nelze vrátit zpět
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel className="bg-transparent border_color hover:bg-transparent text_text_hover rounded-none" id="hover">
+                    Zpět
+                  </AlertDialogCancel>
+                  <AlertDialogAction className="background_text text_bg rounded-none" id="hover">
+                    Smazat
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </div>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
         <div className="background_text p-[1px] button_cyberpunk w-full">
           <div className="button_cyberpunk background_bg relative text_text !text-xl p-4 flex items-center justify-between">

@@ -49,7 +49,7 @@ export default function Menu() {
             {stories && stories.length > 0 && (
               <>
                 <h1 className="text-center text-4xl mb-6">Vaše příběhy</h1>
-                <div className="grid lg:grid-cols-4 grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="grid lg:grid-cols-4 grid-cols-1 sm:grid-cols-2 gap-6">
                   {stories.map((value, index) => (
                     <StoryItem {...value} key={index} index={index} />
                   ))}
