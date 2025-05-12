@@ -9,11 +9,11 @@ import { useEffect, useState } from "react";
 import StoryItem from "./StoryItem";
 
 export default function Menu() {
-  const [stories, setStories] = useState(JSON.parse(localStorage.getItem("stories")) || []);
+  const [stories, setStories] = useState(
+    JSON.parse(localStorage.getItem("stories")) || []
+  );
 
-  useEffect(() => {
-
-  }, [])
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -46,13 +46,17 @@ export default function Menu() {
           </div>
 
           <div className="m-10">
-            <div className="grid lg:grid-cols-4 grid-cols-2 gap-4">
-            {
-              stories.map((value, index) => (
-                <StoryItem {...value} key={index} index={index} />
-              ))
-            }
-            </div>
+            {stories && stories.length > 0 && (
+              <>
+                <h1 className="text-center text-4xl mb-6">Vaše příběhy</h1>
+                <div className="grid lg:grid-cols-4 grid-cols-1 sm:grid-cols-2 gap-5">
+                  {stories.map((value, index) => (
+                    <StoryItem {...value} key={index} index={index} />
+                  ))}
+                </div>
+              </>
+            )}
+
             <div className="background_text my-6 h-[1px]" />
             <Link to="/pribeh">
               <div className="background_text p-[1px] button_cyberpunk w-fit mb-4">
