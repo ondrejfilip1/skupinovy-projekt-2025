@@ -72,7 +72,7 @@ export default function Item(props) {
             dangerouslySetInnerHTML={{ __html: props.description }}
           />
           <Button
-            className="sm:text-lg text-md button_hover button_cyberpunk !py-5 mt-3 text_bg background_text"
+            className="sm:text-lg text-md button_hover button_cyberpunk !py-5 mt-3 text_bg w-fit background_text"
             variant="ghost"
             id="hover"
             onClick={addToCart}
