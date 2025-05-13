@@ -93,24 +93,23 @@ export default function Home() {
       return (
         <>
           <Header />
-            <div className="flex justify-around bg-[#d0ff57]">
-              <div className="text-5xl font-bold flex flex-col justify-center">
-                <h1 className="text-[#1a1019] mb-4">Welcome to the NIGHTGRID</h1>
-                <Button className="button_cyberpunk background_bg">START THE JOURNEY</Button>
-              </div>
-              <div>
-                <img src={Game} alt="" />
+          <div className="flex sm:flex-row flex-col-reverse justify-around h-[600px] w-full bg-no-repeat bg-cover bg-[url(/background/background1.png)]">
+            <div>
+              <div className="font-bold flex flex-col justify-center mx-[22px]">
+                <h1 className="text-[#1a1019] sm:text-5xl text-3xl mb-4">
+                  Welcome to the NIGHTGRID
+                </h1>
+                <Button className="button_cyberpunk background_bg">
+                  START THE JOURNEY
+                </Button>
               </div>
             </div>
+          </div>
           <Footer />
         </>
       );
     }
   };
 
-  return (
-    <>
-      {renderLoading()}
-    </>
-  );
+  return <>{renderLoading()}</>;
 }
