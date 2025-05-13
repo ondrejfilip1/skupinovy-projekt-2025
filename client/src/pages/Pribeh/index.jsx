@@ -39,36 +39,8 @@ export default function Chat(props) {
     const userMessage = [...messages, { text: input, user: "user" }];
     setMessages(userMessage);
     const response = await fetchMessage(input);
-    const fullConvo = [...userMessage, { text: response, user: "bot" }];
-    setMessages(fullConvo);
-
-    let savedStories = JSON.parse(localStorage.getItem("stories")) || [];
-    const newStory = {
-      messages: fullConvo,
-      created: Date.now(),
-      name: `Příběh č.${savedStories.length + (hasSaved ? 0 : 1)}`,
-    };
-
-    let currentIndex;
-    if (!storyId) {
-      if (!hasGenerated) {
-        currentIndex = savedStories.length;
-        savedStories.push(newStory);
-      } else {
-        currentIndex = savedStories.length - 1;
-        savedStories[currentIndex] = newStory;
-      }
-    } else {
-      currentIndex = storyId;
-      savedStories[currentIndex] = newStory;
-    }
-
-    localStorage.setItem("stories", JSON.stringify(savedStories));
-    setHasSaved(true);
-    /*
     setMessages([...userMessage, { text: response, user: "bot" }]);
     setInput("");
-    */
   };
 
   const fetchMessage = async (input) => {
@@ -138,9 +110,8 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
       });
     }, 10);
 
-    /*
     let stories = JSON.parse(localStorage.getItem("stories")) || [];
-    console.log(messages);
+
     let newStory = {
       messages: messages,
       created: data.created,
@@ -162,7 +133,7 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
     }
 
     localStorage.setItem("stories", JSON.stringify(stories));
-    setHasSaved(true);*/
+    setHasSaved(true);
 
     return result;
   };
