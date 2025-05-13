@@ -41,6 +41,7 @@ export default function Header() {
             alt="NIGHTGRID"
             className="h-24 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -mt-1 cursor-pointer"
             draggable={false}
+            id="hover"
           />
         </Link>
         <div className="flex gap-4">

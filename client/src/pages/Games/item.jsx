@@ -56,7 +56,7 @@ export default function Item(props) {
             className="h-full w-full max-w-2xl mx-auto py-10 object-contain select-none"
           />
         </div>
-        <div className="w-1/2 p-1 h-fit my-auto py-10 mr-10">
+        <div className="w-1/2 p-1 h-full my-auto py-10 mr-10">
           <div
             className="font-medium sm:text-4xl text-2xl mb-2"
             ref={ref}
@@ -68,7 +68,7 @@ export default function Item(props) {
           </div>
           <div className="font-medium sm:text-2xl text-xl mb-2">{props.price} $</div>
           <div
-            className="sm:text-lg text-sm text-justify max-h-96 overflow-y-auto pr-2"
+            className="sm:text-lg text-sm text-justify max-h-96 overflow-y-auto pr-2" style={{ maxHeight: '224px'}}
             dangerouslySetInnerHTML={{ __html: props.description }}
           />
           <Button
