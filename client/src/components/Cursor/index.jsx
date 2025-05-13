@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import defaultCur from "../../assets/cursors/default.png";
 import pointerCur from "../../assets/cursors/pointer.png";
+import textCur from "../../assets/cursors/text.png";
 
 export default function Cursor() {
   const [pos, setPos] = useState({ x: 0, y: 0 });
@@ -13,8 +14,16 @@ export default function Cursor() {
       setPos({ x: e.clientX, y: e.clientY });
 
       // nastavovani obrazku kurzoru podle idcka
-      if (e.target.id === "hover") setCursorPath(pointerCur);
-      else setCursorPath(defaultCur);
+      switch (e.target.id) {
+        case "hover":
+          setCursorPath(pointerCur);
+          break;
+        case "text":
+          setCursorPath(textCur);
+          break;
+        default:
+          setCursorPath(defaultCur);
+      }
     };
 
     // jestli ma nebo nema byt kurzor viditelny
@@ -41,7 +50,7 @@ export default function Cursor() {
           zIndex: 99,
           display: visible,
         }}
-        className="w-10 fixed pointer-events-none drop-shadow-[0_0px_4px_rgba(0,0,0,0.75)]"
+        className="w-10 h-10 object-contain object-left-top fixed pointer-events-none drop-shadow-[0_0px_4px_rgba(0,0,0,0.75)]"
       />
     </>
   );

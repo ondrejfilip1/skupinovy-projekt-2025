@@ -13,13 +13,15 @@ export default function Menu() {
     JSON.parse(localStorage.getItem("stories")) || []
   );
 
-  useEffect(() => {}, []);
+  window.addEventListener("storiesUpdate", () => {
+    setStories(JSON.parse(localStorage.getItem("stories")));
+  });
 
   return (
     <>
       <Header />
-      <div className="h_screen_fix border_main">
-        <div className="h_screen_fix max-h-full border_main_child relative">
+      <div className="min_h_screen_fix border_main">
+        <div className="min_h_screen_fix max-h-full border_main_child relative">
           <div className="text-xs absolute -left-13.5 top-30 -rotate-90 z-10">
             NIGHTGRID PROTOCOL 0.2.1
           </div>
@@ -46,7 +48,7 @@ export default function Menu() {
           </div>
 
           <div className="m-10">
-            {stories && stories.length > 0 && (
+            {stories && stories.length > 0 ? (
               <>
                 <h1 className="text-center text-4xl mb-6">Vaše příběhy</h1>
                 <div className="grid lg:grid-cols-4 grid-cols-1 sm:grid-cols-2 gap-6">
@@ -55,11 +57,15 @@ export default function Menu() {
                   ))}
                 </div>
               </>
+            ) : (
+              <h1 className="text-center text-4xl mb-16 mt-20">
+                Nemáte žádné příběhy
+              </h1>
             )}
 
             <div className="background_text my-6 h-[1px]" />
             <Link to="/pribeh">
-              <div className="background_text p-[1px] button_cyberpunk w-fit mb-4">
+              <div className="background_text p-[1px] button_cyberpunk w-fit mb-16">
                 <Button
                   id="hover"
                   className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
