@@ -29,7 +29,7 @@ export default function StoryItem(props) {
 
   return (
     <>
-      <div className="relative">
+      <div className="relative anim_story">
         <div>
           {moment(props.created * 1000)
             .locale("cs")
@@ -38,7 +38,7 @@ export default function StoryItem(props) {
         <div className="absolute top-3 -right-3 background_bg z-10 border border_color h-6.5">
           <AlertDialog>
             <AlertDialogTrigger>
-              <X className="p-1" />
+              <X className="p-1" id="hover" />
             </AlertDialogTrigger>
             <AlertDialogContent className="background_bg border-none background_text p-[1px] button_cyberpunk">
               <div className="button_cyberpunk background_bg relative text_text p-4">
@@ -74,12 +74,12 @@ export default function StoryItem(props) {
             <input
               onChange={handleChange}
               defaultValue={props.name}
-              className="outline-none"
               id="text"
               maxLength={64}
+              className="outline-none w-full"
             />
             <Link to={`/pribeh?storyId=${props.index}`}>
-              <ArrowUpRight className="p-2 w-10 h-10" />
+              <ArrowUpRight className="p-2 w-10 h-10" id="hover" />
             </Link>
           </div>
         </div>

@@ -4,18 +4,25 @@ import { Button } from "@/components/ui/button";
 import { marked } from "marked";
 import { AI_API } from "@/../secret";
 import Header from "@/components/Header";
-import { Sparkles, SendHorizontal, Clapperboard } from "lucide-react";
+import {
+  Sparkles,
+  SendHorizontal,
+  Clapperboard,
+  CornerUpRight,
+} from "lucide-react";
 import Loading from "./Loading";
 import { cn } from "@/lib/utils";
 import { useSearchParams } from "react-router-dom";
+import NotFound from "../NotFound";
 
-export default function Chat(props) {
+export default function Chat() {
   const [messages, setMessages] = useState([]);
   const [hasGenerated, setHasGenerated] = useState(false);
   const [input, setInput] = useState("");
   const [currentResponse, setCurrentResponse] = useState();
   const [isGenerating, setIsGenerating] = useState(false);
   const [hasSaved, setHasSaved] = useState(false);
+  const [notFound, setNotFound] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [stories, setStories] = useState(
@@ -24,18 +31,14 @@ export default function Chat(props) {
   const [storyId, setStoryId] = useState(searchParams.get("storyId"));
 
   useEffect(() => {
-    if (storyId && stories && stories.length > 0)
+    if (storyId && stories && stories.length > 0 && storyId < stories.length && storyId >= 0)
       setMessages(stories[storyId].messages);
+    else
+      setNotFound(true)
   }, []);
 
   const sendMessage = async () => {
     if (!input) return;
-    setTimeout(() => {
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: "smooth",
-      });
-    }, 10);
     const userMessage = [...messages, { text: input, user: "user" }];
     setMessages(userMessage);
     const response = await fetchMessage(input);
@@ -44,8 +47,15 @@ export default function Chat(props) {
   };
 
   const fetchMessage = async (input) => {
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth",
+      });
+    }, 10);
     setIsGenerating(true);
     setHasGenerated(true);
+    setHasSaved(false);
     const response = await fetch(
       //"https://openrouter.ai/api/v1/chat/completions",
       "https://api.groq.com/openai/v1/chat/completions",
@@ -96,7 +106,7 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
     if (data.error) {
       //alert("Rate limited");
       setIsGenerating(false);
-      return `Nastala chyba: ${data.error.code}`;
+      return `Nastala chyba: ${data.error.message}`;
     }
 
     // vymaze think tag (nechci vedet co si ai mysli)
@@ -142,6 +152,12 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
     if (currentResponse && currentResponse.created) setIsGenerating(false);
   }, [currentResponse]);
 
+  if (notFound) {
+    return(
+      <NotFound />
+    )
+  }
+
   return (
     <>
       <Header />
@@ -153,7 +169,7 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
           </div>
         ))}
       <div className="mx-auto container text-xl py-2">
-        <div className="message-container pb-16 mx-2">
+        <div className="message-container pb-36 mx-2">
           {messages.map((message, index) => (
             <div
               key={index}
@@ -201,6 +217,84 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
               </Button>
             </div>
           )}
+          {hasGenerated && hasSaved && (
+            <>
+              <div className="flex gap-4">
+                <div className="background_text p-[1px] button_cyberpunk w-fit mb-4">
+                  <Button
+                    id="hover"
+                    onClick={async () => {
+                      const userMessage = [
+                        ...messages,
+                        { text: "Vybírám si první možnost", user: "user" },
+                      ];
+                      setMessages(userMessage);
+                      const response = await fetchMessage(
+                        "Vybírám si první možnost"
+                      );
+                      setMessages([
+                        ...userMessage,
+                        { text: response, user: "bot" },
+                      ]);
+                      setInput("");
+                    }}
+                    className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
+                  >
+                    Vybírám si první možnost
+                    <CornerUpRight />
+                  </Button>
+                </div>
+                <div className="background_text p-[1px] button_cyberpunk w-fit mb-4">
+                  <Button
+                    id="hover"
+                    onClick={async () => {
+                      const userMessage = [
+                        ...messages,
+                        { text: "Vybírám si druhou možnost", user: "user" },
+                      ];
+                      setMessages(userMessage);
+                      const response = await fetchMessage(
+                        "Vybírám si druhou možnost"
+                      );
+                      setMessages([
+                        ...userMessage,
+                        { text: response, user: "bot" },
+                      ]);
+                      setInput("");
+                    }}
+                    className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
+                  >
+                    Vybírám si druhou možnost
+                    <CornerUpRight />
+                  </Button>
+                </div>
+                <div className="background_text p-[1px] button_cyberpunk w-fit mb-4">
+                  <Button
+                    id="hover"
+                    onClick={async () => {
+                      const userMessage = [
+                        ...messages,
+                        { text: "Vybírám si třetí možnost", user: "user" },
+                      ];
+                      setMessages(userMessage);
+                      const response = await fetchMessage(
+                        "Vybírám si třetí možnost"
+                      );
+                      setMessages([
+                        ...userMessage,
+                        { text: response, user: "bot" },
+                      ]);
+                      setInput("");
+                    }}
+                    className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
+                  >
+                    Vybírám si třetí možnost
+                    <CornerUpRight />
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
 
           <div className="container background_text p-[1px] button_cyberpunk">
             <div className="button_cyberpunk flex justify-between background_bg relative">
@@ -214,6 +308,7 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
                 className="text_text !text-xl py-6 pl-4 pr-12 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
               />
               <SendHorizontal
+                id="hover"
                 className="w-6 h-6 ring-0 absolute right-3 top-3"
                 onClick={sendMessage}
               />

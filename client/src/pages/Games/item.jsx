@@ -56,14 +56,14 @@ export default function Item(props) {
             className="h-full w-full max-w-2xl mx-auto py-10 object-contain select-none"
           />
         </div>
-        <div className="w-1/2 p-1 h-full my-auto py-10 mr-10">
+        <div className="w-1/2 p-1 h-full my-auto py-10 mr-10 flex flex-col justify-center ">
           <div
             className="font-medium sm:text-4xl text-2xl mb-2"
             ref={ref}
             onMouseOver={replay}
             onFocus={replay}
           />
-          <div className="font-medium sm:text-lg text-md button_cyberpunk px-2 py-1 text_bg background_text inline-block mb-3">
+          <div className="font-medium sm:text-lg text-md button_cyberpunk px-2 py-1 text_bg background_text w-fit inline-block mb-3">
             Kategorie: {props.category}
           </div>
           <div className="font-medium sm:text-2xl text-xl mb-2">{props.price} $</div>

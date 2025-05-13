@@ -13,8 +13,13 @@ export default function Cursor() {
       // nastavovani pozice kurzoru
       setPos({ x: e.clientX, y: e.clientY });
 
+      // ziskani id (cinske)
+      let id = e.target.farthestViewportElement
+        ? e.target.farthestViewportElement.id
+        : e.target.id;
+
       // nastavovani obrazku kurzoru podle idcka
-      switch (e.target.id) {
+      switch (id) {
         case "hover":
           setCursorPath(pointerCur);
           break;

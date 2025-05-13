@@ -317,3 +317,19 @@ body {
   list-style: square;
   margin-left: 30px;
 }
+
+.anim_story {
+  animation: anim_story .5s;
+}
+
+@keyframes anim_story {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

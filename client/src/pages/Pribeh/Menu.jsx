@@ -1,11 +1,10 @@
 import Header from "@/components/Header";
 import croppedQr from "@/assets/qr1.svg";
-import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import qr2 from "@/assets/qr2.svg";
 import { Clapperboard } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import StoryItem from "./StoryItem";
 
 export default function Menu() {
@@ -58,9 +57,10 @@ export default function Menu() {
                 </div>
               </>
             ) : (
-              <h1 className="text-center text-4xl mb-16 mt-20">
-                Nemáte žádné příběhy
-              </h1>
+              <div className="flex flex-col justify-between items-center my-24 pt-4 gap-6">
+                <h1 className="text-center text-4xl">Nemáte žádné příběhy</h1>
+                <Clapperboard className="w-12 h-12" />
+              </div>
             )}
 
             <div className="background_text my-6 h-[1px]" />
