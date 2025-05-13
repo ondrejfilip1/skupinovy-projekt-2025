@@ -12,12 +12,17 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
 
 export default function StoryItem(props) {
   const handleChange = (e) => {
     let stories = JSON.parse(localStorage.getItem("stories")) || [];
     stories[props.index].name = e.target.value;
+    localStorage.setItem("stories", JSON.stringify(stories));
+  };
+
+  const handleDelete = () => {
+    let stories = JSON.parse(localStorage.getItem("stories")) || [];
+    stories.splice(props.index, 1);
     localStorage.setItem("stories", JSON.stringify(stories));
   };
 
@@ -45,10 +50,17 @@ export default function StoryItem(props) {
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel className="bg-transparent border_color hover:bg-transparent text_text_hover rounded-none" id="hover">
+                  <AlertDialogCancel
+                    className="bg-transparent border_color hover:bg-transparent text_text_hover rounded-none"
+                    id="hover"
+                  >
                     Zpět
                   </AlertDialogCancel>
-                  <AlertDialogAction className="background_text text_bg rounded-none" id="hover">
+                  <AlertDialogAction
+                    className="background_text text_bg rounded-none"
+                    id="hover"
+                    onClick={handleDelete}
+                  >
                     Smazat
                   </AlertDialogAction>
                 </AlertDialogFooter>
@@ -62,6 +74,8 @@ export default function StoryItem(props) {
               onChange={handleChange}
               defaultValue={props.name}
               className="outline-none"
+              id="text"
+              maxLength={64}
             />
             <Link to={`/pribeh?storyId=${props.index}`}>
               <ArrowUpRight className="p-2 w-10 h-10" />

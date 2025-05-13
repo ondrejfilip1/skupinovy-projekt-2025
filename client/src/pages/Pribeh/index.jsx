@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import { Sparkles, SendHorizontal, Clapperboard } from "lucide-react";
 import Loading from "./Loading";
 import { cn } from "@/lib/utils";
+import { useSearchParams } from "react-router-dom";
 
 export default function Chat(props) {
   const [messages, setMessages] = useState([]);
@@ -15,6 +16,17 @@ export default function Chat(props) {
   const [currentResponse, setCurrentResponse] = useState();
   const [isGenerating, setIsGenerating] = useState(false);
   const [hasSaved, setHasSaved] = useState(false);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [stories, setStories] = useState(
+    JSON.parse(localStorage.getItem("stories")) || []
+  );
+  const [storyId, setStoryId] = useState(searchParams.get("storyId"));
+
+  useEffect(() => {
+    if (storyId && stories && stories.length > 0)
+      setMessages(stories[storyId].messages);
+  }, []);
 
   const sendMessage = async () => {
     if (!input) return;
@@ -103,11 +115,11 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
     let newStory = {
       messages: messages,
       created: data.created,
-      name: `Konverzace č.${stories.length + (hasSaved ? 0 : 1)}`,
+      name: `Příběh č.${stories.length + (hasSaved ? 0 : 1)}`,
     };
 
     let currentIndex;
-    if (props.storyIndex === undefined || props.storyIndex === null) {
+    if (storyId === undefined || storyId === null) {
       if (!hasGenerated) {
         currentIndex = stories.length;
         stories.push(newStory);
@@ -116,7 +128,7 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
         stories[currentIndex] = newStory;
       }
     } else {
-      currentIndex = props.storyIndex;
+      currentIndex = storyId;
       stories[currentIndex] = newStory;
     }
 
@@ -163,7 +175,7 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
           {isGenerating && <Loading />}
         </div>
         <div className="fixed bottom-4 w-full">
-          {!hasGenerated && (
+          {!hasGenerated && !storyId && (
             <div className="background_text p-[1px] button_cyberpunk w-fit mb-4">
               <Button
                 id="hover"
@@ -199,7 +211,7 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
                 onKeyPress={(e) => e.key === "Enter" && sendMessage()}
                 placeholder="Napiš zprávu"
                 disabled={isGenerating}
-                className="text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
+                className="text_text !text-xl py-6 pl-4 pr-12 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
               />
               <SendHorizontal
                 className="w-6 h-6 ring-0 absolute right-3 top-3"
