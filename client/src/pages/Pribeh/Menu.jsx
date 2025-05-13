@@ -13,9 +13,9 @@ export default function Menu() {
     JSON.parse(localStorage.getItem("stories")) || []
   );
 
-  useEffect(() => {
-    setStories(JSON.parse(localStorage.getItem("stories")))
-  }, [JSON.parse(localStorage.getItem("stories"))]);
+  window.addEventListener("storiesUpdate", () => {
+    setStories(JSON.parse(localStorage.getItem("stories")));
+  });
 
   return (
     <>
@@ -58,7 +58,9 @@ export default function Menu() {
                 </div>
               </>
             ) : (
-              <h1 className="text-center text-4xl mb-16 mt-20">Nemáte žádné příběhy</h1>
+              <h1 className="text-center text-4xl mb-16 mt-20">
+                Nemáte žádné příběhy
+              </h1>
             )}
 
             <div className="background_text my-6 h-[1px]" />

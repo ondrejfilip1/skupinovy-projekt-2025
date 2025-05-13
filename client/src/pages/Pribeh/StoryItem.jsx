@@ -24,6 +24,7 @@ export default function StoryItem(props) {
     let stories = JSON.parse(localStorage.getItem("stories")) || [];
     stories.splice(props.index, 1);
     localStorage.setItem("stories", JSON.stringify(stories));
+    window.dispatchEvent(new Event("storiesUpdate"));
   };
 
   return (
