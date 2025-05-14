@@ -92,14 +92,18 @@ export default function Home() {
     } else {
       return (
         <>
-          <Header />
-          <div className="flex sm:flex-row flex-col-reverse justify-around h-[600px] w-full bg-no-repeat bg-cover bg-[url(/background/background1.png)]">
-            <div>
-              <div className="font-bold flex flex-col justify-center mx-[22px]">
-                <h1 className="text-[#1a1019] sm:text-5xl text-3xl mb-4">
-                  Welcome to the NIGHTGRID
+        <div className="border-2 bg-black text_text absolute">
+          ad
+        </div>
+          <div className="flex sm:flex-row flex-col-reverse justify-center items-end h-[98vh] w-full bg-no-repeat bg-cover bg-[url(/background/background1.png)]">
+            <div className="font-bold flex flex-col items-center align-bottom mx-auto mb-20">
+              <div>
+                <h1 className="text_text background_bg px-28 py-4 text-center sm:text-7xl text-3xl mb-4">
+                  WELCOME TO THE <br /> NIGHTGRID
                 </h1>
-                <Button className="button_cyberpunk background_bg">
+              </div>
+              <div>
+                <Button className="button_cyberpunk py-6 px-12 sm:text-3xl text-xl bg-[#d0ff57] text-[#1a1019]">
                   START THE JOURNEY
                 </Button>
               </div>
