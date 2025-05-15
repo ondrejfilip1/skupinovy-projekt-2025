@@ -28,14 +28,20 @@ export default function Cart() {
   const handlePrice = (priceObject) => {
     let copy;
     prices.map((value, index) => {
+      // jestli se id shoduje
       if (value.productId === priceObject.productId) {
+        // zkopiruju prices
         copy = [...prices];
+        // normalni vypocet
         if (priceObject.price) copy[index] = priceObject;
+        // vymazani
         else copy.splice(index, 1);
       }
     });
 
+    // jestli je duplikat
     if (copy) setPrices(copy);
+    // jestli neni duplikat
     else setPrices((old) => [...old, priceObject]);
   };
 
@@ -99,23 +105,24 @@ export default function Cart() {
                   priceObject={handlePrice}
                 />
               ))}
+              <div className="flex justify-between items-center mx-12 my-6">
+                <div>
+                  <div className="text-2xl">Celkem: {totalPrice} $</div>
+                  <div>Celkem bez dph: {Math.round(totalPrice / 1.21)} $</div>
+                </div>
+                <Link to="/platba">
+                  <div className="background_text p-[1px] button_cyberpunk w-fit my-6">
+                    <Button className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]">
+                      Pokračovat k platbě
+                    </Button>
+                  </div>
+                </Link>
+              </div>
             </>
           ) : (
             <div className="m-auto text-center text-2xl">Košík je prázdný</div>
           )}
-          <div className="flex justify-between items-center mx-12 my-6">
-            <div>
-              <div className="text-2xl">Celkem: {totalPrice} $</div>
-              <div>Celkem bez dph: {Math.round(totalPrice / 1.21)} $</div>
-            </div>
-            <Link to="/platba">
-              <div className="background_text p-[1px] button_cyberpunk w-fit my-6">
-                <Button className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]">
-                  Pokračovat k platbě
-                </Button>
-              </div>
-            </Link>
-          </div>
+
           <div className="h-16" />
         </div>
       </div>
