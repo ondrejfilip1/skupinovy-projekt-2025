@@ -10,6 +10,8 @@ import Cart from "./Cart";
 import Chat from "./Pribeh";
 import Menu from "./Pribeh/Menu";
 import Games from "./Games";
+import Checkout from "./Cart/Checkout";
+import Completion from "./Completion";
 
 export default function AppRoutes() {
   return (
@@ -24,6 +26,8 @@ export default function AppRoutes() {
           <Route path="/product/:id" element={<ProductView />} />
           <Route path="/update-product/:id" element={<ProductUpdateForm />} />
           <Route path="/kosik" element={<Cart />} />
+          <Route path="/completion" element={<Completion />} />
+          <Route path="/platba" element={<Checkout />} />
           <Route path="/pribeh" element={<Chat />} />
           <Route path="/pribehy" element={<Menu />} />
         </Routes>

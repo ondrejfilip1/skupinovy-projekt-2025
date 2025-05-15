@@ -20,6 +20,8 @@ export default function CartBox(props) {
   const [isLoaded, setLoaded] = useState(false);
   const [currentQuantity, setCurrentQuantity] = useState(0);
 
+  const { priceObject } = props;
+
   const loadProduct = async () => {
     const data = await getGameById(props.productId);
     if (data.status === 500 || data.status === 404) return setLoaded(null);
@@ -27,6 +29,15 @@ export default function CartBox(props) {
       setProduct(data.payload);
       setLoaded(true);
       setCurrentQuantity(props.amount);
+
+      // posilame price object do indexu, podle ktereho pocitame celkovou cenu
+      let newPriceObject = {
+        price:
+          data.payload.price *
+          (currentQuantity ? currentQuantity : props.amount),
+        productId: props.productId,
+      };
+      priceObject(newPriceObject);
     }
   };
 
@@ -41,6 +52,12 @@ export default function CartBox(props) {
 
     setCurrentQuantity(cart[props.index].amount);
 
+    let newPriceObject = {
+      price: product.price * cart[props.index].amount,
+      productId: props.productId,
+    };
+    priceObject(newPriceObject);
+
     localStorage.setItem("cart", JSON.stringify(cart));
   };
 
@@ -50,6 +67,12 @@ export default function CartBox(props) {
 
     localStorage.setItem("cart", JSON.stringify(cart));
     window.dispatchEvent(new Event("reloadCart"));
+
+    // kdyz se posila jen productId, tak se automaticky castka za tohle id odebere
+    let newPriceObject = {
+      productId: props.productId,
+    };
+    priceObject(newPriceObject);
   };
 
   useEffect(() => {
