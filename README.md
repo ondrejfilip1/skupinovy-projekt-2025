@@ -6,13 +6,13 @@
 
 Skupinový projekt s Cyberpunk 2077 tématikou
 
-## Technologie
+## ⚙️ Technologie
 
 **Client:** React + Vite, shadcn/ui, TailwindCSS
 
 **Server:** Node, Express, MongoDB
 
-## Instalace a spuštění
+## 🚀 Instalace a spuštění
 
 Client
 
@@ -29,7 +29,19 @@ Server
   npm start
 ```
 
-## Autoři
+## 💻 Obsah
+- Produkty
+- Nákupní košík
+- Generování příběhů pomocí umělé inteligence
+- Ukládání, přejmenování a mazání příběhů
+
+## ✅ TODO
+- Platební brána (Stripe)
+- Vylepšit a nastylovat nákupní košík, přidat možnost měnit množství
+- Dokončit podstránky (Postavy, Historie plateb, Nastavení, Hlavní stránka)
+- Fixnout ukládání příběhů (první zpráva se neukládá z nějakého důvodu)
+
+## 👥 Autoři
 
 - [Jan Rylich](https://github.com/DoubleBlackFox)
 - [Ondřej Filip](https://github.com/ondrejfilip1)
