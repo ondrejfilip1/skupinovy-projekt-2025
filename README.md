@@ -8,9 +8,9 @@ Skupinový projekt s Cyberpunk 2077 tématikou
 
 ## ⚙️ Technologie
 
-**Client:** React + Vite, shadcn/ui, TailwindCSS
+**Client:** React + Vite, shadcn/ui, TailwindCSS, Lucide, Stripe
 
-**Server:** Node, Express, MongoDB
+**Server:** Node, Express, MongoDB, Stripe
 
 ## 🚀 Instalace a spuštění
 
@@ -32,12 +32,12 @@ Server
 ## 💻 Obsah
 - Produkty
 - Nákupní košík
+- Platební brána Stripe
 - Generování příběhů pomocí umělé inteligence
 - Ukládání, přejmenování a mazání příběhů
 
 ## ✅ TODO
-- Platební brána (Stripe)
-- Vylepšit a nastylovat nákupní košík, přidat možnost měnit množství
+- Zabezpečit, nastylovat a udělat funkční admin panel
 - Dokončit podstránky (Postavy, Historie plateb, Nastavení, Hlavní stránka)
 - Fixnout ukládání příběhů (první zpráva se neukládá z nějakého důvodu)
 
