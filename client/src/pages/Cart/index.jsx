@@ -7,6 +7,7 @@ import CartBox from "./CartBox";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { CornerUpRight } from "lucide-react";
 
 export default function Cart() {
   const [cart, setCart] = useState(
@@ -114,6 +115,7 @@ export default function Cart() {
                   <div className="background_text p-[1px] button_cyberpunk w-fit my-6">
                     <Button className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]">
                       Pokračovat k platbě
+                      <CornerUpRight />
                     </Button>
                   </div>
                 </Link>

@@ -2,6 +2,8 @@ import { PaymentElement, AddressElement } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { CornerUpLeft } from "lucide-react";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -31,35 +33,33 @@ export default function CheckoutForm() {
     setIsProcessing(false);
   };
 
-  const [isDown, setIsDown] = useState(false);
-  const handleDown = () => {
-    setIsDown(true);
-  };
-
-  const handleUp = () => {
-    setIsDown(false);
-  };
-
   return (
     <form
       id="payment-form"
       onSubmit={handleSubmit}
       className="mx-12 my-6"
-      onMouseDown={handleDown}
-      onMouseUp={handleUp}
     >
       <AddressElement options={{ mode: "shipping" }} />
       <PaymentElement id="payment-element" />
-      <div className="background_text p-[1px] button_cyberpunk w-fit my-6">
-        <Button
-          disabled={isProcessing || !stripe || !elements}
-          id="submit"
-          className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
-        >
-          <span id="button-text">
-            {isProcessing ? "Zpracovává se... " : "Zaplatit"}
-          </span>
-        </Button>
+      <div className="flex justify-between items-center">
+        <Link to="/kosik">
+          <div className="background_text p-[1px] button_cyberpunk w-fit my-6">
+            <Button className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]">
+              <CornerUpLeft />Zpět
+            </Button>
+          </div>
+        </Link>
+        <div className="background_text p-[1px] button_cyberpunk w-fit my-6">
+          <Button
+            disabled={isProcessing || !stripe || !elements}
+            id="submit"
+            className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
+          >
+            <span id="button-text">
+              {isProcessing ? "Zpracovává se... " : "Zaplatit"}
+            </span>
+          </Button>
+        </div>
       </div>
       {message && <div id="payment-message">{message}</div>}
     </form>
