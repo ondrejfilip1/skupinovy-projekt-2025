@@ -52,7 +52,7 @@ export default function Cursor() {
         src={cursorPath}
         style={{
           transform: `translate(${pos.x}px, ${pos.y}px)`,
-          zIndex: 99,
+          zIndex: 9999999999,
           display: visible,
         }}
         className="w-10 h-10 object-contain object-left-top fixed pointer-events-none drop-shadow-[0_0px_4px_rgba(0,0,0,0.75)]"

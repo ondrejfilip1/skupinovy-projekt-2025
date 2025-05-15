@@ -1,8 +1,8 @@
 import { CarouselItem } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, X } from "lucide-react";
 import { useScramble } from "use-scramble";
-import { useState } from "react";
+import { toast } from "sonner";
 
 export default function Item(props) {
   const { ref, replay } = useScramble({
@@ -44,6 +44,13 @@ export default function Item(props) {
       a.push(cartItem);
       localStorage.setItem("cart", JSON.stringify(a));
     }
+
+    toast("Produkt byl přidán do košíku.", {
+      cancel: {
+        label: <X />,
+        onClick: () => console.log("Cancel!"),
+      },
+    });
   };
 
   return (
@@ -66,9 +73,12 @@ export default function Item(props) {
           <div className="font-medium sm:text-lg text-md button_cyberpunk px-2 py-1 text_bg background_text w-fit inline-block mb-3">
             Kategorie: {props.category}
           </div>
-          <div className="font-medium sm:text-2xl text-xl mb-2">{props.price} $</div>
+          <div className="font-medium sm:text-2xl text-xl mb-2">
+            {props.price} $
+          </div>
           <div
-            className="sm:text-lg text-sm text-justify max-h-96 overflow-y-auto pr-2" style={{ maxHeight: '224px'}}
+            className="sm:text-lg text-sm text-justify max-h-96 overflow-y-auto pr-2"
+            style={{ maxHeight: "224px" }}
             dangerouslySetInnerHTML={{ __html: props.description }}
           />
           <Button

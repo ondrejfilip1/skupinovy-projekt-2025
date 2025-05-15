@@ -129,27 +129,27 @@
 }
 
 .background_bg {
-  background-color: var(--background-color);
+  background-color: var(--background-color) !important;
 }
 
 .background_text {
-  background-color: var(--text-color);
+  background-color: var(--text-color) !important;
 }
 
 .text_text {
-  color: var(--text-color);
+  color: var(--text-color) !important;
 }
 
 .text_text_hover:hover {
-  color: var(--text-color);
+  color: var(--text-color) !important;
 }
 
 .border_color {
-  border-color: var(--border-color);
+  border-color: var(--border-color) !important;
 }
 
 .background_hover_darker:hover {
-  background-color: var(--text-color-darker);
+  background-color: var(--text-color-darker) !important;
 }
 
 .text_text::placeholder {
@@ -195,6 +195,10 @@ svg.svg_loading_anim rect {
     0% 10px
   );
   border-radius: 0 !important;
+}
+
+.box_shadow_cyberpunk {
+  filter: drop-shadow(1px 1px 0px var(--text-color)) drop-shadow(-1px -1px 0px var(--text-color)) drop-shadow(-1px 1px 0px var(--text-color))  drop-shadow(1px -1px 0px var(--text-color));
 }
 
 .button_hover:hover {
@@ -260,6 +264,10 @@ body {
   font-family: "Rajdhani", sans-serif;
 }
 
+.custom_font {
+  font-family: "Rajdhani", sans-serif;
+}
+
 * {
   cursor: none !important;
 }
@@ -286,7 +294,7 @@ body {
 }
 
 .anim_scale {
-  animation: .5s anim_scale;
+  animation: 0.5s anim_scale;
 }
 
 @keyframes anim_scale {
@@ -319,7 +327,7 @@ body {
 }
 
 .anim_story {
-  animation: anim_story .5s;
+  animation: anim_story 0.5s;
 }
 
 @keyframes anim_story {

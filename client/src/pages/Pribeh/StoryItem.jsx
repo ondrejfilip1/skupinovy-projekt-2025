@@ -40,7 +40,7 @@ export default function StoryItem(props) {
             <AlertDialogTrigger>
               <X className="p-1" id="hover" />
             </AlertDialogTrigger>
-            <AlertDialogContent className="background_bg border-none background_text p-[1px] button_cyberpunk">
+            <AlertDialogContent className="border-none background_text p-[1px] button_cyberpunk">
               <div className="button_cyberpunk background_bg relative text_text p-4">
                 <AlertDialogHeader>
                   <AlertDialogTitle>

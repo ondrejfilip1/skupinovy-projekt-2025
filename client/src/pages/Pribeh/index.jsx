@@ -31,9 +31,11 @@ export default function Chat() {
   const [storyId, setStoryId] = useState(searchParams.get("storyId"));
 
   useEffect(() => {
-    if (storyId && stories && stories.length > 0 && storyId < stories.length && storyId >= 0)
+    if (storyId && stories && stories.length > 0 && storyId < stories.length && storyId >= 0) {
       setMessages(stories[storyId].messages);
-    else
+      scrollToBottom();
+    }
+  else if (storyId)
       setNotFound(true)
   }, []);
 
@@ -46,13 +48,17 @@ export default function Chat() {
     setInput("");
   };
 
-  const fetchMessage = async (input) => {
+  const scrollToBottom = () => {
     setTimeout(() => {
       window.scrollTo({
         top: document.body.scrollHeight,
         behavior: "smooth",
       });
     }, 10);
+  }
+
+  const fetchMessage = async (input) => {
+    scrollToBottom();
     setIsGenerating(true);
     setHasGenerated(true);
     setHasSaved(false);
@@ -113,12 +119,7 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
     const regex = /<think>.*?<\/think>/gs;
     const result = data.choices[0].message.content.trim().replace(regex, "");
 
-    setTimeout(() => {
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: "smooth",
-      });
-    }, 10);
+    scrollToBottom();
 
     let stories = JSON.parse(localStorage.getItem("stories")) || [];
 
@@ -169,7 +170,7 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
           </div>
         ))}
       <div className="mx-auto container text-xl py-2">
-        <div className="message-container pb-36 mx-2">
+        <div className={"message-container mx-2" + (storyId || hasGenerated ? " pb-29" : "")}>
           {messages.map((message, index) => (
             <div
               key={index}
