@@ -14,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import Logo from "../../assets/logo.png";
+import Logo from "/home/logo.svg";
 
 export default function Home() {
   const [value, setValue] = useState(0);
@@ -102,12 +102,12 @@ export default function Home() {
           <div className="relative w-full">
             <div className="absolute top-0 left-0 w-full flex justify-between items-center py-4 z-50">
               <div className="bg-black w-[300px] pr-13 py-4 clip-slanted">
-                <img src={Logo} alt="" className="sm:w-[200px]" />
+                <img src={Logo} alt="" className="sm:w-[250px]" />
               </div>
-              <div className="flex justify-around w-[400px] text-2xl font-semibold">
+              <div className="flex justify-around w-[400px]">
                 <Link to={"/hry"}>
                   <Button
-                    className="text-2xl button_hover button_cyberpunk !py-5"
+                    className="text-3xl font-semibold button_hover button_cyberpunk !py-5"
                     variant="ghost"
                     id="hover"
                   >
@@ -118,7 +118,7 @@ export default function Home() {
                 </Link>
                 <Link to={"/kosik"}>
                   <Button
-                    className="text-2xl button_hover button_cyberpunk !py-5"
+                    className="text-3xl font-semibold button_hover button_cyberpunk !py-5"
                     variant="ghost"
                     id="hover"
                   >
@@ -131,7 +131,7 @@ export default function Home() {
                 <DropdownMenu>
                   <DropdownMenuTrigger>
                     <Button
-                      className="text-2xl button_hover button_cyberpunk !py-5"
+                      className="text-3xl font-semibold button_hover button_cyberpunk !py-5"
                       variant="ghost"
                       id="hover"
                     >
@@ -181,15 +181,15 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex sm:flex-row flex-col-reverse justify-center items-end h-[98vh] w-full bg-[url(/background/background2.png)] bg-center bg-cover bg-no-repeat overflow-x-hidden">
+          <div className="flex sm:flex-row flex-col-reverse justify-center items-end h-[98vh] w-full bg-[url(/home/background3.png)] bg-center bg-cover bg-no-repeat overflow-x-hidden">
             <div className="font-bold flex flex-col items-center align-bottom mx-auto sm:mb-5 mb-0">
               <div>
-                <h1 className="text_text background_bg md:w-[700px] w-[80vw] py-4 text-center sm:text-6xl text-4xl mb-4">
+                <h1 className="text_text background_bg tracking-widest md:w-[700px] w-[80vw] py-4 text-center sm:text-6xl text-4xl mb-4">
                   WELCOME TO THE <br /> NIGHTGRID
                 </h1>
               </div>
               <div>
-                <Button className="button_cyberpunk py-6 px-12 sm:text-3xl text-xl bg-[#d0ff57] text-[#1a1019]">
+                <Button className="button_cyberpunk py-6 px-12 font-bold sm:text-3xl text-xl bg-[#d0ff57] text-[#1a1019]">
                   START THE JOURNEY
                 </Button>
               </div>
