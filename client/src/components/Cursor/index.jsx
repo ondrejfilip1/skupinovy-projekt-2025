@@ -12,11 +12,14 @@ export default function Cursor() {
     const move = (e) => {
       // nastavovani pozice kurzoru
       setPos({ x: e.clientX, y: e.clientY });
-
       // ziskani id (cinske)
       let id = e.target.farthestViewportElement
         ? e.target.farthestViewportElement.id
         : e.target.id;
+
+      // nefunguje nad stripe payment elementem
+      if (e.target.localName === "iframe") setVisible("none");
+      else setVisible("inline")
 
       // nastavovani obrazku kurzoru podle idcka
       switch (id) {

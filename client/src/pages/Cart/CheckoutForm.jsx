@@ -13,33 +13,41 @@ export default function CheckoutForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!stripe || !elements) {
-      // Stripe.js has not yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
-      return;
-    }
+    if (!stripe || !elements) return;
 
     setIsProcessing(true);
 
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        // Make sure to change this to your payment completion page
         return_url: `${window.location.origin}/completion`,
       },
     });
 
-    if (error.type === "card_error" || error.type === "validation_error") {
+    if (error.type === "card_error" || error.type === "validation_error")
       setMessage(error.message);
-    } else {
-      setMessage("An unexpected error occured.");
-    }
+    else setMessage("An unexpected error occured.");
 
     setIsProcessing(false);
   };
 
+  const [isDown, setIsDown] = useState(false);
+  const handleDown = () => {
+    setIsDown(true);
+  };
+
+  const handleUp = () => {
+    setIsDown(false);
+  };
+
   return (
-    <form id="payment-form" onSubmit={handleSubmit} className="mx-12 my-6">
+    <form
+      id="payment-form"
+      onSubmit={handleSubmit}
+      className="mx-12 my-6"
+      onMouseDown={handleDown}
+      onMouseUp={handleUp}
+    >
       <AddressElement options={{ mode: "shipping" }} />
       <PaymentElement id="payment-element" />
       <div className="background_text p-[1px] button_cyberpunk w-fit my-6">
@@ -53,7 +61,6 @@ export default function CheckoutForm() {
           </span>
         </Button>
       </div>
-      {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}
     </form>
   );

@@ -2,44 +2,55 @@ import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import croppedQr from "@/assets/qr1.svg";
-import { ArrowUpRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import qr2 from "@/assets/qr2.svg";
-import { Link } from "react-router-dom";
 import CartBox from "./CartBox";
 import { cn } from "@/lib/utils";
-import { loadStripe } from "@stripe/stripe-js";
-import { createPaymentIntent, getPublicKey } from "@/models/Stripe";
-import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "./CheckoutForm";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
-  const [stripePromise, setStripePromise] = useState(null);
-  const [clientSecret, setClientSecret] = useState("");
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
+  const [totalPrice, setTotalPrice] = useState(0);
+
   useEffect(() => {
     const reloadCart = () => {
       setCart(JSON.parse(localStorage.getItem("cart")));
     };
 
     window.addEventListener("reloadCart", reloadCart);
-
-    loadStripeFunc();
   }, []);
 
-  const loadStripeFunc = async () => {
-    if (!cart || cart.length === 0) return;
+  const [prices, setPrices] = useState([]);
 
-    const stripePaymentIntent = await createPaymentIntent(cart);
-    if (stripePaymentIntent.status === 200)
-      setClientSecret(stripePaymentIntent.clientSecret);
+  // insane kod na pocitani celkove castky (bez ai)
+  const handlePrice = (priceObject) => {
+    let copy;
+    prices.map((value, index) => {
+      if (value.productId === priceObject.productId) {
+        copy = [...prices];
+        if (priceObject.price) copy[index] = priceObject;
+        else copy.splice(index, 1);
+      }
+    });
 
-    const stripeConfig = await getPublicKey();
-    if (stripeConfig.status === 200)
-      setStripePromise(loadStripe(stripeConfig.publishableKey));
+    if (copy) setPrices(copy);
+    else setPrices((old) => [...old, priceObject]);
   };
+
+  const calculateTotalPrice = () => {
+    let total = 0;
+    prices.map((value) => {
+      total += value.price;
+    });
+    //console.log(total);
+    setTotalPrice(total);
+  };
+
+  useEffect(() => {
+    calculateTotalPrice();
+  }, [prices]);
 
   return (
     <>
@@ -85,38 +96,26 @@ export default function Cart() {
                   {...value}
                   key={`${value.productId}-${index}`}
                   index={index}
+                  priceObject={handlePrice}
                 />
               ))}
-              {clientSecret && stripePromise && (
-                <Elements
-                  stripe={stripePromise}
-                  options={{
-                    clientSecret: clientSecret,
-                    fonts: [
-                      {
-                        cssSrc:
-                          "https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap",
-                      },
-                    ],
-                    appearance: {
-                      variables: {
-                        colorPrimary: "#d0ff57",
-                        spacingUnit: "4px",
-                        colorText: "#d0ff57",
-                        colorBackground: "#1a1019",
-                        fontFamily: "Rajdhani",
-                        borderRadius: "0px",
-                      },
-                    },
-                  }}
-                >
-                  <CheckoutForm />
-                </Elements>
-              )}
             </>
           ) : (
             <div className="m-auto text-center text-2xl">Košík je prázdný</div>
           )}
+          <div className="flex justify-between items-center mx-12 my-6">
+            <div>
+              <div className="text-2xl">Celkem: {totalPrice} $</div>
+              <div>Celkem bez dph: {Math.round(totalPrice / 1.21)} $</div>
+            </div>
+            <Link to="/platba">
+              <div className="background_text p-[1px] button_cyberpunk w-fit my-6">
+                <Button className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]">
+                  Pokračovat k platbě
+                </Button>
+              </div>
+            </Link>
+          </div>
           <div className="h-16" />
         </div>
       </div>
