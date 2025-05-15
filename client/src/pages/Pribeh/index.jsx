@@ -31,12 +31,16 @@ export default function Chat() {
   const [storyId, setStoryId] = useState(searchParams.get("storyId"));
 
   useEffect(() => {
-    if (storyId && stories && stories.length > 0 && storyId < stories.length && storyId >= 0) {
+    if (
+      storyId &&
+      stories &&
+      stories.length > 0 &&
+      storyId < stories.length &&
+      storyId >= 0
+    ) {
       setMessages(stories[storyId].messages);
       scrollToBottom();
-    }
-  else if (storyId)
-      setNotFound(true)
+    } else if (storyId) setNotFound(true);
   }, []);
 
   const sendMessage = async () => {
@@ -55,7 +59,7 @@ export default function Chat() {
         behavior: "smooth",
       });
     }, 10);
-  }
+  };
 
   const fetchMessage = async (input) => {
     scrollToBottom();
@@ -154,9 +158,7 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
   }, [currentResponse]);
 
   if (notFound) {
-    return(
-      <NotFound />
-    )
+    return <NotFound />;
   }
 
   return (
@@ -170,7 +172,11 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
           </div>
         ))}
       <div className="mx-auto container text-xl py-2">
-        <div className={"message-container mx-2" + (storyId || hasGenerated ? " pb-29" : "")}>
+        <div
+          className={
+            "message-container" + (storyId || hasGenerated ? " pb-29" : "")
+          }
+        >
           {messages.map((message, index) => (
             <div
               key={index}

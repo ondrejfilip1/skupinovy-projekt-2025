@@ -8,8 +8,14 @@ import qr2 from "@/assets/qr2.svg";
 import { Link } from "react-router-dom";
 import CartBox from "./CartBox";
 import { cn } from "@/lib/utils";
+import { loadStripe } from "@stripe/stripe-js";
+import { createPaymentIntent, getPublicKey } from "@/models/Stripe";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./CheckoutForm";
 
 export default function Cart() {
+  const [stripePromise, setStripePromise] = useState(null);
+  const [clientSecret, setClientSecret] = useState("");
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
@@ -19,7 +25,21 @@ export default function Cart() {
     };
 
     window.addEventListener("reloadCart", reloadCart);
+
+    loadStripeFunc();
   }, []);
+
+  const loadStripeFunc = async () => {
+    if (!cart || cart.length === 0) return;
+
+    const stripePaymentIntent = await createPaymentIntent(cart);
+    if (stripePaymentIntent.status === 200)
+      setClientSecret(stripePaymentIntent.clientSecret);
+
+    const stripeConfig = await getPublicKey();
+    if (stripeConfig.status === 200)
+      setStripePromise(loadStripe(stripeConfig.publishableKey));
+  };
 
   return (
     <>
@@ -67,6 +87,32 @@ export default function Cart() {
                   index={index}
                 />
               ))}
+              {clientSecret && stripePromise && (
+                <Elements
+                  stripe={stripePromise}
+                  options={{
+                    clientSecret: clientSecret,
+                    fonts: [
+                      {
+                        cssSrc:
+                          "https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap",
+                      },
+                    ],
+                    appearance: {
+                      variables: {
+                        colorPrimary: "#d0ff57",
+                        spacingUnit: "4px",
+                        colorText: "#d0ff57",
+                        colorBackground: "#1a1019",
+                        fontFamily: "Rajdhani",
+                        borderRadius: "0px",
+                      },
+                    },
+                  }}
+                >
+                  <CheckoutForm />
+                </Elements>
+              )}
             </>
           ) : (
             <div className="m-auto text-center text-2xl">Košík je prázdný</div>

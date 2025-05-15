@@ -13,6 +13,7 @@ mongoose
 
 const indexRouter = require("./routes/index");
 const gameRouter = require("./routes/games");
+const stripeRouter = require("./routes/stripe");
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/games", gameRouter);
+app.use("/stripe", stripeRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
