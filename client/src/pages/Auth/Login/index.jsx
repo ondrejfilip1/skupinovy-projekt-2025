@@ -82,6 +82,7 @@ export default function Login() {
                 type="text"
                 placeholder="Zadejte uživatelské jméno"
                 onChange={handleChange}
+                required
               />
               <Label>Heslo</Label>
               <Input
@@ -91,6 +92,7 @@ export default function Login() {
                 type="password"
                 placeholder="Zadejte heslo"
                 onChange={handleChange}
+                required
               />
               <div>
                 Nemáte ještě účet? <br />

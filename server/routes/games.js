@@ -3,6 +3,7 @@ const router = express.Router();
 
 const gamesRouter = require("../controllers/games");
 const admin = require("../middleware/admin");
+const auth = require("../middleware/auth")
 
 router.get("/", gamesRouter.getAllGames);
 
@@ -10,10 +11,10 @@ router.get("/:id", gamesRouter.getGameById);
 
 // chranene routy (muze jen admin)
 
-router.post("/", admin, gamesRouter.createGame);
+router.post("/", auth, admin, gamesRouter.createGame);
 
-router.put("/:id", admin, gamesRouter.updateGame);
+router.put("/:id", auth, admin, gamesRouter.updateGame);
 
-router.delete("/:id", admin, gamesRouter.deleteGame);
+router.delete("/:id", auth, admin, gamesRouter.deleteGame);
 
 module.exports = router;

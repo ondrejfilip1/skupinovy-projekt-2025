@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 exports.register = async (req, res, next) => {
   try {
     const { username, password } = req.body;
+    
     // zaeschuju heslo
     const hash = await bcrypt.hash(password, 12);
 
@@ -55,7 +56,7 @@ exports.login = async (req, res, next) => {
 
     return res
       .status(200)
-      .send({ token, user: { id: data._id, username: data.username } });
+      .send({ token, user: { id: data._id, username: data.username, isAdmin: data.isAdmin } });
   } catch (err) {
     return res.status(500).send(err);
   }
