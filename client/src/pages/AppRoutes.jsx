@@ -12,6 +12,8 @@ import Menu from "./Pribeh/Menu";
 import Games from "./Games";
 import Checkout from "./Cart/Checkout";
 import Completion from "./Completion";
+import Login from "./Auth/Login";
+import Register from "./Auth/Register";
 
 export default function AppRoutes() {
   return (
@@ -19,17 +21,25 @@ export default function AppRoutes() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/*" element={<NotFound />} />
           <Route path="/hry" element={<Games />} />
           <Route path="/add-product" element={<ProductCreateForm />} />
           <Route path="/view-products" element={<ProductList />} />
           <Route path="/product/:id" element={<ProductView />} />
           <Route path="/update-product/:id" element={<ProductUpdateForm />} />
+
+          {/* user veci */}
           <Route path="/kosik" element={<Cart />} />
           <Route path="/completion" element={<Completion />} />
           <Route path="/platba" element={<Checkout />} />
           <Route path="/pribeh" element={<Chat />} />
           <Route path="/pribehy" element={<Menu />} />
+
+          {/* autentizace */}
+          <Route path="/prihlaseni" element={<Login />} />
+          <Route path="/registrace" element={<Register />} />
+
+          {/* specialni */}
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>

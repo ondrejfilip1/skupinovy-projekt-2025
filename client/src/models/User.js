@@ -1,16 +1,17 @@
-export const login = async (username, password) => {
+export const login = async (formData) => {
   const req = await fetch(`http://localhost:3000/user/login/`, {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
     method: "POST",
-    body: JSON.stringify({ username, password }),
+    body: JSON.stringify(formData),
   });
   const data = await req.json();
 
   if (req.status === 200) {
     localStorage.setItem("token", data.token);
+    localStorage.setItem("username", data.user.username);
     return {
       status: req.status,
       message: data.message,
@@ -23,19 +24,20 @@ export const login = async (username, password) => {
   };
 };
 
-export const login = async (username, password) => {
+export const register = async (formData) => {
   const req = await fetch(`http://localhost:3000/user/register/`, {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
     method: "POST",
-    body: JSON.stringify({ username, password }),
+    body: JSON.stringify(formData),
   });
   const data = await req.json();
 
   if (req.status === 200) {
     localStorage.setItem("token", data.token);
+    localStorage.setItem("username", data.payload.username);
     return {
       status: req.status,
       message: data.message,

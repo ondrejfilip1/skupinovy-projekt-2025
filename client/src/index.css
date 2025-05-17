@@ -198,7 +198,10 @@ svg.svg_loading_anim rect {
 }
 
 .box_shadow_cyberpunk {
-  filter: drop-shadow(1px 1px 0px var(--text-color)) drop-shadow(-1px -1px 0px var(--text-color)) drop-shadow(-1px 1px 0px var(--text-color))  drop-shadow(1px -1px 0px var(--text-color));
+  filter: drop-shadow(1px 1px 0px var(--text-color))
+    drop-shadow(-1px -1px 0px var(--text-color))
+    drop-shadow(-1px 1px 0px var(--text-color))
+    drop-shadow(1px -1px 0px var(--text-color));
 }
 
 .button_hover:hover {
@@ -343,5 +346,10 @@ body {
 }
 
 .clip-slanted {
-    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
-  }
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+}
+
+.placeholder_color::placeholder {
+  color: var(--text-color);
+  opacity: 0.35;
+}

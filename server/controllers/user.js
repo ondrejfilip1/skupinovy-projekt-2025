@@ -4,18 +4,24 @@ const jwt = require("jsonwebtoken");
 
 exports.register = async (req, res, next) => {
   try {
+    const { username, password } = req.body;
     // zaeschuju heslo
-    const password = await bcrypt.hash(req.body.password, 12);
+    const hash = await bcrypt.hash(password, 12);
+
+    // jestli uzivatel uz neexistuje
+    const findUser = await User.findOne({ username });
+    if (findUser)
+      return res.status(500).send({ message: "User already exists" });
 
     // ulozim uzivatele (isAdmin davam na false protoze se bude nastavovat manualne v databazi)
     const data = new User({
-      username: req.body.username,
-      password: password,
+      username: username,
+      password: hash,
       isAdmin: false,
     });
     const result = await data.save();
     if (result) {
-      return res.status(201).send({
+      return res.status(200).send({
         message: "User created",
         payload: result,
       });
@@ -33,7 +39,7 @@ exports.login = async (req, res, next) => {
     const { username, password } = req.body;
     const data = await User.findOne({ username });
     if (!data || !(await bcrypt.compare(password, data.password))) {
-      return res.status(200).send({
+      return res.status(500).send({
         message: "Invalid credentials",
         payload: data,
       });
