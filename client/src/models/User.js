@@ -52,3 +52,21 @@ export const register = async (formData) => {
     message: data.message,
   };
 };
+
+export const getAllUsers = async () => {
+  const token = localStorage.getItem("token");
+  const req = await fetch("http://localhost:3000/user", {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    method: "GET",
+  });
+  const data = await req.json();
+  return {
+    status: req.status,
+    payload: data.payload,
+    message: data.message,
+  };
+};

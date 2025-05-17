@@ -1,14 +1,16 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { deleteGame, getGameById } from "../../models/Game";
+import { deleteGame, getGameById } from "../../../models/Game";
 import { useState, useEffect } from "react";
 
-export default function ProductView() {
+export default function GameView() {
   const { id } = useParams();
   const [product, setProduct] = useState();
   const [isLoaded, setLoaded] = useState(false);
   const [info, setInfo] = useState();
   const [formData, setFormData] = useState();
   const navigate = useNavigate();
+
+  if (localStorage.getItem("isAdmin") !== "true") return <NotFound />;
 
   const load = async () => {
     const data = await getGameById(id);
@@ -60,42 +62,39 @@ export default function ProductView() {
 
   return (
     <>
-      <h1>Zobrazení produktu</h1>
-      <p>{id}</p>
-      <p>
-        Název:
-        <br /> {product.name}
-      </p>
-      <p>
-        Kategorie:
-        <br /> {product.category}
-      </p>
-      <p>
-        Popisek:
-        <br /> {product.description}
-      </p>
-      <p>
-        Cesta k obrázku:
-        <br />
+      <div className="container mx-auto p-4">
+        <h1 className="text-4xl">Game view</h1>
+        <p>{id}</p>
+        <p className="text-2xl">Název:</p>
+        {product.name}
+        <p className="text-2xl">
+          Kategorie:
+          <br />
+        </p>
+        {product.category}
+        <p className="text-2xl">Popisek:</p>
+        <div dangerouslySetInnerHTML={{ __html: product.description }} />
+        <p className="text-2xl">Cesta k obrázku:</p>
         {product.imagePath}
-      </p>
-      <p>
-        Cena:
-        <br />
+        <p className="text-2xl">Cena:</p>
         {product.price}
-      </p>
-      <form>
-        <input type="text" placeholder={product.name} onChange={handleChange} />
-        <button onClick={handleDelete}>Smazat produkt</button>
-      </form>
-      <p>{info}</p>
-      <Link to={`/update-car/${id}`}>
-        <p>Aktualizovat produkt</p>
-      </Link>
+        <form>
+          <input
+            type="text"
+            placeholder={product.name}
+            onChange={handleChange}
+          />
+          <button onClick={handleDelete}>Smazat produkt</button>
+        </form>
+        <p>{info}</p>
+        <Link to={`/update-car/${id}`}>
+          <p>Aktualizovat produkt</p>
+        </Link>
 
-      <Link to={"/"}>
-        <p>Go home</p>
-      </Link>
+        <Link to="/admin">
+          <p>Go home</p>
+        </Link>
+      </div>
     </>
   );
 }

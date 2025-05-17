@@ -72,3 +72,20 @@ exports.login = async (req, res, next) => {
     return res.status(500).send(err);
   }
 };
+
+exports.getAllUsers = async (req, res, next) => {
+  try {
+    const data = await User.find();
+    if (data && data.length !== 0) {
+      return res.status(200).send({
+        message: "Users found",
+        payload: data,
+      });
+    }
+    res.status(404).send({
+      message: "Users not found",
+    });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};

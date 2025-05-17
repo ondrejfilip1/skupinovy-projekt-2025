@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "@/assets/logo.png";
 import { useState } from "react";
 import {
@@ -13,6 +13,8 @@ import {
   UserPlus,
   User,
   Shield,
+  X,
+  LogOut,
 } from "lucide-react";
 import { Button } from "../ui/button";
 import {
@@ -23,13 +25,46 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { toast } from "sonner";
 
 export default function Header() {
+  const navigate = useNavigate();
+
   const [message, setMessage] = useState(
     localStorage.getItem("username")
       ? localStorage.getItem("username")
       : "Nejsi přihlášen(a)"
   );
+
+  const handleLogOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("isAdmin");
+
+    toast("Byli jste úspěšně odhlášeni.", {
+      cancel: {
+        label: <X className="text_text" />,
+      },
+    });
+
+    setMessage("Nejsi přihlášen(a)");
+
+    // timeout aby se dropdown stihl zavrit spravne
+    setTimeout(() => {
+      navigate("/hry");
+    }, 100);
+  };
 
   return (
     <>
@@ -88,24 +123,71 @@ export default function Header() {
                 {message}
               </DropdownMenuLabel>
               <DropdownMenuSeparator className="bg-black mx-2" />
-              <Link to="/prihlaseni">
-                <DropdownMenuItem
-                  className="text-xl background_hover_darker"
-                  id="hover"
-                >
-                  <LogIn className="text-black" />
-                  Přihlášení
-                </DropdownMenuItem>
-              </Link>
-              <Link to="/registrace">
-                <DropdownMenuItem
-                  className="text-xl background_hover_darker"
-                  id="hover"
-                >
-                  <UserPlus className="text-black" />
-                  Registrace
-                </DropdownMenuItem>
-              </Link>
+              {localStorage.getItem("token") ? (
+                <>
+                  <AlertDialog>
+                    <AlertDialogTrigger className="w-full">
+                      <DropdownMenuItem
+                        onSelect={(e) => e.preventDefault()}
+                        className="text-xl background_hover_darker"
+                        id="hover"
+                      >
+                        <LogOut className="text-black" />
+                        Odhlášení
+                      </DropdownMenuItem>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent className="border-none background_text p-[1px] button_cyberpunk">
+                      <div className="button_cyberpunk background_bg relative text_text p-4">
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>
+                            Opravdu se chcete odhlásit?
+                          </AlertDialogTitle>
+                          <AlertDialogDescription className="text_text">
+                            Tato akce Vás odhlásí od aktualního účtu.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel
+                            className="bg-transparent border_color hover:bg-transparent text_text_hover rounded-none"
+                            id="hover"
+                          >
+                            Zpět
+                          </AlertDialogCancel>
+                          <AlertDialogAction
+                            className="background_text text_bg rounded-none"
+                            id="hover"
+                            onClick={handleLogOut}
+                          >
+                            Odhlásit se
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </div>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                </>
+              ) : (
+                <>
+                  <Link to="/prihlaseni">
+                    <DropdownMenuItem
+                      className="text-xl background_hover_darker"
+                      id="hover"
+                    >
+                      <LogIn className="text-black" />
+                      Přihlášení
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link to="/registrace">
+                    <DropdownMenuItem
+                      className="text-xl background_hover_darker"
+                      id="hover"
+                    >
+                      <UserPlus className="text-black" />
+                      Registrace
+                    </DropdownMenuItem>
+                  </Link>
+                </>
+              )}
+
               <DropdownMenuSeparator className="bg-black mx-2" />
               <Link to="/pribehy">
                 <DropdownMenuItem

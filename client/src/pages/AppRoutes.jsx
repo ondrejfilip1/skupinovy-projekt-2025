@@ -1,10 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
 import Home from "./Home";
-import ProductCreateForm from "./Admin/ProductCreateForm";
-import ProductList from "./Admin/ProductList";
-import ProductView from "./ProductView";
-import ProductUpdateForm from "./Admin/ProductUpdateForm";
+import ProductCreateForm from "./Admin/GameCreate";
+import UserList from "./Admin/UserList";
+import GameView from "./Admin/GameView";
 import NotFound from "./NotFound";
 import Cart from "./Cart";
 import Chat from "./Pribeh";
@@ -15,6 +14,7 @@ import Completion from "./Completion";
 import Login from "./Auth/Login";
 import Register from "./Auth/Register";
 import Admin from "./Admin";
+import GameList from "./Admin/GameList";
 
 export default function AppRoutes() {
   return (
@@ -40,10 +40,10 @@ export default function AppRoutes() {
 
           {/* admin */}
           <Route path="/admin" element={<Admin />} />
-          <Route path="/add-product" element={<ProductCreateForm />} />
-          <Route path="/view-products" element={<ProductList />} />
-          <Route path="/product/:id" element={<ProductView />} />
-          <Route path="/update-product/:id" element={<ProductUpdateForm />} />
+          <Route path="/game-create" element={<ProductCreateForm />} />
+          <Route path="/game-list" element={<GameList />} />
+                    <Route path="/user-list" element={<UserList />} />
+          <Route path="/game/:id" element={<GameView />} />
         </Routes>
       </BrowserRouter>
     </>
