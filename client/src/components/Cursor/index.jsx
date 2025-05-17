@@ -58,6 +58,7 @@ export default function Cursor() {
           zIndex: 9999999999,
           display: visible,
         }}
+        title="cursor"
         className="w-10 h-10 object-contain object-left-top fixed pointer-events-none drop-shadow-[0_0px_4px_rgba(0,0,0,0.75)]"
       />
     </>

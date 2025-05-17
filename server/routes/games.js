@@ -1,16 +1,19 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const gamesRouter = require("../controllers/games")
+const gamesRouter = require("../controllers/games");
+const admin = require("../middleware/admin");
 
-router.get('/', gamesRouter.getAllGames);
+router.get("/", gamesRouter.getAllGames);
 
-router.get('/:id', gamesRouter.getGameById);
+router.get("/:id", gamesRouter.getGameById);
 
-router.post('/', gamesRouter.createGame);
+// chranene routy (muze jen admin)
 
-router.put('/:id', gamesRouter.updateGame);
+router.post("/", admin, gamesRouter.createGame);
 
-router.delete('/:id', gamesRouter.deleteGame);
+router.put("/:id", admin, gamesRouter.updateGame);
+
+router.delete("/:id", admin, gamesRouter.deleteGame);
 
 module.exports = router;

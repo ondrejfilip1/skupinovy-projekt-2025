@@ -9,13 +9,13 @@ function App() {
       <AppRoutes />
       <Toaster
         position="bottom-right"
-        className="!border-none box_shadow_cyberpunk"
+        className="!border-none !rounded-none"
         toastOptions={{
           unstyled: false,
           classNames: {
-            toast: "!border-none custom_font !text-xl text_text background_bg button_cyberpunk box_shadow_cyberpunk",
+            toast: "custom_font !text-xl text_text background_bg border_color !rounded-none",
             title: "",
-            description: "",
+            description: "text_text text-base",
             actionButton: "!bg-transparent !p-1 !h-7 !w-7 !transition-colors",
             cancelButton: "!bg-transparent !p-1 !h-7 !w-7 !transition-colors",
             closeButton: "!bg-transparent !p-1 !h-7 !w-7 !transition-colors",

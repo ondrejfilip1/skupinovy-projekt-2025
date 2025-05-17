@@ -61,7 +61,7 @@ export default function Chat() {
     }, 10);
   };
 
-  const fetchMessage = async (input) => {
+  const fetchMessage = async (input, currentMessages) => {
     scrollToBottom();
     setIsGenerating(true);
     setHasGenerated(true);
@@ -129,7 +129,7 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
 
     let newStory = {
       messages: messages,
-      created: data.created,
+      created: Date.now(),
       name: `Příběh č.${stories.length + (hasSaved ? 0 : 1)}`,
     };
 

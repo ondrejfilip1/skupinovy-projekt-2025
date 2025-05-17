@@ -31,7 +31,7 @@ export default function StoryItem(props) {
     <>
       <div className="relative anim_story">
         <div>
-          {moment(props.created * 1000)
+          {moment(props.created)
             .locale("cs")
             .format("D.M.YYYY H:MM")}
         </div>

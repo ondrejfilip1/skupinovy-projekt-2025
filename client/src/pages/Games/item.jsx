@@ -47,9 +47,9 @@ export default function Item(props) {
 
     toast("Produkt byl přidán do košíku.", {
       cancel: {
-        label: <X />,
-        onClick: () => console.log("Cancel!"),
+        label: <X className="text_text" />,
       },
+      description: props.name,
     });
   };
 

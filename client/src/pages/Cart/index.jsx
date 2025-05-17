@@ -113,7 +113,7 @@ export default function Cart() {
                 </div>
                 <Link to="/platba">
                   <div className="background_text p-[1px] button_cyberpunk w-fit my-6">
-                    <Button className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]">
+                    <Button id="hover" className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]">
                       Pokračovat k platbě
                       <CornerUpRight />
                     </Button>
