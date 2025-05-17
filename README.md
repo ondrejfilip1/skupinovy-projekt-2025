@@ -10,7 +10,7 @@ Skupinový projekt s Cyberpunk 2077 tématikou
 
 **Client:** React + Vite, shadcn/ui, TailwindCSS, Lucide, Stripe
 
-**Server:** Node, Express, MongoDB, Stripe
+**Server:** Node, Express, MongoDB, Stripe, JWT
 
 ## 🚀 Instalace a spuštění
 
@@ -35,6 +35,7 @@ Server
 - Platební brána Stripe
 - Generování příběhů pomocí umělé inteligence
 - Ukládání, přejmenování a mazání příběhů
+- Přihlášení a registrace
 
 ## ✅ TODO
 - Zabezpečit, nastylovat a udělat funkční admin panel
