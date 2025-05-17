@@ -40,6 +40,7 @@ Server
 ## ✅ TODO
 - Zabezpečit, nastylovat a udělat funkční admin panel
 - Dokončit podstránky (Postavy, Historie plateb, Nastavení, Hlavní stránka)
+- Uživatelské nastavení (změna jména a hesla)
 - Fixnout ukládání příběhů (první zpráva se neukládá z nějakého důvodu)
 
 ## 👥 Autoři
