@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { createGame } from "../../models/Game";
+import { createGame } from "../../../models/Game";
 
 import React from "react";
 

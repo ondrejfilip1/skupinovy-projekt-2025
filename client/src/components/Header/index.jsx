@@ -11,6 +11,8 @@ import {
   Settings,
   LogIn,
   UserPlus,
+  User,
+  Shield,
 } from "lucide-react";
 import { Button } from "../ui/button";
 import {
@@ -24,7 +26,9 @@ import {
 
 export default function Header() {
   const [message, setMessage] = useState(
-    localStorage.getItem("username") ? localStorage.getItem("username") : "Nejsi přihlášen(a)"
+    localStorage.getItem("username")
+      ? localStorage.getItem("username")
+      : "Nejsi přihlášen(a)"
   );
 
   return (
@@ -79,7 +83,8 @@ export default function Header() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="button_cyberpunk background_text border-none text-black min-w-60 mr-2">
-              <DropdownMenuLabel className="text-xl">
+              <DropdownMenuLabel className="text-xl flex gap-2 items-center">
+                {message && <User className="h-5" />}
                 {message}
               </DropdownMenuLabel>
               <DropdownMenuSeparator className="bg-black mx-2" />
@@ -132,6 +137,20 @@ export default function Header() {
                 <Settings className="text-black" />
                 Nastavení
               </DropdownMenuItem>
+              {localStorage.getItem("isAdmin") === "true" && (
+                <>
+                  <DropdownMenuSeparator className="bg-black mx-2" />
+                  <Link to="/admin">
+                    <DropdownMenuItem
+                      className="text-xl background_hover_darker"
+                      id="hover"
+                    >
+                      <Shield className="text-black" />
+                      Admin panel
+                    </DropdownMenuItem>
+                  </Link>
+                </>
+              )}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

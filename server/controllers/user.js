@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 exports.register = async (req, res, next) => {
   try {
     const { username, password } = req.body;
-    
+
     // zaeschuju heslo
     const hash = await bcrypt.hash(password, 12);
 
@@ -20,11 +20,21 @@ exports.register = async (req, res, next) => {
       password: hash,
       isAdmin: false,
     });
+
     const result = await data.save();
     if (result) {
+      // rovnou to uzivatele i prihlasi
+      const token = jwt.sign(
+        { id: result._id, isAdmin: result.isAdmin },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: "6h",
+        }
+      );
       return res.status(200).send({
         message: "User created",
         payload: result,
+        token,
       });
     }
     res.status(500).send({
@@ -54,9 +64,10 @@ exports.login = async (req, res, next) => {
       }
     );
 
-    return res
-      .status(200)
-      .send({ token, user: { id: data._id, username: data.username, isAdmin: data.isAdmin } });
+    return res.status(200).send({
+      token,
+      user: { id: data._id, username: data.username, isAdmin: data.isAdmin },
+    });
   } catch (err) {
     return res.status(500).send(err);
   }

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getAllGames } from "../../models/Game";
+import { getAllGames } from "../../../models/Game";
 import CarLink from "./CarLink";
 
 export default function Home() {

@@ -12,6 +12,7 @@ export const login = async (formData) => {
   if (req.status === 200) {
     localStorage.setItem("token", data.token);
     localStorage.setItem("username", data.user.username);
+    localStorage.setItem("isAdmin", data.user.isAdmin);
     return {
       status: req.status,
       message: data.message,
@@ -36,8 +37,10 @@ export const register = async (formData) => {
   const data = await req.json();
 
   if (req.status === 200) {
+    console.log(data);
     localStorage.setItem("token", data.token);
     localStorage.setItem("username", data.payload.username);
+    localStorage.setItem("isAdmin", data.payload.isAdmin);
     return {
       status: req.status,
       message: data.message,
