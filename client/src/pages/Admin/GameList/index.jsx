@@ -50,9 +50,9 @@ export default function GameList() {
           ))}
 
           <Button>
-            <Link to="/admin">
-              <p>Go home</p>
-            </Link>
+        <Link to={-1}>
+          <p>Go back</p>
+        </Link>
           </Button>
         </div>
       </>

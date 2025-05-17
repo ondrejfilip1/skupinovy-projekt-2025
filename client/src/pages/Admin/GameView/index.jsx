@@ -30,7 +30,7 @@ export default function GameView() {
     if (product.name === formData) {
       const data = await deleteGame(id);
       if (data.status === 200) {
-        alert("Product deleted successfully!");
+        alert("Game deleted successfully!");
         navigate(`/`);
       } else {
         setInfo(data.message);
@@ -47,7 +47,7 @@ export default function GameView() {
   if (isLoaded === null) {
     return (
       <>
-        <p>Produkt nenalezen</p>
+        <p>Game nenalezen</p>
       </>
     );
   }
@@ -55,7 +55,7 @@ export default function GameView() {
   if (!isLoaded) {
     return (
       <>
-        <p>Produkt se načítá...</p>
+        <p>Game se načítá...</p>
       </>
     );
   }
@@ -91,8 +91,8 @@ export default function GameView() {
           <p>Aktualizovat produkt</p>
         </Link>
 
-        <Link to="/admin">
-          <p>Go home</p>
+        <Link to={-1}>
+          <p>Go back</p>
         </Link>
       </div>
     </>

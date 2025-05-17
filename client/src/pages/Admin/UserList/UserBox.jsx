@@ -7,18 +7,19 @@ export default function UserBox(props) {
 
   return (
     <>
-      <p>{props.username}</p>
-      {moment(props.createdAt).locale("cs").format("D.M.YYYY H:MM")}
-      <p></p>
+    <div className="flex justify-between items-center">
+      <p className="text-2xl">{props.username}</p>
+      {moment(props.createdAt).locale("cs").format("D.M.YYYY h:mm")}</div>
+      <p>{props.isAdmin ? "Administrátor" : "Uživatel"}</p>
       {showPass ? (
-        <div onClick={() => setShowPass(!showPass)}>{props.password}</div>
+        <div id="hover" onClick={() => setShowPass(!showPass)}>{props.password}</div>
       ) : (
-        <div className="flex gap-2" onClick={() => setShowPass(!showPass)}>
+        <div id="hover" className="flex gap-2" onClick={() => setShowPass(!showPass)}>
           <Eye />
           Zobrazit hash hesla
         </div>
       )}
-      <div className="w-full h-px background_text my-2"></div>
+      <div className="w-full h-px background_text my-2 opacity-50"></div>
     </>
   );
 }

@@ -78,7 +78,7 @@ export default function GameCreate() {
           <Button onClick={handlePost}>Create Game</Button>
         </form>
         <p>{info}</p>
-        <Link to="/admin">
+        <Link to={-1}>
           <p>Go back</p>
         </Link>
       </div>

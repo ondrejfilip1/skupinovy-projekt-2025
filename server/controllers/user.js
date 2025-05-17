@@ -6,6 +6,10 @@ exports.register = async (req, res, next) => {
   try {
     const { username, password } = req.body;
 
+    // password check
+    if (password.length < 8 || password.length > 64)
+      return res.status(500).send({message: "Password must be 8-64 characters long"})
+
     // zaeschuju heslo
     const hash = await bcrypt.hash(password, 12);
 

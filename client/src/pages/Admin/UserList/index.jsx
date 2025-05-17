@@ -47,9 +47,9 @@ export default function UserList() {
             <UserBox key={index} {...car} />
           ))}
 
-          <Link to={"/admin"}>
-            <p>Go back</p>
-          </Link>
+        <Link to={-1}>
+          <p>Go back</p>
+        </Link>
         </div>
       </>
     );
