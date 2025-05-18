@@ -201,7 +201,7 @@ export default function Home() {
               <div className="bg-black md:w-[280px] w-[220px] pr-13 py-4 clip-slanted">
                 <img src={Logo} alt="logo" className="sm:w-[250px] ml-4" />
               </div>
-              <div className="flex justify-end md:w-[500px] w-[25vw] bg-black pr-10 py-4 clip-slantedv1">
+              <div className="flex gap-1 justify-end md:w-[500px] w-[25vw] bg-black pr-10 py-4 clip-slantedv1">
                 <Link to={"/hry"} className="md:block hidden">
               <div className="flex gap-1 justify-end md:w-[500px] w-[25vw] bg-black pr-10 py-4 clip-slantedv1">
                 <Link to={"/hry"}>
