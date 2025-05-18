@@ -11,9 +11,9 @@ import {
 export default function ImageCard({ img, title, text }) {
   const checkText = () => {
     if ((text === true)) {
-      return "text-4xl";
+      return "xl:text-4xl text-2xl";
     } else {
-      return "text-2xl";
+      return "xl:text-[1.25vw] text-xl";
     }
   };
 

@@ -4,7 +4,15 @@ import { Progress } from "@/components/ui/progress";
 import React from "react";
 import { PowerGlitch } from "powerglitch";
 import { Link } from "react-router-dom";
-import { Menu, Clapperboard, Users, History, Settings } from "lucide-react";
+import {
+  Menu,
+  Clapperboard,
+  Users,
+  History,
+  Settings,
+  Gamepad,
+  ShoppingCart,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -94,6 +102,24 @@ export default function Home() {
           count: 3,
         },
       });
+      PowerGlitch.glitch(".imageCard-glitch", {
+        playMode: 'hover',
+        hideOverflow: true,
+        timing: {
+          duration: 1950,
+        },
+        glitchTimeSpan: {
+          start: 0.5,
+          end: 0.7,
+        },
+        shake: {
+          amplitudeX: 0,
+          amplitudeY: 0,
+        },
+        slice: {
+          count: 1,
+        },
+      });
     }
   }, [showPage]);
 
@@ -129,26 +155,22 @@ export default function Home() {
                 <img src={Logo} alt="" className="sm:w-[250px]sm:w-[250px]" />
               </div>
               <div className="flex justify-end md:w-[500px] w-[25vw] bg-black pr-10 py-4 clip-slantedv1">
-                <Link to={"/hry"}>
+                <Link to={"/hry"} className="md:block hidden">
                   <Button
                     className="text-3xl font-semibold button_hover button_cyberpunk !py-5"
                     variant="ghost"
                     id="hover"
                   >
-                    <p className="md:block hidden" id="hover">
-                      Hry
-                    </p>
+                    <p id="hover">Hry</p>
                   </Button>
                 </Link>
-                <Link to={"/kosik"}>
+                <Link to={"/kosik"} className="md:block hidden">
                   <Button
                     className="text-3xl font-semibold button_hover button_cyberpunk !py-5"
                     variant="ghost"
                     id="hover"
                   >
-                    <p className="md:block hidden" id="hover">
-                      Nákupní košík
-                    </p>
+                    <p id="hover">Nákupní košík</p>
                   </Button>
                 </Link>
 
@@ -200,6 +222,29 @@ export default function Home() {
                       <Settings className="text-black" />
                       Nastavení
                     </DropdownMenuItem>
+                    <div className="md:hidden flex flex-col">
+                    <DropdownMenuSeparator className="bg-black mx-2" />
+                    <Link to="/hry">
+                      <DropdownMenuItem
+                        className="text-xl background_hover_darker"
+                        id="hover"
+                      >
+                        <Gamepad className="text-black" />
+                        Hry
+                      </DropdownMenuItem>
+                    </Link>
+
+                    <Link to="/kosik">
+                      <DropdownMenuItem
+                        className="text-xl background_hover_darker"
+                        id="hover"
+                      >
+                        <ShoppingCart className="text-black" />
+                        Nákupní košík
+                      </DropdownMenuItem>
+                    </Link>
+                    </div>
+
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
@@ -214,34 +259,58 @@ export default function Home() {
                   WELCOME TO THE <br /> NIGHTGRID
                 </h1>
                 <Link to="#news">
-                <Button className="button_cyberpunk py-6 px-12 font-bold sm:text-3xl text-xl bg-[#d0ff57] text-[#1a1019]">
-                  START THE JOURNEY
-                </Button>
+                  <Button className="button_cyberpunk py-6 px-12 font-bold sm:text-3xl text-xl bg-[#d0ff57] text-[#1a1019]">
+                    START THE JOURNEY
+                  </Button>
                 </Link>
               </div>
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 grid-cols-1 m-[22px] gap-20" id="news">
-            <div>
-              <ImageCard img={bundle} title={"Celý svět NIGHTGRID v jednom balení – připraven na jízdu?"} text={true}/>
+          <div
+            className="grid lg:grid-cols-2 grid-cols-1 m-[22px] gap-20"
+            id="news"
+          >
+            <div className="imageCard-glitch">
+              <ImageCard
+                img={bundle}
+                title={
+                  "Celý svět NIGHTGRID v jednom balení – připraven na jízdu?"
+                }
+                text={true}
+              />
             </div>
 
             <div className="grid md:grid-cols-2 grid-cols-1 gap-10">
-              <div>
-                <ImageCard img={map} title={"Síť se rozšiřuje – prozkoumej neznámé oblasti NIGHTGRID"}/>
+              <div className="imageCard-glitch">
+                <ImageCard
+                  img={map}
+                  title={
+                    "Síť se rozšiřuje – prozkoumej neznámé oblasti NIGHTGRID"
+                  }
+                />
               </div>
-              <div>
-                <ImageCard img={dlc} title={"Moc přichází ze stínů – nové DLC pro NIGHTGRID je tady!"}/>
+              <div className="imageCard-glitch">
+                <ImageCard
+                  img={dlc}
+                  title={
+                    "Moc přichází ze stínů – nové DLC pro NIGHTGRID je tady!"
+                  }
+                />
               </div>
-              <div>
-                <ImageCard img="/bundle/complete/1.png"/>
+              <div className="imageCard-glitch">
+                <ImageCard img="/bundle/complete/1.png" />
               </div>
-              <div>
-                <ImageCard img={game} title={"Startujeme! NIGHTGRID odemčen pro všechny hráče"}/>
+              <div className="imageCard-glitch">
+                <ImageCard
+                  img={game}
+                  title={"Startujeme! NIGHTGRID odemčen pro všechny hráče"}
+                />
               </div>
             </div>
           </div>
+
+          <div className="m-[22px] "></div>
           <Footer />
         </>
       );
