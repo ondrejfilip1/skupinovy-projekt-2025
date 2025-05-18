@@ -343,5 +343,15 @@ body {
 }
 
 .clip-slanted {
-    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
-  }
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+}
+
+.clip-slantedv1 {
+  clip-path: polygon(10% 100%, 100% 100%, 100% 0, 0 0);
+}
+
+.home-card {
+  aspect-ratio: 16 / 9;
+  max-height: 100%;
+  max-width: 100%;
+}

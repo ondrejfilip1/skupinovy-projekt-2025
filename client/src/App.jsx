@@ -1,6 +1,7 @@
 import { Toaster } from "./components/ui/sonner";
 import AppRoutes from "./pages/AppRoutes";
 import Cursor from "@/components/Cursor";
+import ScrollToHashElement from "@cascadia-code/scroll-to-hash-element";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           },
         }}
       />
+      <ScrollToHashElement behavior="smooth" inline="center" block="center"/>
     </>
   );
 }

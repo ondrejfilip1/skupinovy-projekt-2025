@@ -15,6 +15,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import Logo from "/home/logo.svg";
+import ImageCard from "@/components/ImageCard";
+
+import bundle from "/cardImages/bundle.png";
+import map from "/cardImages/map.png";
+import dlc from "/cardImages/dlc.png";
+import game from "/cardImages/game.png";
 
 export default function Home() {
   const [value, setValue] = useState(0);
@@ -73,6 +79,24 @@ export default function Home() {
     });
   }, []);
 
+  useEffect(() => {
+    if (showPage) {
+      PowerGlitch.glitch(".overlay-glitch", {
+        hideOverflow: true,
+        timing: {
+          duration: 3650,
+        },
+        shake: {
+          amplitudeX: 0.05,
+          amplitudeY: 0.06,
+        },
+        slice: {
+          count: 3,
+        },
+      });
+    }
+  }, [showPage]);
+
   const renderLoading = () => {
     if (!showPage) {
       return (
@@ -101,10 +125,10 @@ export default function Home() {
         <>
           <div className="relative w-full">
             <div className="absolute top-0 left-0 w-full flex justify-between items-center py-4 z-50">
-              <div className="bg-black w-[300px] pr-13 py-4 clip-slanted">
-                <img src={Logo} alt="" className="sm:w-[250px]" />
+              <div className="bg-black md:w-[280px] w-[220px] pr-13 py-4 clip-slanted">
+                <img src={Logo} alt="" className="sm:w-[250px]sm:w-[250px]" />
               </div>
-              <div className="flex justify-around w-[400px]">
+              <div className="flex justify-end md:w-[500px] w-[25vw] bg-black pr-10 py-4 clip-slantedv1">
                 <Link to={"/hry"}>
                   <Button
                     className="text-3xl font-semibold button_hover button_cyberpunk !py-5"
@@ -128,7 +152,7 @@ export default function Home() {
                   </Button>
                 </Link>
 
-                <DropdownMenu>
+                <DropdownMenu modal={false}>
                   <DropdownMenuTrigger>
                     <Button
                       className="text-3xl font-semibold button_hover button_cyberpunk !py-5"
@@ -181,17 +205,40 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex sm:flex-row flex-col-reverse justify-center items-end h-[98vh] w-full bg-[url(/home/background3.png)] bg-center bg-cover bg-no-repeat overflow-x-hidden">
-            <div className="font-bold flex flex-col items-center align-bottom mx-auto sm:mb-5 mb-0">
-              <div>
+
+          <div className="relative h-[105vh] w-full bg-[url(/home/background3.png)] bg-cover bg-center bg-no-repeat overflow-x-hidden">
+            <div className="absolute bottom-0 left-0 w-full h-[40vh] bg-[linear-gradient(180deg,_#0000,_#000000d4_72.46%,_#1a1019)]" />
+            <div className="absolute bottom-0 w-full">
+              <div className="font-bold flex flex-col items-center mx-auto mb-50 overlay-glitch">
                 <h1 className="text_text background_bg tracking-widest md:w-[700px] w-[80vw] py-4 text-center sm:text-6xl text-4xl mb-4">
                   WELCOME TO THE <br /> NIGHTGRID
                 </h1>
-              </div>
-              <div>
+                <Link to="#news">
                 <Button className="button_cyberpunk py-6 px-12 font-bold sm:text-3xl text-xl bg-[#d0ff57] text-[#1a1019]">
                   START THE JOURNEY
                 </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 grid-cols-1 m-[22px] gap-20" id="news">
+            <div>
+              <ImageCard img={bundle} title={"Celý svět NIGHTGRID v jednom balení – připraven na jízdu?"} text={true}/>
+            </div>
+
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-10">
+              <div>
+                <ImageCard img={map} title={"Síť se rozšiřuje – prozkoumej neznámé oblasti NIGHTGRID"}/>
+              </div>
+              <div>
+                <ImageCard img={dlc} title={"Moc přichází ze stínů – nové DLC pro NIGHTGRID je tady!"}/>
+              </div>
+              <div>
+                <ImageCard img="/bundle/complete/1.png"/>
+              </div>
+              <div>
+                <ImageCard img={game} title={"Startujeme! NIGHTGRID odemčen pro všechny hráče"}/>
               </div>
             </div>
           </div>
