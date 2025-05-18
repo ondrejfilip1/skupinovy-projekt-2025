@@ -352,9 +352,7 @@ body {
 .placeholder_color::placeholder {
   color: var(--text-color);
   opacity: 0.35;
-
 }
-
 
 .clip-slantedv1 {
   clip-path: polygon(10% 100%, 100% 100%, 100% 0, 0 0);
@@ -364,4 +362,36 @@ body {
   aspect-ratio: 16 / 9;
   max-height: 100%;
   max-width: 100%;
+}
+
+.no_style *,
+.no_style_component * {
+  cursor: auto !important;
+}
+
+.no_style a,
+.no_style a *,
+.no_style_component a,
+.no_style_component a * {
+  cursor: pointer !important;
+}
+
+.no_style {
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", ui-sans-serif,
+    system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji" !important;
+  background-color: #ffffff !important;
+  color: #0a0a0a !important;
+  min-height: 100vh;
+  cursor: auto !important;
+}
+
+.no_style_component {
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", ui-sans-serif,
+    system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji" !important;
+  color: #0a0a0a !important;
+  cursor: auto !important;
 }

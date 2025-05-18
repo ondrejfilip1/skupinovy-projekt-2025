@@ -12,6 +12,9 @@ import {
   User,
   LogOut,
   Shield,
+  X,
+  LogIn,
+  UserPlus
 } from "lucide-react";
 import {
   DropdownMenu,

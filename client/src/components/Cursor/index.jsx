@@ -2,14 +2,30 @@ import { useState, useEffect } from "react";
 import defaultCur from "../../assets/cursors/default.png";
 import pointerCur from "../../assets/cursors/pointer.png";
 import textCur from "../../assets/cursors/text.png";
+import { useLocation } from "react-router-dom";
 
 export default function Cursor() {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [cursorPath, setCursorPath] = useState(defaultCur);
   const [visible, setVisible] = useState("none");
 
+  const location = useLocation();
+  const isAdminURL = location.pathname.startsWith("/admin");
+
+  useEffect(() => {
+    // kurzor chci skryt v admin panelu
+    if (isAdminURL) {
+      //console.log("admin");
+      
+      return setVisible("none");
+    }
+  }, [isAdminURL]);
+
   useEffect(() => {
     const move = (e) => {
+      if (isAdminURL) return;
+
+      setVisible("inline");
       // nastavovani pozice kurzoru
       setPos({ x: e.clientX, y: e.clientY });
       // ziskani id (cinske)
@@ -19,7 +35,7 @@ export default function Cursor() {
 
       // nefunguje nad stripe payment elementem
       if (e.target.localName === "iframe") setVisible("none");
-      else setVisible("inline")
+      else setVisible("inline");
 
       // nastavovani obrazku kurzoru podle idcka
       switch (id) {
@@ -48,6 +64,8 @@ export default function Cursor() {
     document.addEventListener("mouseenter", show);
     document.addEventListener("mouseleave", hide);
   }, []);
+
+  if (isAdminURL) return;
 
   return (
     <>

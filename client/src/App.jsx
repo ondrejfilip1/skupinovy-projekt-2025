@@ -1,12 +1,10 @@
 import { Toaster } from "./components/ui/sonner";
 import AppRoutes from "./pages/AppRoutes";
-import Cursor from "@/components/Cursor";
 import ScrollToHashElement from "@cascadia-code/scroll-to-hash-element";
 
 function App() {
   return (
     <>
-      <Cursor />
       <AppRoutes />
       <Toaster
         position="bottom-right"
@@ -14,7 +12,8 @@ function App() {
         toastOptions={{
           unstyled: false,
           classNames: {
-            toast: "custom_font !text-xl text_text background_bg border_color !rounded-none",
+            toast:
+              "custom_font !text-xl text_text background_bg border_color !rounded-none",
             title: "",
             description: "text_text text-base",
             actionButton: "!bg-transparent !p-1 !h-7 !w-7 !transition-colors",
@@ -23,7 +22,7 @@ function App() {
           },
         }}
       />
-      <ScrollToHashElement behavior="smooth" inline="center" block="center"/>
+      <ScrollToHashElement behavior="smooth" inline="center" block="center" />
     </>
   );
 }

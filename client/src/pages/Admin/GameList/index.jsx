@@ -4,6 +4,7 @@ import { getAllGames } from "../../../models/Game";
 import GameBox from "./GameBox";
 import NotFound from "@/pages/NotFound";
 import { Button } from "@/components/ui/button";
+import { CornerUpLeft } from "lucide-react";
 
 export default function GameList() {
   const [games, setGames] = useState();
@@ -44,16 +45,18 @@ export default function GameList() {
     return (
       <>
         <div className="container mx-auto p-4">
-          <h1 className="text-4xl">Games list</h1>
+          <h1 className="text-4xl flex justify-between items-center">
+            Games list
+            <Link to={-1}>
+              <Button>
+                <CornerUpLeft />
+                Go back
+              </Button>
+            </Link>
+          </h1>
           {games.map((car, index) => (
             <GameBox key={index} {...car} />
           ))}
-
-          <Button>
-        <Link to={-1}>
-          <p>Go back</p>
-        </Link>
-          </Button>
         </div>
       </>
     );

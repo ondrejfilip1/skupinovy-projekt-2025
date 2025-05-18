@@ -1,6 +1,8 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { deleteGame, getGameById } from "../../../models/Game";
 import { useState, useEffect } from "react";
+import { CornerUpLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function GameView() {
   const { id } = useParams();
@@ -63,7 +65,15 @@ export default function GameView() {
   return (
     <>
       <div className="container mx-auto p-4">
-        <h1 className="text-4xl">Game view</h1>
+          <h1 className="text-4xl flex justify-between items-center">
+            Game view
+            <Link to={-1}>
+              <Button>
+                <CornerUpLeft />
+                Go back
+              </Button>
+            </Link>
+          </h1>
         <p>{id}</p>
         <p className="text-2xl">Název:</p>
         {product.name}
@@ -87,12 +97,8 @@ export default function GameView() {
           <button onClick={handleDelete}>Smazat produkt</button>
         </form>
         <p>{info}</p>
-        <Link to={`/update-car/${id}`}>
+        <Link to={`/admin/update-car/${id}`}>
           <p>Aktualizovat produkt</p>
-        </Link>
-
-        <Link to={-1}>
-          <p>Go back</p>
         </Link>
       </div>
     </>
