@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import croppedQr from "@/assets/qr1.svg";
 import { Button } from "@/components/ui/button";
 import qr2 from "@/assets/qr2.svg";
-import { Clapperboard } from "lucide-react";
+import { Clapperboard, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import StoryItem from "./StoryItem";
@@ -11,6 +11,8 @@ export default function Menu() {
   const [stories, setStories] = useState(
     JSON.parse(localStorage.getItem("stories")) || []
   );
+
+  const [hasToken, setHasToken] = useState(localStorage.getItem("token"));
 
   window.addEventListener("storiesUpdate", () => {
     setStories(JSON.parse(localStorage.getItem("stories")));
@@ -46,36 +48,58 @@ export default function Menu() {
             </div>
           </div>
 
-          <div className="m-10">
-            {stories && stories.length > 0 ? (
-              <>
-                <h1 className="text-center text-4xl mb-6">Vaše příběhy</h1>
-                <div className="grid lg:grid-cols-4 grid-cols-1 sm:grid-cols-2 gap-6">
-                  {stories.map((value, index) => (
-                    <StoryItem {...value} key={`${index}-${value.created}`} index={index} />
-                  ))}
-                </div>
-              </>
-            ) : (
-              <div className="flex flex-col justify-between items-center my-24 pt-4 gap-6">
-                <h1 className="text-center text-4xl">Nemáte žádné příběhy</h1>
-                <Clapperboard className="w-12 h-12" />
-              </div>
-            )}
+          {hasToken ? (
+            <>
+              <div className="m-10">
+                {stories && stories.length > 0 ? (
+                  <>
+                    <h1 className="text-center text-4xl mb-6">Vaše příběhy</h1>
+                    <div className="grid lg:grid-cols-4 grid-cols-1 sm:grid-cols-2 gap-6">
+                      {stories.map((value, index) => (
+                        <StoryItem
+                          {...value}
+                          key={`${index}-${value.created}`}
+                          index={index}
+                        />
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <div className="flex flex-col justify-between items-center my-24 pt-4 gap-6">
+                    <h1 className="text-center text-4xl">
+                      Nemáte žádné příběhy
+                    </h1>
+                    <Clapperboard className="w-12 h-12" />
+                  </div>
+                )}
 
-            <div className="background_text my-6 h-[1px]" />
-            <Link to="/pribeh">
-              <div className="background_text p-[1px] button_cyberpunk w-fit mb-16">
-                <Button
-                  id="hover"
-                  className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
-                >
-                  Vytvořit nový příběh
-                  <Clapperboard />
-                </Button>
+                <div className="background_text my-6 h-[1px]" />
+                <Link to="/pribeh">
+                  <div className="background_text p-[1px] button_cyberpunk w-fit mb-16">
+                    <Button
+                      id="hover"
+                      className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
+                    >
+                      Vytvořit nový příběh
+                      <Clapperboard />
+                    </Button>
+                  </div>
+                </Link>
               </div>
-            </Link>
-          </div>
+            </>
+          ) : (
+            <>
+              <div className="w-full flex flex-col justify-center items-center text-center h-full absolute left-1/2 transform -translate-x-1/2">
+                <Sparkles strokeWidth={1} className="w-20 h-20 mb-4" />
+                <div className="text-2xl">
+                  Pro generování příběhů potřebujete účet
+                </div>
+                <div className="mt-10">Máte již účet? <Link to="/prihlaseni" id="hover" className="underline">Přihlaste se</Link></div>
+                <div className="my-2">Nemáte účet? <Link to="/registrace" id="hover" className="underline">Zaregistrujte se</Link></div>
+
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>

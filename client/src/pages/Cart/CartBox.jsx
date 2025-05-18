@@ -48,7 +48,11 @@ export default function CartBox(props) {
     if (add) cart[props.index].amount += quantity;
     else if (cart[props.index].amount !== 1)
       cart[props.index].amount -= quantity;
-    else toast("Nemůžete mít méně než 1 produkt.");
+    else toast("Nemůžete mít méně než 1 produkt.", {
+      cancel: {
+        label: <X className="text_text" />,
+      },
+    });
 
     setCurrentQuantity(cart[props.index].amount);
 

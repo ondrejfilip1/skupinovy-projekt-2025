@@ -1,6 +1,6 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { updateGame, getGameById } from "../../models/Game";
+import { updateGame, getGameById } from "../../../models/Game";
 
 export default function ProductUpdateForm() {
   const { id } = useParams();

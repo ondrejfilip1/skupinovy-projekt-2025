@@ -31,9 +31,9 @@ export default function StoryItem(props) {
     <>
       <div className="relative anim_story">
         <div>
-          {moment(props.created * 1000)
+          {moment(props.created)
             .locale("cs")
-            .format("D.M.YYYY H:MM")}
+            .format("D.M.YYYY h:mm")}
         </div>
         <div className="absolute top-3 -right-3 background_bg z-10 border border_color h-6.5">
           <AlertDialog>
