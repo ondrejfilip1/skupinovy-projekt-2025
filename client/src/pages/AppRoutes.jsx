@@ -16,10 +16,13 @@ import Register from "./Auth/Register";
 import Admin from "./Admin";
 import GameList from "./Admin/GameList";
 
+import Cursor from "@/components/Cursor";
+
 export default function AppRoutes() {
   return (
     <>
       <BrowserRouter>
+        <Cursor />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/hry" element={<Games />} />
@@ -39,11 +42,46 @@ export default function AppRoutes() {
           <Route path="/*" element={<NotFound />} />
 
           {/* admin */}
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/game-create" element={<ProductCreateForm />} />
-          <Route path="/game-list" element={<GameList />} />
-                    <Route path="/user-list" element={<UserList />} />
-          <Route path="/game/:id" element={<GameView />} />
+          <Route
+            path="/admin"
+            element={
+              <div className="no_style">
+                <Admin />
+              </div>
+            }
+          />
+          <Route
+            path="/admin/game-create"
+            element={
+              <div className="no_style">
+                <ProductCreateForm />
+              </div>
+            }
+          />
+          <Route
+            path="/admin/game-list"
+            element={
+              <div className="no_style">
+                <GameList />
+              </div>
+            }
+          />
+          <Route
+            path="/admin/user-list"
+            element={
+              <div className="no_style">
+                <UserList />
+              </div>
+            }
+          />
+          <Route
+            path="/admin/game/:id"
+            element={
+              <div className="no_style">
+                <GameView />
+              </div>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>

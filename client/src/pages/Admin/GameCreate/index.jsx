@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { createGame } from "../../../models/Game";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { CornerUpLeft } from "lucide-react";
 
 import React from "react";
 
@@ -33,15 +34,22 @@ export default function GameCreate() {
   return (
     <>
       <div className="container mx-auto p-4">
-        <h1 className="text-4xl">Create game</h1>
-        <form className="grid gap-2">
+        <h1 className="text-4xl flex justify-between items-center">
+          Create game
+          <Link to={-1}>
+            <Button>
+              <CornerUpLeft />
+              Go back
+            </Button>
+          </Link>
+        </h1>
+        <form className="grid gap-2 my-2">
           <Input
             type="text"
             name="name"
             required
             placeholder="Enter name"
             onChange={handleChange}
-            className="rounded-none border_color placeholder_color"
           />
           <Input
             type="text"
@@ -49,7 +57,6 @@ export default function GameCreate() {
             required
             placeholder="Enter category"
             onChange={handleChange}
-            className="rounded-none border_color placeholder_color"
           />
           <Input
             type="text"
@@ -57,7 +64,6 @@ export default function GameCreate() {
             required
             placeholder="Enter description"
             onChange={handleChange}
-            className="rounded-none border_color placeholder_color"
           />
           <Input
             type="text"
@@ -65,7 +71,6 @@ export default function GameCreate() {
             required
             placeholder="Enter imagePath"
             onChange={handleChange}
-            className="rounded-none border_color placeholder_color"
           />
           <Input
             type="number"
@@ -73,14 +78,12 @@ export default function GameCreate() {
             required
             placeholder="Enter price"
             onChange={handleChange}
-            className="rounded-none border_color placeholder_color"
           />
-          <Button onClick={handlePost}>Create Game</Button>
+          <Button className="w-fit" onClick={handlePost}>
+            Create Game
+          </Button>
         </form>
         <p>{info}</p>
-        <Link to={-1}>
-          <p>Go back</p>
-        </Link>
       </div>
     </>
   );
