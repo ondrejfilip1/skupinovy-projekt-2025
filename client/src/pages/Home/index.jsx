@@ -3,8 +3,16 @@ import { useEffect, useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import React from "react";
 import { PowerGlitch } from "powerglitch";
-import { Link } from "react-router-dom";
-import { Menu, Clapperboard, Users, History, Settings } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  Clapperboard,
+  Users,
+  History,
+  Settings,
+  User,
+  LogOut,
+  Shield,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +22,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import Logo from "/home/logo.svg";
+import Logo from "@/assets/logo.png";
 import ImageCard from "@/components/ImageCard";
 
 import bundle from "/cardImages/bundle.png";
@@ -22,10 +30,50 @@ import map from "/cardImages/map.png";
 import dlc from "/cardImages/dlc.png";
 import game from "/cardImages/game.png";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { toast } from "sonner";
+
 export default function Home() {
   const [value, setValue] = useState(0);
   const [showPage, setShowPage] = useState(false);
   const PERCENTAGE = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+  const navigate = useNavigate();
+
+  const [message, setMessage] = useState(
+    localStorage.getItem("username")
+      ? localStorage.getItem("username")
+      : "Nejsi přihlášen(a)"
+  );
+
+  const handleLogOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("isAdmin");
+
+    toast("Byli jste úspěšně odhlášeni.", {
+      cancel: {
+        label: <X className="text_text" />,
+      },
+    });
+
+    setMessage("Nejsi přihlášen(a)");
+
+    // timeout aby se dropdown stihl zavrit spravne
+    setTimeout(() => {
+      navigate("/hry");
+    }, 100);
+  };
 
   useEffect(() => {
     const wasLoaded = localStorage.getItem("shown");
@@ -126,9 +174,9 @@ export default function Home() {
           <div className="relative w-full">
             <div className="absolute top-0 left-0 w-full flex justify-between items-center py-4 z-50">
               <div className="bg-black md:w-[280px] w-[220px] pr-13 py-4 clip-slanted">
-                <img src={Logo} alt="" className="sm:w-[250px]sm:w-[250px]" />
+                <img src={Logo} alt="logo" className="sm:w-[250px] ml-4" />
               </div>
-              <div className="flex justify-end md:w-[500px] w-[25vw] bg-black pr-10 py-4 clip-slantedv1">
+              <div className="flex gap-1 justify-end md:w-[500px] w-[25vw] bg-black pr-10 py-4 clip-slantedv1">
                 <Link to={"/hry"}>
                   <Button
                     className="text-3xl font-semibold button_hover button_cyberpunk !py-5"
@@ -159,16 +207,82 @@ export default function Home() {
                       variant="ghost"
                       id="hover"
                     >
-                      <Menu className="w-32" />
                       <p className="md:block hidden" id="hover">
                         Účet
                       </p>
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="button_cyberpunk background_text border-none text-black">
-                    <DropdownMenuLabel className="text-xl">
-                      Váš účet
+                  <DropdownMenuContent className="button_cyberpunk background_text border-none text-black min-w-60 mr-2">
+                    <DropdownMenuLabel className="text-xl flex gap-2 items-center">
+                      {message && <User className="h-5" />}
+                      {message}
                     </DropdownMenuLabel>
+                    <DropdownMenuSeparator className="bg-black mx-2" />
+                    {localStorage.getItem("token") ? (
+                      <>
+                        <AlertDialog>
+                          <AlertDialogTrigger className="w-full">
+                            <DropdownMenuItem
+                              onSelect={(e) => e.preventDefault()}
+                              className="text-xl background_hover_darker"
+                              id="hover"
+                            >
+                              <LogOut className="text-black" />
+                              Odhlášení
+                            </DropdownMenuItem>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent className="border-none background_text p-[1px] button_cyberpunk">
+                            <div className="button_cyberpunk background_bg relative text_text p-4">
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>
+                                  Opravdu se chcete odhlásit?
+                                </AlertDialogTitle>
+                                <AlertDialogDescription className="text_text">
+                                  Tato akce Vás odhlásí od aktualního účtu.
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogCancel
+                                  className="bg-transparent border_color hover:bg-transparent text_text_hover rounded-none"
+                                  id="hover"
+                                >
+                                  Zpět
+                                </AlertDialogCancel>
+                                <AlertDialogAction
+                                  className="background_text text_bg rounded-none"
+                                  id="hover"
+                                  onClick={handleLogOut}
+                                >
+                                  Odhlásit se
+                                </AlertDialogAction>
+                              </AlertDialogFooter>
+                            </div>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                      </>
+                    ) : (
+                      <>
+                        <Link to="/prihlaseni">
+                          <DropdownMenuItem
+                            className="text-xl background_hover_darker"
+                            id="hover"
+                          >
+                            <LogIn className="text-black" />
+                            Přihlášení
+                          </DropdownMenuItem>
+                        </Link>
+                        <Link to="/registrace">
+                          <DropdownMenuItem
+                            className="text-xl background_hover_darker"
+                            id="hover"
+                          >
+                            <UserPlus className="text-black" />
+                            Registrace
+                          </DropdownMenuItem>
+                        </Link>
+                      </>
+                    )}
+
                     <DropdownMenuSeparator className="bg-black mx-2" />
                     <Link to="/pribehy">
                       <DropdownMenuItem
@@ -200,6 +314,20 @@ export default function Home() {
                       <Settings className="text-black" />
                       Nastavení
                     </DropdownMenuItem>
+                    {localStorage.getItem("isAdmin") === "true" && (
+                      <>
+                        <DropdownMenuSeparator className="bg-black mx-2" />
+                        <Link to="/admin">
+                          <DropdownMenuItem
+                            className="text-xl background_hover_darker"
+                            id="hover"
+                          >
+                            <Shield className="text-black" />
+                            Admin panel
+                          </DropdownMenuItem>
+                        </Link>
+                      </>
+                    )}
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
@@ -214,31 +342,53 @@ export default function Home() {
                   WELCOME TO THE <br /> NIGHTGRID
                 </h1>
                 <Link to="#news">
-                <Button className="button_cyberpunk py-6 px-12 font-bold sm:text-3xl text-xl bg-[#d0ff57] text-[#1a1019]">
-                  START THE JOURNEY
-                </Button>
+                  <Button id="hover" className="button_cyberpunk py-6 px-12 font-bold sm:text-3xl text-xl bg-[#d0ff57] hover:bg-[#cfff57c1] text-[#1a1019]">
+                    START THE JOURNEY
+                  </Button>
                 </Link>
               </div>
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 grid-cols-1 m-[22px] gap-20" id="news">
+          <div
+            className="grid lg:grid-cols-2 grid-cols-1 m-[22px] gap-20"
+            id="news"
+          >
             <div>
-              <ImageCard img={bundle} title={"Celý svět NIGHTGRID v jednom balení – připraven na jízdu?"} text={true}/>
+              <ImageCard
+                img={bundle}
+                title={
+                  "Celý svět NIGHTGRID v jednom balení – připraven na jízdu?"
+                }
+                text={true}
+              />
             </div>
 
             <div className="grid md:grid-cols-2 grid-cols-1 gap-10">
               <div>
-                <ImageCard img={map} title={"Síť se rozšiřuje – prozkoumej neznámé oblasti NIGHTGRID"}/>
+                <ImageCard
+                  img={map}
+                  title={
+                    "Síť se rozšiřuje – prozkoumej neznámé oblasti NIGHTGRID"
+                  }
+                />
               </div>
               <div>
-                <ImageCard img={dlc} title={"Moc přichází ze stínů – nové DLC pro NIGHTGRID je tady!"}/>
+                <ImageCard
+                  img={dlc}
+                  title={
+                    "Moc přichází ze stínů – nové DLC pro NIGHTGRID je tady!"
+                  }
+                />
               </div>
               <div>
-                <ImageCard img="/bundle/complete/1.png"/>
+                <ImageCard img="/bundle/complete/1.png" />
               </div>
               <div>
-                <ImageCard img={game} title={"Startujeme! NIGHTGRID odemčen pro všechny hráče"}/>
+                <ImageCard
+                  img={game}
+                  title={"Startujeme! NIGHTGRID odemčen pro všechny hráče"}
+                />
               </div>
             </div>
           </div>
