@@ -3,22 +3,21 @@ import { useEffect, useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import React from "react";
 import { PowerGlitch } from "powerglitch";
-import { Link } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import {
-  Menu,
   Clapperboard,
   Users,
   History,
   Settings,
-  Gamepad,
-  ShoppingCart,
   User,
   LogOut,
   Shield,
   X,
   LogIn,
-  UserPlus
+  UserPlus,
+  Gamepad,
+  ShoppingCart,
+  Menu,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -150,7 +149,7 @@ export default function Home() {
         },
       });
       PowerGlitch.glitch(".imageCard-glitch", {
-        playMode: 'hover',
+        playMode: "hover",
         hideOverflow: true,
         timing: {
           duration: 1950,
@@ -203,8 +202,6 @@ export default function Home() {
               </div>
               <div className="flex gap-1 justify-end md:w-[500px] w-[25vw] bg-black pr-10 py-4 clip-slantedv1">
                 <Link to={"/hry"} className="md:block hidden">
-              <div className="flex gap-1 justify-end md:w-[500px] w-[25vw] bg-black pr-10 py-4 clip-slantedv1">
-                <Link to={"/hry"}>
                   <Button
                     className="text-3xl font-semibold button_hover button_cyberpunk !py-5"
                     variant="ghost"
@@ -230,7 +227,8 @@ export default function Home() {
                       variant="ghost"
                       id="hover"
                     >
-                      <p className="md:block hidden" id="hover">
+                      <Menu className="w-32" />
+                      <p className="md:block hidden" id="hover">       
                         Účet
                       </p>
                     </Button>
@@ -337,31 +335,28 @@ export default function Home() {
                       <Settings className="text-black" />
                       Nastavení
                     </DropdownMenuItem>
-<<<<<<< HEAD
                     <div className="md:hidden flex flex-col">
-                    <DropdownMenuSeparator className="bg-black mx-2" />
-                    <Link to="/hry">
-                      <DropdownMenuItem
-                        className="text-xl background_hover_darker"
-                        id="hover"
-                      >
-                        <Gamepad className="text-black" />
-                        Hry
-                      </DropdownMenuItem>
-                    </Link>
+                      <DropdownMenuSeparator className="bg-black mx-2" />
+                      <Link to="/hry">
+                        <DropdownMenuItem
+                          className="text-xl background_hover_darker"
+                          id="hover"
+                        >
+                          <Gamepad className="text-black" />
+                          Hry
+                        </DropdownMenuItem>
+                      </Link>
 
-                    <Link to="/kosik">
-                      <DropdownMenuItem
-                        className="text-xl background_hover_darker"
-                        id="hover"
-                      >
-                        <ShoppingCart className="text-black" />
-                        Nákupní košík
-                      </DropdownMenuItem>
-                    </Link>
+                      <Link to="/kosik">
+                        <DropdownMenuItem
+                          className="text-xl background_hover_darker"
+                          id="hover"
+                        >
+                          <ShoppingCart className="text-black" />
+                          Nákupní košík
+                        </DropdownMenuItem>
+                      </Link>
                     </div>
-
-=======
                     {localStorage.getItem("isAdmin") === "true" && (
                       <>
                         <DropdownMenuSeparator className="bg-black mx-2" />
@@ -376,7 +371,6 @@ export default function Home() {
                         </Link>
                       </>
                     )}
->>>>>>> 8f60aa471bfa4ed1c699c9f63010ec90c8e8656a
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
@@ -391,11 +385,10 @@ export default function Home() {
                   WELCOME TO THE <br /> NIGHTGRID
                 </h1>
                 <Link to="#news">
-<<<<<<< HEAD
-                  <Button className="button_cyberpunk py-6 px-12 font-bold sm:text-3xl text-xl bg-[#d0ff57] text-[#1a1019]">
-=======
-                  <Button id="hover" className="button_cyberpunk py-6 px-12 font-bold sm:text-3xl text-xl bg-[#d0ff57] hover:bg-[#cfff57c1] text-[#1a1019]">
->>>>>>> 8f60aa471bfa4ed1c699c9f63010ec90c8e8656a
+                  <Button
+                    id="hover"
+                    className="button_cyberpunk py-6 px-12 font-bold sm:text-3xl text-xl bg-[#d0ff57] hover:bg-[#cfff57c1] text-[#1a1019]"
+                  >
                     START THE JOURNEY
                   </Button>
                 </Link>
@@ -407,11 +400,7 @@ export default function Home() {
             className="grid lg:grid-cols-2 grid-cols-1 m-[22px] gap-20"
             id="news"
           >
-<<<<<<< HEAD
             <div className="imageCard-glitch">
-=======
-            <div>
->>>>>>> 8f60aa471bfa4ed1c699c9f63010ec90c8e8656a
               <ImageCard
                 img={bundle}
                 title={
@@ -422,11 +411,7 @@ export default function Home() {
             </div>
 
             <div className="grid md:grid-cols-2 grid-cols-1 gap-10">
-<<<<<<< HEAD
               <div className="imageCard-glitch">
-=======
-              <div>
->>>>>>> 8f60aa471bfa4ed1c699c9f63010ec90c8e8656a
                 <ImageCard
                   img={map}
                   title={
@@ -434,11 +419,7 @@ export default function Home() {
                   }
                 />
               </div>
-<<<<<<< HEAD
               <div className="imageCard-glitch">
-=======
-              <div>
->>>>>>> 8f60aa471bfa4ed1c699c9f63010ec90c8e8656a
                 <ImageCard
                   img={dlc}
                   title={
@@ -446,17 +427,10 @@ export default function Home() {
                   }
                 />
               </div>
-<<<<<<< HEAD
               <div className="imageCard-glitch">
                 <ImageCard img="/bundle/complete/1.png" />
               </div>
               <div className="imageCard-glitch">
-=======
-              <div>
-                <ImageCard img="/bundle/complete/1.png" />
-              </div>
-              <div>
->>>>>>> 8f60aa471bfa4ed1c699c9f63010ec90c8e8656a
                 <ImageCard
                   img={game}
                   title={"Startujeme! NIGHTGRID odemčen pro všechny hráče"}
