@@ -57,3 +57,37 @@ exports.getPaymentIntent = async (req, res) => {
     });
   }
 };
+
+exports.getBalance = async (req, res) => {
+  try {
+    const balance = await stripe.balance.retrieve();
+
+    res.send({
+      balance,
+    });
+  } catch (e) {
+    return res.status(400).send({
+      error: {
+        message: e.message,
+      },
+    });
+  }
+};
+
+exports.getPayouts = async (req, res) => {
+  try {
+    const payouts = await stripe.paymentIntents.list({
+      limit: 40,
+    });
+
+    res.send({
+      payouts,
+    });
+  } catch (e) {
+    return res.status(400).send({
+      error: {
+        message: e.message,
+      },
+    });
+  }
+};

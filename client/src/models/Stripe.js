@@ -50,3 +50,38 @@ export const getPaymentIntent = async (paymentId) => {
     paymentIntent: data.paymentIntent,
   };
 };
+
+export const getBalance = async () => {
+  const token = localStorage.getItem("token");
+  const req = await fetch(`http://localhost:3000/stripe/balance/`, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    method: "GET",
+  });
+  const data = await req.json();
+  return {
+    status: req.status,
+    balance: data.balance,
+  };
+};
+
+export const getPayouts = async () => {
+  const token = localStorage.getItem("token");
+  const req = await fetch(`http://localhost:3000/stripe/payouts/`, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    method: "GET",
+  });
+  const data = await req.json();
+  console.log(data);
+  return {
+    status: req.status,
+    payouts: data.payouts,
+  };
+};
