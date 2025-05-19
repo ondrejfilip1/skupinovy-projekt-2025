@@ -93,6 +93,8 @@ export default function Register() {
                 name="username"
                 className="rounded-none border_color !text-xl !py-6 placeholder_color"
                 type="text"
+                minLength={3}
+                maxLength={20}
                 placeholder="Zadejte uživatelské jméno"
                 onChange={handleChange}
                 required
@@ -103,6 +105,8 @@ export default function Register() {
                 name="password"
                 className="rounded-none border_color !text-xl !py-6 placeholder_color"
                 type="password"
+                minLength={8}
+                maxLength={64}
                 placeholder="Zadejte heslo"
                 onChange={(e) => {
                   handleChange(e);
@@ -116,6 +120,8 @@ export default function Register() {
                 name="password2"
                 className="rounded-none border_color !text-xl !py-6 placeholder_color"
                 type="password"
+                minLength={8}
+                maxLength={64}
                 placeholder="Zopakujte heslo"
                 onChange={handlePasswordCheck}
                 required

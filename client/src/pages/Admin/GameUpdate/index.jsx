@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import { updateGame, getGameById } from "../../../models/Game";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { CornerUpLeft } from "lucide-react";
+import { CornerUpLeft, X } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
 export default function GameUpdate() {
   const { id } = useParams();
@@ -26,7 +27,20 @@ export default function GameUpdate() {
 
   const updateForm = async () => {
     const data = await updateGame(id, formData);
-    if (data.status === 200) return navigate(`/admin/game/${id}`);
+    if (data.status === 200) {
+      toast("Game updated successfully", {
+        unstyled: false,
+        cancel: {
+          label: <X className="text-black" />,
+        },
+        classNames: {
+          toast:
+            "no_style_component !rounded-xl !border-[#e5e5e5] !bg-white !toaster !text-sm",
+          title: "!text-sm",
+        },
+      });
+      return navigate(`/admin/game/${id}`);
+    }
     setInfo(data.message);
   };
 
@@ -71,7 +85,7 @@ export default function GameUpdate() {
             </Button>
           </Link>
         </h1>
-        <form className="grid gap-2 my-2">
+        <form className="grid gap-2 my-2" onSubmit={handleUpdate}>
           <Label>Enter name</Label>
           <Input
             type="text"
@@ -117,9 +131,7 @@ export default function GameUpdate() {
             onChange={handleChange}
             defaultValue={product.price}
           />
-          <Button className="w-fit" onClick={handleUpdate}>
-            Update Game
-          </Button>
+          <Button className="w-fit !cursor-pointer">Update Game</Button>
         </form>
       </div>
     </>

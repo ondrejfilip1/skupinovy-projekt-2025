@@ -4,7 +4,7 @@ export default function GameBox(props) {
   return (
     <>
       <Link to={`/admin/game/${props._id}`}>
-        <p id="hover">{props.name}</p>
+        <p className="hover:underline py-1 my-1">{props.name}</p>
       </Link>
     </>
   );

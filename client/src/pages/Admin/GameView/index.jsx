@@ -40,7 +40,7 @@ export default function GameView() {
     setOpen(false);
     const data = await deleteGame(id);
     if (data.status === 200) {
-      navigate("/admin/game-list/")
+      navigate("/admin/game-list/");
       toast("Game deleted successfully", {
         unstyled: false,
         cancel: {
@@ -104,9 +104,12 @@ export default function GameView() {
         {product.imagePath}
         <p className="text-2xl my-1">Cena:</p>
         {product.price}
+        <br />
         <AlertDialog open={open} onOpenChange={setOpen}>
           <AlertDialogTrigger asChild>
-            <Button variant="destructive">Delete game</Button>
+            <Button className="my-2 !cursor-pointer" variant="destructive">
+              Delete game
+            </Button>
           </AlertDialogTrigger>
           <AlertDialogContent className="no_style_component">
             <AlertDialogHeader>

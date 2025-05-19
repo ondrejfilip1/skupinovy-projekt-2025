@@ -27,7 +27,7 @@ export default function GameCreate() {
         classNames: {
           toast:
             "no_style_component !rounded-xl !border-[#e5e5e5] !bg-white !toaster !text-sm",
-            title: "!text-sm"
+          title: "!text-sm",
         },
       });
       return navigate();
@@ -56,7 +56,7 @@ export default function GameCreate() {
             </Button>
           </Link>
         </h1>
-        <form className="grid gap-2 my-2">
+        <form className="grid gap-2 my-2" onSubmit={handlePost}>
           <Input
             type="text"
             name="name"
@@ -92,9 +92,7 @@ export default function GameCreate() {
             placeholder="Enter price"
             onChange={handleChange}
           />
-          <Button className="w-fit" onClick={handlePost}>
-            Create Game
-          </Button>
+          <Button className="w-fit">Create Game</Button>
         </form>
         <p>{info}</p>
       </div>
