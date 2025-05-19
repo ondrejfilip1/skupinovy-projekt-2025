@@ -52,6 +52,41 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import CharacterCard from "@/components/CharacterCard";
+
+const charactersCarousel = [
+  {
+    image: char1,
+    name: "Nyra Flux",
+    description:
+      "Elitní hackerka a techno-čarodějka datových toků, která tančí mezi firewally jako duch v neonové mlze. Pro korporace je postrachem, pro podsvětí legendou.",
+  },
+  {
+    image: char2,
+    name: "Raze Vortek",
+    description:
+      "Bývalý pouliční gladiátor se stal žoldákem s vlastním kodexem – jeho kybernetická paže a rudé oko jsou pozůstatkem zrady, kterou nikdy nezapomene. Ve světě, kde čest nic neznamená, si ji vyryl do kovu.",
+  },
+  {
+    image: char3,
+    name: "Kade Strix",
+    description:
+      "Bývalý bezpečnostní důstojník megakorporace, který teď bojuje proti systému, který pomáhal budovat. Každá jeho jizva vypráví příběh o zradě, každé rozhodnutí je válkou proti vlastní minulosti.",
+  },
+  {
+    image: char4,
+    name: "Zexa Drayne",
+    description:
+      "Pouliční revolucionářka, vůdkyně digitálního odporu, jejíž kybernetická ruka drží víc než jen zbraň – nese jiskru změny. Její jméno šeptají mezi ruinami s nadějí i strachem.",
+  },
+];
 
 export default function Home() {
   const [value, setValue] = useState(0);
@@ -443,24 +478,80 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="m-[22px]">
-            <div className="grid grid-cols-4">
-              <div>
-                <img src={char1} alt="" className=" object-contain " />
-                <p className="text-center">char1</p>
+          <div className="mt-20 h-[1000px]">
+            <h2 className="text-center text-4xl font-bold">Postavy</h2>
+            <div className="m-[22px]">
+              <div className="lg:flex justify-around hidden">
+                <CharacterCard
+                  img={char1}
+                  name={"Nyra Flux"}
+                  description={
+                    "Elitní hackerka a techno-čarodějka datových toků, která tančí mezi firewally jako duch v neonové mlze. Pro korporace je postrachem, pro podsvětí legendou."
+                  }
+                />
+                <CharacterCard
+                  img={char2}
+                  name={"Raze Vortek"}
+                  description={
+                    "Bývalý pouliční gladiátor se stal žoldákem s vlastním kodexem – jeho kybernetická paže a rudé oko jsou pozůstatkem zrady, kterou nikdy nezapomene. Ve světě, kde čest nic neznamená, si ji vyryl do kovu."
+                  }
+                />
+                <CharacterCard
+                  img={char3}
+                  name={"Kade Strix"}
+                  description={
+                    "Bývalý bezpečnostní důstojník megakorporace, který teď bojuje proti systému, který pomáhal budovat. Každá jeho jizva vypráví příběh o zradě, každé rozhodnutí je válkou proti vlastní minulosti."
+                  }
+                />
+                <CharacterCard
+                  img={char4}
+                  name={"Zexa Drayne"}
+                  description={
+                    "Pouliční revolucionářka, vůdkyně digitálního odporu, jejíž kybernetická ruka drží víc než jen zbraň – nese jiskru změny. Její jméno šeptají mezi ruinami s nadějí i strachem."
+                  }
+                />
               </div>
-              <div>
-                <img src={char1} alt="" className=" object-contain " />
-                <p className="text-center">char1</p>
-              </div>
-              <div>
-                <img src={char3} alt="" className=" object-contain " />
-                <p className="text-center">char1</p>
-              </div>
-              <div>
-                <img src={char4} alt="" className=" object-contain " />
-                <p className="text-center">char1</p>
-              </div>
+            </div>
+
+            <div>
+              <Carousel className="w-full h-full lg:hidden block ">
+                <CarouselContent className="h-full">
+                  {charactersCarousel.map((image, index) => (
+                    <CarouselItem key={index} className="flex justify-center relative">
+                      <DropdownMenu modal={false}>
+                        <DropdownMenuTrigger>
+                          <img
+                            src={image.image}
+                            alt={image.name}
+                            className="object-cover h-[60vh]"
+                          />
+                          <p className="text-3xl text-center my-5 button_cyberpunk w-[45vw] mx-auto px-2 bg-[#d0ff57] text-[#1a1019]">
+                            {image.name}
+                          </p>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                          className="button_cyberpunkv1 background_text border-none text-black w-[45vw] lg:hidden block"
+                          avoidCollisions={false}
+                        >
+                          <p className="description text-lg p-2">
+                            {image.description}
+                          </p>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <div className="absolute -bottom-2 left-1/2 mt-10">
+                  <CarouselPrevious
+                    className="rounded-none button_cyberpunk background_text text_bg border-none"
+                    id="hover"
+                  />
+                  <CarouselNext
+                    className="rounded-none button_cyberpunk background_text text_bg border-none"
+                    id="hover"
+                  />
+                </div>
+              </Carousel>
             </div>
           </div>
           <Footer />

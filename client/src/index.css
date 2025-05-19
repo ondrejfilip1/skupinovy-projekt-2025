@@ -395,3 +395,23 @@ body {
   color: #0a0a0a !important;
   cursor: auto !important;
 }
+
+
+.button_cyberpunkv1 {
+  clip-path: polygon(
+    10px 0%,
+    100% 0,
+    100% 10px,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    10px 100%,
+    0 100%,
+    0% 10px
+  );
+  transform: scaleX(-1);
+  border-radius: 0 !important;
+}
+
+.button_cyberpunkv1 .description {
+  transform: scaleX(-1);
+}
