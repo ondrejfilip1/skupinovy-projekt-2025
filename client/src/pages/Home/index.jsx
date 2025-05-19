@@ -35,6 +35,10 @@ import bundle from "/cardImages/bundle.png";
 import map from "/cardImages/map.png";
 import dlc from "/cardImages/dlc.png";
 import game from "/cardImages/game.png";
+import char1 from "/characters/character1.png";
+import char2 from "/characters/character2.png";
+import char3 from "/characters/character3.png";
+import char4 from "/characters/character4.png";
 
 import {
   AlertDialog,
@@ -227,7 +231,7 @@ export default function Home() {
                       variant="ghost"
                       id="hover"
                     >
-                      <Menu className="w-32" />
+                      <Menu className="w-32 md:hidden block" />
                       <p className="md:block hidden" id="hover">       
                         Účet
                       </p>
@@ -439,7 +443,12 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="m-[22px] "></div>
+          <div className="m-[22px] flex w-full">
+            <img src={char1} alt="" />
+            <img src={char2} alt="" />
+            <img src={char3} alt="" />
+            <img src={char4} alt="" />
+          </div>
           <Footer />
         </>
       );
