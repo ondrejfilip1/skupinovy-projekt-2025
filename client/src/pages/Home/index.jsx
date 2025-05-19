@@ -201,13 +201,13 @@ export default function Home() {
         <>
           <div className="relative w-full">
             <div className="absolute top-0 left-0 w-full flex justify-between items-center py-4 z-50">
-              <div className="bg-black md:w-[280px] w-[220px] pr-13 py-4 clip-slanted">
-                <img src={Logo} alt="logo" className="sm:w-[250px] ml-4" />
+              <div className="bg-black md:w-[300px] w-[220px] pr-13 py-4 clip-slanted">
+                <img src={Logo} alt="logo" className="sm:w-[180px] ml-4" />
               </div>
-              <div className="flex gap-1 justify-end md:w-[500px] w-[25vw] bg-black pr-10 py-4 clip-slantedv1">
+              <div className="flex gap-1 justify-end md:w-[420px] w-[25vw] bg-black pr-10 py-4 clip-slantedv1">
                 <Link to={"/hry"} className="md:block hidden">
                   <Button
-                    className="text-3xl font-semibold button_hover button_cyberpunk !py-5"
+                    className="text-2xl font-semibold button_hover button_cyberpunk !py-5"
                     variant="ghost"
                     id="hover"
                   >
@@ -216,7 +216,7 @@ export default function Home() {
                 </Link>
                 <Link to={"/kosik"} className="md:block hidden">
                   <Button
-                    className="text-3xl font-semibold button_hover button_cyberpunk !py-5"
+                    className="text-2xl font-semibold button_hover button_cyberpunk !py-5"
                     variant="ghost"
                     id="hover"
                   >
@@ -227,12 +227,12 @@ export default function Home() {
                 <DropdownMenu modal={false}>
                   <DropdownMenuTrigger>
                     <Button
-                      className="text-3xl font-semibold button_hover button_cyberpunk !py-5"
+                      className="text-2xl font-semibold button_hover button_cyberpunk !py-5"
                       variant="ghost"
                       id="hover"
                     >
                       <Menu className="w-32 md:hidden block" />
-                      <p className="md:block hidden" id="hover">       
+                      <p className="md:block hidden" id="hover">
                         Účet
                       </p>
                     </Button>
@@ -443,11 +443,25 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="m-[22px] flex w-full">
-            <img src={char1} alt="" />
-            <img src={char2} alt="" />
-            <img src={char3} alt="" />
-            <img src={char4} alt="" />
+          <div className="m-[22px]">
+            <div className="grid grid-cols-4">
+              <div>
+                <img src={char1} alt="" className=" object-contain " />
+                <p className="text-center">char1</p>
+              </div>
+              <div>
+                <img src={char1} alt="" className=" object-contain " />
+                <p className="text-center">char1</p>
+              </div>
+              <div>
+                <img src={char3} alt="" className=" object-contain " />
+                <p className="text-center">char1</p>
+              </div>
+              <div>
+                <img src={char4} alt="" className=" object-contain " />
+                <p className="text-center">char1</p>
+              </div>
+            </div>
           </div>
           <Footer />
         </>
