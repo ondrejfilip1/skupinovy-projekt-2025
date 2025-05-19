@@ -17,6 +17,7 @@ import Admin from "./Admin";
 import GameList from "./Admin/GameList";
 
 import Cursor from "@/components/Cursor";
+import GameUpdate from "./Admin/GameUpdate";
 
 export default function AppRoutes() {
   return (
@@ -79,6 +80,14 @@ export default function AppRoutes() {
             element={
               <div className="no_style">
                 <GameView />
+              </div>
+            }
+          />
+          <Route
+            path="/admin/game-update/:id"
+            element={
+              <div className="no_style">
+                <GameUpdate />
               </div>
             }
           />

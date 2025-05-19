@@ -13,11 +13,17 @@ export default function Cursor() {
   const isAdminURL = location.pathname.startsWith("/admin");
 
   useEffect(() => {
-    // kurzor chci skryt v admin panelu
+    // custom kurzor chci skryt v admin panelu a defaultni zviditelnit
+    const headElement = document.head;
     if (isAdminURL) {
-      //console.log("admin");
-      
+      const styleElement = document.createElement("style");
+      styleElement.setAttribute("cursor-css", "");
+      styleElement.innerText = "* { cursor: auto !important; }";
+      headElement.append(styleElement);
       return setVisible("none");
+    } else {
+      const cursorElement = headElement.querySelector("[cursor-css]");
+      if (cursorElement) return cursorElement.remove();
     }
   }, [isAdminURL]);
 

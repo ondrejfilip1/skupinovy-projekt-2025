@@ -70,3 +70,21 @@ export const getAllUsers = async () => {
     message: data.message,
   };
 };
+
+export const deleteUser = async (id) => {
+  const token = localStorage.getItem("token");
+  const req = await fetch(`http://localhost:3000/user/${id}`, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    method: "DELETE",
+  });
+  const data = await req.json();
+  return {
+    status: req.status,
+    payload: data.payload,
+    message: data.message,
+  };
+};

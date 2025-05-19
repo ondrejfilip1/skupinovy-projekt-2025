@@ -45,8 +45,8 @@ export default function GameList() {
     return (
       <>
         <div className="container mx-auto p-4">
-          <h1 className="text-4xl flex justify-between items-center">
-            Games list
+          <h1 className="text-4xl flex justify-between items-center mb-2">
+            Game list
             <Link to={-1}>
               <Button>
                 <CornerUpLeft />

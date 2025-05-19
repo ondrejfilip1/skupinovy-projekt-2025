@@ -13,12 +13,16 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { deleteUser } from "@/models/User";
 
 export default function UserBox(props) {
   const [showPass, setShowPass] = useState(false);
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     // TODO
+    const data = await deleteUser(props._id);
+
+    if (data.status === 200) window.location.reload();
   };
 
   return (
@@ -27,13 +31,13 @@ export default function UserBox(props) {
         <p className="text-xl">{props.username}</p>
         {moment(props.createdAt).locale("cs").format("D.M.YYYY h:mm")}
       </div>
-      <p className="mb-1 opacity-50">
+      <p className="mb-1 opacity-50 text-sm">
         {props.isAdmin ? "Administrátor" : "Uživatel"}
       </p>
       <div className="flex justify-between items-center">
         {showPass ? (
           <div
-            className="py-1.5 !cursor-pointer inline-block"
+            className="py-1.5 text-sm !cursor-pointer inline-block"
             onClick={() => setShowPass(!showPass)}
           >
             {props.password}
@@ -50,11 +54,7 @@ export default function UserBox(props) {
         )}
         <AlertDialog>
           <AlertDialogTrigger asChild>
-            <Button
-              variant="destructive"
-              className="!cursor-pointer"
-              onClick={handleDelete}
-            >
+            <Button variant="destructive" className="!cursor-pointer">
               <Trash size="icon" />
             </Button>
           </AlertDialogTrigger>
@@ -68,8 +68,15 @@ export default function UserBox(props) {
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Zpět</AlertDialogCancel>
-              <AlertDialogAction>Smazat</AlertDialogAction>
+              <AlertDialogCancel className="!cursor-pointer">
+                Zpět
+              </AlertDialogCancel>
+              <AlertDialogAction
+                className="!cursor-pointer"
+                onClick={handleDelete}
+              >
+                Smazat
+              </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

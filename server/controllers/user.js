@@ -8,7 +8,9 @@ exports.register = async (req, res, next) => {
 
     // password check
     if (password.length < 8 || password.length > 64)
-      return res.status(500).send({message: "Password must be 8-64 characters long"})
+      return res
+        .status(500)
+        .send({ message: "Password must be 8-64 characters long" });
 
     // zaeschuju heslo
     const hash = await bcrypt.hash(password, 12);
@@ -88,6 +90,23 @@ exports.getAllUsers = async (req, res, next) => {
     }
     res.status(404).send({
       message: "Users not found",
+    });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
+exports.deleteUser = async (req, res, next) => {
+  try {
+    const result = await User.findByIdAndDelete(req.params.id);
+    if (result) {
+      return res.status(200).send({
+        message: "User deleted",
+        payload: result,
+      });
+    }
+    res.status(500).send({
+      message: "User not deleted",
     });
   } catch (err) {
     res.status(500).send(err);
