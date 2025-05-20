@@ -201,26 +201,27 @@ export default function Header() {
               <DropdownMenuItem
                 className="text-xl background_hover_darker"
                 id="hover"
+                onClick={() => navigate("/#characters")}
               >
                 <Users className="text-black" />
                 Postavy
               </DropdownMenuItem>
-              <DropdownMenuItem
-                className="text-xl background_hover_darker"
-                id="hover"
-              >
-                <History className="text-black" />
-                Historie plateb
-              </DropdownMenuItem>
-              <Link to="/nastaveni">
+              <Link to={"/platby"}>
                 <DropdownMenuItem
                   className="text-xl background_hover_darker"
                   id="hover"
                 >
-                  <Settings className="text-black" />
-                  Nastavení
+                  <History className="text-black" />
+                  Historie plateb
                 </DropdownMenuItem>
               </Link>
+              <DropdownMenuItem
+                className="text-xl background_hover_darker"
+                id="hover"
+              >
+                <Settings className="text-black" />
+                Nastavení
+              </DropdownMenuItem>
               {localStorage.getItem("isAdmin") === "true" && (
                 <>
                   <DropdownMenuSeparator className="bg-black mx-2" />
