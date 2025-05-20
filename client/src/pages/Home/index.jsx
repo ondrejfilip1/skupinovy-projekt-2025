@@ -370,7 +370,8 @@ export default function Home() {
                       id="hover"
                       onClick={(e) => {
                         e.preventDefault();
-                        const charcaters = document.getElementById("characters");
+                        const charcaters =
+                          document.getElementById("characters");
                         charcaters.scrollIntoView({ behavior: "smooth" });
                       }}
                     >
@@ -386,13 +387,15 @@ export default function Home() {
                         Historie plateb
                       </DropdownMenuItem>
                     </Link>
-                    <DropdownMenuItem
-                      className="text-xl background_hover_darker"
-                      id="hover"
-                    >
-                      <Settings className="text-black" />
-                      Nastavení
-                    </DropdownMenuItem>
+                    <Link to="/nastaveni">
+                      <DropdownMenuItem
+                        className="text-xl background_hover_darker"
+                        id="hover"
+                      >
+                        <Settings className="text-black" />
+                        Nastavení
+                      </DropdownMenuItem>
+                    </Link>
                     <div className="md:hidden flex flex-col">
                       <DropdownMenuSeparator className="bg-black mx-2" />
                       <Link to="/hry">

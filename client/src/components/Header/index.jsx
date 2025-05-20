@@ -215,13 +215,15 @@ export default function Header() {
                   Historie plateb
                 </DropdownMenuItem>
               </Link>
-              <DropdownMenuItem
-                className="text-xl background_hover_darker"
-                id="hover"
-              >
-                <Settings className="text-black" />
-                Nastavení
-              </DropdownMenuItem>
+              <Link to="/nastaveni">
+                <DropdownMenuItem
+                  className="text-xl background_hover_darker"
+                  id="hover"
+                >
+                  <Settings className="text-black" />
+                  Nastavení
+                </DropdownMenuItem>
+              </Link>
               {localStorage.getItem("isAdmin") === "true" && (
                 <>
                   <DropdownMenuSeparator className="bg-black mx-2" />

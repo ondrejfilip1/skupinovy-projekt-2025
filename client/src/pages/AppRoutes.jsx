@@ -15,6 +15,7 @@ import Login from "./Auth/Login";
 import Register from "./Auth/Register";
 import Admin from "./Admin";
 import GameList from "./Admin/GameList";
+import UserSettings from "./UserSettings";
 
 import Cursor from "@/components/Cursor";
 import GameUpdate from "./Admin/GameUpdate";
