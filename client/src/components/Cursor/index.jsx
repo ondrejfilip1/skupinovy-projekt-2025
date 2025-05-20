@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import defaultCur from "../../assets/cursors/default.png";
 import pointerCur from "../../assets/cursors/pointer.png";
 import textCur from "../../assets/cursors/text.png";
-import { useLocation } from "react-router-dom";
+import { Await, useLocation } from "react-router-dom";
 
 export default function Cursor() {
   const [pos, setPos] = useState({ x: 0, y: 0 });
@@ -70,8 +70,51 @@ export default function Cursor() {
     document.addEventListener("mouseenter", show);
     document.addEventListener("mouseleave", hide);
   }, []);
+  
+  useEffect(() => {
+    if (isAdminURL) return;
 
-  if (isAdminURL) return;
+    const handleDragStart = () => {
+      setVisible("none"); // skryj vlastní kurzor
+    };
+
+    const handleDragEnd = async () => {
+      const onMouseMove = () => {
+        setVisible("inline");
+        window.removeEventListener("mousemove", onMouseMove);
+      };
+    
+      window.addEventListener("mousemove", onMouseMove);
+    };
+
+    document.addEventListener("dragstart", handleDragStart);
+    document.addEventListener("dragend", handleDragEnd);
+
+    return () => {
+      document.removeEventListener("dragstart", handleDragStart);
+      document.removeEventListener("dragend", handleDragEnd);
+    };
+  }, [isAdminURL]);useEffect(() => {
+    if (isAdminURL) return;
+  
+    const handleDragStart = () => {
+      setVisible("none"); // schovej kurzor
+    };
+  
+    const handleDragEnd = () => {
+      setVisible("inline"); // zobraz kurzor zpět
+    };
+  
+    document.addEventListener("dragstart", handleDragStart);
+    document.addEventListener("dragend", handleDragEnd);
+  
+    return () => {
+      document.removeEventListener("dragstart", handleDragStart);
+      document.removeEventListener("dragend", handleDragEnd);
+    };
+  }, [isAdminURL]);
+
+  if (isAdminURL) return null;
 
   return (
     <>
