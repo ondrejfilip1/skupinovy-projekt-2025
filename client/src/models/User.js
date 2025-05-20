@@ -88,3 +88,41 @@ export const deleteUser = async (id) => {
     message: data.message,
   };
 };
+
+export const changePassword = async (formData) => {
+  const token = localStorage.getItem("token");
+  const req = await fetch(`http://localhost:3000/user/passwordChange`, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    method: "PUT",
+    body: JSON.stringify(formData),
+  });
+  const data = await req.json();
+  return {
+    status: req.status,
+    payload: data.payload,
+    message: data.message,
+  };
+};
+
+export const changeUsername = async (formData) => {
+  const token = localStorage.getItem("token");
+  const req = await fetch(`http://localhost:3000/user/usernameChange`, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    method: "PUT",
+    body: JSON.stringify(formData),
+  });
+  const data = await req.json();
+  return {
+    status: req.status,
+    payload: data.payload,
+    message: data.message,
+  };
+};

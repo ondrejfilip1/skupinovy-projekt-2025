@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { CornerUpLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getBalance, getPayouts } from "@/models/Stripe";
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import {
   ChartContainer,
@@ -50,13 +50,20 @@ export default function Admin() {
     const stripePayouts = await getPayouts();
 
     if (stripePayouts.status === 200) {
-      const formattedData = stripePayouts.payouts.data.map((payout) => ({
-        created: moment(payout.created * 1000)
-          .locale("cs")
-          .format("D.M.YYYY"),
-        amount: payout.amount / 100,
-      }));
+      const formattedData = stripePayouts.payouts.data
+        .map((payout) => {
+          if (payout.status === "succeeded")
+            return {
+              created: moment(payout.created * 1000)
+                .locale("cs")
+                .format("D.M.YYYY"),
+              amount: payout.amount / 100,
+            };
+        })
+        // filtrovani spravnych paymentintentu
+        .filter((ele) => ele !== undefined);
       setChartData(formattedData);
+      console.log(formattedData);
       setLoaded(true);
     }
   };
@@ -114,13 +121,19 @@ export default function Admin() {
                   tickMargin={10}
                   axisLine={false}
                 />
+                <YAxis dataKey="amount" />
                 <ChartTooltip content={<ChartTooltipContent />} />
                 <ChartLegend content={<ChartLegendContent />} />
                 <Bar dataKey="amount" fill="var(--color-amount)" radius={4} />
               </BarChart>
             </ChartContainer>
           </>
-        ) : (<div className="my-12 text-center items-center flex flex-col justify-center gap-2">Loading chart...<LoadingSpinner /></div>)}
+        ) : (
+          <div className="my-12 text-center items-center flex flex-col justify-center gap-2">
+            Loading chart...
+            <LoadingSpinner />
+          </div>
+        )}
       </div>
     </>
   );
