@@ -201,17 +201,20 @@ export default function Header() {
               <DropdownMenuItem
                 className="text-xl background_hover_darker"
                 id="hover"
+                onClick={() => navigate("/#characters")}
               >
                 <Users className="text-black" />
                 Postavy
               </DropdownMenuItem>
-              <DropdownMenuItem
-                className="text-xl background_hover_darker"
-                id="hover"
-              >
-                <History className="text-black" />
-                Historie plateb
-              </DropdownMenuItem>
+              <Link to={"/platby"}>
+                <DropdownMenuItem
+                  className="text-xl background_hover_darker"
+                  id="hover"
+                >
+                  <History className="text-black" />
+                  Historie plateb
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem
                 className="text-xl background_hover_darker"
                 id="hover"
