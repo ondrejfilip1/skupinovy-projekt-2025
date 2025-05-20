@@ -15,9 +15,11 @@ import Login from "./Auth/Login";
 import Register from "./Auth/Register";
 import Admin from "./Admin";
 import GameList from "./Admin/GameList";
+import UserSettings from "./UserSettings";
 
 import Cursor from "@/components/Cursor";
 import GameUpdate from "./Admin/GameUpdate";
+import Payments from "./Payments";
 
 export default function AppRoutes() {
   return (
@@ -34,6 +36,8 @@ export default function AppRoutes() {
           <Route path="/platba" element={<Checkout />} />
           <Route path="/pribeh" element={<Chat />} />
           <Route path="/pribehy" element={<Menu />} />
+          <Route path="/nastaveni" element={<UserSettings />} />
+          <Route path="/platby" element={<Payments/>}/>
 
           {/* autentizace */}
           <Route path="/prihlaseni" element={<Login />} />

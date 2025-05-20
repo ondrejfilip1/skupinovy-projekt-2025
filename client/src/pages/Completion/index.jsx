@@ -25,6 +25,22 @@ export default function Completion() {
   const load = async () => {
     const data = await getPaymentIntent(paymentIntent);
 
+
+    const payments = JSON.parse(localStorage.getItem("payments")) || "";
+    let doesIncludePayInt = false;
+    if (payments)
+      payments.map((item) => {
+        doesIncludePayInt = item.paymentIntent.includes(paymentIntent);
+      });
+    if (!doesIncludePayInt) {
+      const paymentsNew = JSON.stringify([
+        ...payments,
+        { paymentIntent: paymentIntent, cart: localStorage.getItem("cart") },
+      ]);
+      localStorage.setItem("payments", paymentsNew) || "[]";
+    }
+
+
     if (data.status === 200 && data.paymentIntent.status === "succeeded")
       localStorage.removeItem("cart");
     else setInvalid(true);

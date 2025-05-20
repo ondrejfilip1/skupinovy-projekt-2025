@@ -47,7 +47,7 @@ export default function Chat() {
     if (!input) return;
     const userMessage = [...messages, { text: input, user: "user" }];
     setMessages(userMessage);
-    const response = await fetchMessage(input);
+    const response = await fetchMessage(input, userMessage);
     setMessages([...userMessage, { text: response, user: "bot" }]);
     setInput("");
   };
@@ -66,35 +66,32 @@ export default function Chat() {
     setIsGenerating(true);
     setHasGenerated(true);
     setHasSaved(false);
-    
-    let dataObject = {
-      messages: messages,
-      input: input
-    }
+
+    const usedMessages = currentMessages ?? messages;
+
+    const dataObject = {
+      messages: usedMessages,
+      input: input,
+    };
 
     const data = await createResponse(dataObject);
 
-    console.log(data);
-
-    setCurrentResponse(data.payload);
-    setInput("");
-    //console.log(messages);
     if (data.payload.error) {
-      //alert("Rate limited");
       setIsGenerating(false);
       return `Nastala chyba: ${data.payload.error.message}`;
     }
 
-    // vymaze think tag (nechci vedet co si ai mysli)
     const regex = /<think>.*?<\/think>/gs;
-    const result = data.payload.choices[0].message.content.trim().replace(regex, "");
+    const result = data.payload.choices[0].message.content
+      .trim()
+      .replace(regex, "");
 
     scrollToBottom();
 
     let stories = JSON.parse(localStorage.getItem("stories")) || [];
 
-    let newStory = {
-      messages: messages,
+    const newStory = {
+      messages: [...usedMessages, { text: result, user: "bot" }],
       created: Date.now(),
       name: `Příběh č.${stories.length + (hasSaved ? 0 : 1)}`,
     };
@@ -115,6 +112,7 @@ export default function Chat() {
 
     localStorage.setItem("stories", JSON.stringify(stories));
     setHasSaved(true);
+    setIsGenerating(false);
 
     return result;
   };

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import React from "react";
 import { PowerGlitch } from "powerglitch";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Clapperboard,
   Users,
@@ -92,6 +92,18 @@ export default function Home() {
   const [value, setValue] = useState(0);
   const [showPage, setShowPage] = useState(false);
   const PERCENTAGE = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === "#characters") {
+      setTimeout(() => {
+        const element = document.getElementById("characters");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, [location]);
 
   const navigate = useNavigate();
 
@@ -356,24 +368,34 @@ export default function Home() {
                     <DropdownMenuItem
                       className="text-xl background_hover_darker"
                       id="hover"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const charcaters =
+                          document.getElementById("characters");
+                        charcaters.scrollIntoView({ behavior: "smooth" });
+                      }}
                     >
                       <Users className="text-black" />
                       Postavy
                     </DropdownMenuItem>
-                    <DropdownMenuItem
-                      className="text-xl background_hover_darker"
-                      id="hover"
-                    >
-                      <History className="text-black" />
-                      Historie plateb
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                      className="text-xl background_hover_darker"
-                      id="hover"
-                    >
-                      <Settings className="text-black" />
-                      Nastavení
-                    </DropdownMenuItem>
+                    <Link to={"/platby"}>
+                      <DropdownMenuItem
+                        className="text-xl background_hover_darker"
+                        id="hover"
+                      >
+                        <History className="text-black" />
+                        Historie plateb
+                      </DropdownMenuItem>
+                    </Link>
+                    <Link to="/nastaveni">
+                      <DropdownMenuItem
+                        className="text-xl background_hover_darker"
+                        id="hover"
+                      >
+                        <Settings className="text-black" />
+                        Nastavení
+                      </DropdownMenuItem>
+                    </Link>
                     <div className="md:hidden flex flex-col">
                       <DropdownMenuSeparator className="bg-black mx-2" />
                       <Link to="/hry">
@@ -423,22 +445,23 @@ export default function Home() {
                 <h1 className="text_text background_bg tracking-widest md:w-[700px] w-[80vw] py-4 text-center sm:text-6xl text-4xl mb-4">
                   WELCOME TO THE <br /> NIGHTGRID
                 </h1>
-                <Link to="#news">
-                  <Button
-                    id="hover"
-                    className="button_cyberpunk py-6 px-12 font-bold sm:text-3xl text-xl bg-[#d0ff57] hover:bg-[#cfff57c1] text-[#1a1019]"
-                  >
-                    START THE JOURNEY
-                  </Button>
-                </Link>
+                <Button
+                  id="hover"
+                  className="button_cyberpunk py-6 px-12 font-bold sm:text-3xl text-xl bg-[#d0ff57] hover:bg-[#cfff57c1] text-[#1a1019]"
+                  onClick={() =>
+                    window.scrollTo({
+                      top: window.innerHeight,
+                      behavior: "smooth",
+                    })
+                  }
+                >
+                  START THE JOURNEY
+                </Button>
               </div>
             </div>
           </div>
 
-          <div
-            className="grid lg:grid-cols-2 grid-cols-1 m-[22px] gap-20"
-            id="news"
-          >
+          <div className="grid lg:grid-cols-2 grid-cols-1 m-[22px] gap-20">
             <div className="imageCard-glitch">
               <ImageCard
                 img={bundle}
@@ -478,7 +501,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-20 h-[1000px]">
+          <div className="mt-20" id="characters">
             <h2 className="text-center text-4xl font-bold">Postavy</h2>
             <div className="m-[22px]">
               <div className="lg:flex justify-around hidden">
@@ -517,13 +540,16 @@ export default function Home() {
               <Carousel className="w-full h-full lg:hidden block ">
                 <CarouselContent className="h-full">
                   {charactersCarousel.map((image, index) => (
-                    <CarouselItem key={index} className="flex justify-center relative">
+                    <CarouselItem
+                      key={index}
+                      className="flex justify-center relative"
+                    >
                       <DropdownMenu modal={false}>
                         <DropdownMenuTrigger>
                           <img
                             src={image.image}
                             alt={image.name}
-                            className="object-cover h-[60vh]"
+                            className="object-cover mx-auto h-[60vh]"
                           />
                           <p className="text-3xl text-center my-5 button_cyberpunk w-[45vw] mx-auto px-2 bg-[#d0ff57] text-[#1a1019]">
                             {image.name}

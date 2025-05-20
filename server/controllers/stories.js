@@ -44,7 +44,7 @@ Tady máš Pravidla a svět hry pro který budeš generovat scénáře:
     if (data) return res.status(200).send(data);
 
     res.status(500).send({
-      message: "Game not updated",
+      message: "Response not sent",
     });
   } catch (err) {
     res.status(500).send(err);

@@ -13,5 +13,6 @@ export const createResponse = async (dataObj) => {
   return {
     status: req.status,
     payload: data,
+    message: data.message
   };
 };

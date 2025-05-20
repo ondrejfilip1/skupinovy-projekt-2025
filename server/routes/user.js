@@ -16,4 +16,10 @@ router.get("/", auth, admin, userRouter.getAllUsers);
 // smaze uzivatele
 router.delete("/:id", auth, admin, userRouter.deleteUser);
 
+// zmena hesla pro uzivatele
+router.put("/passwordChange", auth, userRouter.changePassword);
+
+// zmena jmena pro uzivatele
+router.put("/usernameChange", auth, userRouter.changeUsername);
+
 module.exports = router;
