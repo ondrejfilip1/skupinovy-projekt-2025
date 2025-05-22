@@ -98,7 +98,7 @@ export default function Payments() {
                   return (
                     <Fragment key={item.paymentIntent.id}>
                       <div className="my-6 flex items-center mx-12 relative">
-                        <div className="w-1/2">
+                        <div className="w-1/2 sm:mr-0 mr-4">
                           <div>ID Platby</div>
                           <div className="font-normal text-sm mb-2">
                             {item.paymentIntent.id}
