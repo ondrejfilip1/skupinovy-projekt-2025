@@ -36,12 +36,12 @@ Server
 - Generování příběhů pomocí umělé inteligence
 - Ukládání, přejmenování a mazání příběhů
 - Přihlášení a registrace
+- Uživatelské nastavení (změna jména a hesla)
+- Funkční a zabezpečený admin panel
+- Podstránky - Historie plateb, Hlavní stránka
 
 ## ✅ TODO
-- Zabezpečit, nastylovat a udělat funkční admin panel
-- Dokončit podstránky (Postavy, Historie plateb, Nastavení, Hlavní stránka)
-- Uživatelské nastavení (změna jména a hesla)
-- Fixnout ukládání příběhů (první zpráva se neukládá z nějakého důvodu)
+- Fixnout ukládání příběhů
 
 ## 👥 Autoři
 
