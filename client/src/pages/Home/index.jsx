@@ -442,12 +442,12 @@ export default function Home() {
             <div className="absolute bottom-0 left-0 w-full h-[40vh] bg-[linear-gradient(180deg,_#0000,_#000000d4_72.46%,_#1a1019)]" />
             <div className="absolute bottom-0 w-full">
               <div className="font-bold flex flex-col items-center mx-auto mb-50 overlay-glitch">
-                <h1 className="text_text background_bg tracking-widest md:w-[700px] w-[80vw] py-4 text-center sm:text-6xl text-4xl mb-4">
-                  WELCOME TO THE <br /> NIGHTGRID
+                <h1 className="text_text background_bg tracking-widest md:w-[700px] w-[80vw] py-4 text-center sm:text-6xl text-4xl mb-4 uppercase">
+                  VÍTEJTE V <br /> NIGHTGRID
                 </h1>
                 <Button
                   id="hover"
-                  className="button_cyberpunk py-6 px-12 font-bold sm:text-3xl text-xl bg-[#d0ff57] hover:bg-[#cfff57c1] text-[#1a1019]"
+                  className="button_cyberpunk py-6 px-12 font-bold sm:text-3xl text-xl bg-[#d0ff57] hover:bg-[#cfff57c1] text-[#1a1019] uppercase"
                   onClick={() =>
                     window.scrollTo({
                       top: window.innerHeight,
@@ -455,7 +455,7 @@ export default function Home() {
                     })
                   }
                 >
-                  START THE JOURNEY
+                  Začněte svůj příběh
                 </Button>
               </div>
             </div>
