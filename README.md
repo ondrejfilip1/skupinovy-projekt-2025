@@ -4,13 +4,16 @@
 
 # NIGHTGRID
 
-Skupinový projekt s Cyberpunk 2077 tématikou
+<p>Skupinový projekt</p>
+<p>Mini E-Shop na deskové hry se Cyberpunk 2077 tématikou, doplněný o AI generátor příběhů zasazených do herního světa.</p>
 
 ## ⚙️ Technologie
 
-**Client:** React + Vite, shadcn/ui, TailwindCSS, Lucide, Stripe
+<p>Projekt byl vytvořen v <a href="https://www.mongodb.com/resources/languages/mern-stack">MERN</a> stacku</p>
 
-**Server:** Node, Express, MongoDB, Stripe, JWT
+- **Client:** React + Vite, shadcn/ui, TailwindCSS, Lucide, Stripe, Socket.io
+
+- **Server:** Node, Express, MongoDB, Mongoose, Stripe, JWT (JSON Web Token), Socket.io
 
 ## 🚀 Instalace a spuštění
 
@@ -35,13 +38,16 @@ Server
 - Platební brána Stripe
 - Generování příběhů pomocí umělé inteligence
 - Ukládání, přejmenování a mazání příběhů
-- Přihlášení, registrace a odhlášení
-- Uživatelské nastavení (změna jména a hesla)
-- Funkční a zabezpečený admin panel
-- Podstránky - Historie plateb, Hlavní stránka
+- Uživatelský systém - přihlášení, registrace a odhlášení
+- Uživatelské nastavení - změna jména a hesla
+- Funkční a zabezpečený admin panel s aktualizací dat v reálném čase
+- Podstránky
 
 ## ✅ TODO
-- Fixnout ukládání příběhů
+- O nás - podstránka
+
+## 🖼️ Screenshoty stránky
+<i>Připravujeme</i>
 
 ## 👥 Autoři
 
