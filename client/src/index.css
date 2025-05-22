@@ -396,7 +396,6 @@ body {
   cursor: auto !important;
 }
 
-
 .button_cyberpunkv1 {
   clip-path: polygon(
     10px 0%,
@@ -418,4 +417,9 @@ body {
 
 ::selection {
   background-color: #cfff5717;
+}
+
+.no_style *::selection,
+.no_style_component *::selection {
+  background-color: #0074ffcc;
 }

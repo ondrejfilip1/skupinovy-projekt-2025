@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { updateGame, getGameById } from "../../../models/Game";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { CornerUpLeft, X } from "lucide-react";
+import { Check, CornerUpLeft, X } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
@@ -14,6 +14,7 @@ export default function GameUpdate() {
   const [isLoaded, setLoaded] = useState();
   const [info, setInfo] = useState();
   const [formData, setFormData] = useState();
+  const [isPathCorrect, setIsPathCorrect] = useState(false);
   const navigate = useNavigate();
 
   const load = async () => {
@@ -44,6 +45,16 @@ export default function GameUpdate() {
     setInfo(data.message);
   };
 
+  const checkImagePath = async (e) => {
+    if (!product) return;
+    let imgPath = product.imagePath;
+    if (e) imgPath = e.target.value;
+    let img = new Image();
+    img.src = `${imgPath}1.png`;
+    img.onerror = () => setIsPathCorrect(false);
+    img.onload = () => setIsPathCorrect(true);
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -56,6 +67,10 @@ export default function GameUpdate() {
   useEffect(() => {
     load();
   }, []);
+
+  useEffect(() => {
+    checkImagePath();
+  }, [product]);
 
   if (isLoaded === null) {
     return (
@@ -113,13 +128,23 @@ export default function GameUpdate() {
             onChange={handleChange}
             defaultValue={product.description}
           />
-          <Label>Enter imagePath</Label>
+          <Label className="relative">
+            Enter imagePath
+            {isPathCorrect ? (
+              <Check className="text-green-600 absolute right-0" />
+            ) : (
+              <X className="text-red-600 absolute right-0" />
+            )}
+          </Label>
           <Input
             type="text"
             name="imagePath"
             required
             placeholder="Enter imagePath"
-            onChange={handleChange}
+            onChange={(e) => {
+              handleChange(e);
+              checkImagePath(e);
+            }}
             defaultValue={product.imagePath}
           />
           <Label>Enter price</Label>

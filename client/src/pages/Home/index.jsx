@@ -272,17 +272,19 @@ export default function Home() {
                 </Link>
 
                 <DropdownMenu modal={false}>
-                  <DropdownMenuTrigger>
-                    <Button
-                      className="text-2xl font-semibold button_hover button_cyberpunk !py-5"
-                      variant="ghost"
-                      id="hover"
-                    >
-                      <Menu className="w-32 md:hidden block" />
-                      <p className="md:block hidden" id="hover">
-                        Účet
-                      </p>
-                    </Button>
+                  <DropdownMenuTrigger asChild>
+                    <span>
+                      <Button
+                        className="text-2xl font-semibold button_hover button_cyberpunk !py-5"
+                        variant="ghost"
+                        id="hover"
+                      >
+                        <Menu className="w-32 md:hidden block" />
+                        <p className="md:block hidden" id="hover">
+                          Účet
+                        </p>
+                      </Button>
+                    </span>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="button_cyberpunk background_text border-none text-black min-w-60 mr-2">
                     <DropdownMenuLabel className="text-xl flex gap-2 items-center">

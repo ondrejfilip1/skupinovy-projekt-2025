@@ -1,17 +1,19 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { createGame } from "../../../models/Game";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { CornerUpLeft, X } from "lucide-react";
+import { CornerUpLeft, X, Check } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { Label } from "@/components/ui/label";
 
 import React from "react";
 
 export default function GameCreate() {
   const [formData, setFormData] = useState();
   const [info, setInfo] = useState();
+  const [isPathCorrect, setIsPathCorrect] = useState(false);
   const navigate = useNavigate();
 
   const postForm = async () => {
@@ -31,6 +33,13 @@ export default function GameCreate() {
       return navigate();
     }
     setInfo(product.message);
+  };
+
+  const checkImagePath = async (e) => {
+    let img = new Image();
+    img.src = `${e.target.value}1.png`;
+    img.onerror = () => setIsPathCorrect(false);
+    img.onload = () => setIsPathCorrect(true);
   };
 
   const handleChange = (e) => {
@@ -55,6 +64,7 @@ export default function GameCreate() {
           </Link>
         </h1>
         <form className="grid gap-2 my-2" onSubmit={handlePost}>
+          <Label>Enter name</Label>
           <Input
             type="text"
             name="name"
@@ -62,6 +72,7 @@ export default function GameCreate() {
             placeholder="Enter name"
             onChange={handleChange}
           />
+          <Label>Enter category</Label>
           <Input
             type="text"
             name="category"
@@ -69,6 +80,7 @@ export default function GameCreate() {
             placeholder="Enter category"
             onChange={handleChange}
           />
+          <Label>Enter description</Label>
           <Textarea
             type="text"
             name="description"
@@ -76,13 +88,25 @@ export default function GameCreate() {
             placeholder="Enter description"
             onChange={handleChange}
           />
+          <Label className="relative">
+            Enter imagePath
+            {isPathCorrect ? (
+              <Check className="text-green-600 absolute right-0" />
+            ) : (
+              <X className="text-red-600 absolute right-0" />
+            )}
+          </Label>
           <Input
             type="text"
             name="imagePath"
             required
             placeholder="Enter imagePath"
-            onChange={handleChange}
+            onChange={(e) => {
+              handleChange(e);
+              checkImagePath(e);
+            }}
           />
+          <Label>Enter price</Label>
           <Input
             type="number"
             name="price"
