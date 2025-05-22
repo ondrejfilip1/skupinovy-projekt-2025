@@ -43,7 +43,7 @@ export default function CharacterCard({ img, name, description }) {
               {name}
             </p>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="button_cyberpunkv1 background_text border-none text-black w-[13vw] lg:block hidden" avoidCollisions={false}>
+          <DropdownMenuContent className="button_cyberpunkv1 background_text border-none text-black w-[20vw] lg:block hidden" avoidCollisions={false}>
             <p className="description text-lg p-2">{description}</p>
           </DropdownMenuContent>
         </DropdownMenu>

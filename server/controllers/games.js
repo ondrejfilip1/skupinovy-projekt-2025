@@ -43,6 +43,10 @@ exports.createGame = async (req, res, next) => {
     });
     const result = await data.save();
     if (result) {
+      // update v realnem case pomoci socket.io (admin panel)
+      const io = req.app.get("io");
+      io.emit("gamesUpdated");
+
       return res.status(201).send({
         message: "Game created",
         payload: result,
@@ -55,6 +59,7 @@ exports.createGame = async (req, res, next) => {
     res.status(500).send(err);
   }
 };
+
 exports.updateGame = async (req, res, next) => {
   try {
     const data = {
@@ -66,6 +71,10 @@ exports.updateGame = async (req, res, next) => {
     };
     const result = await Game.findByIdAndUpdate(req.params.id, data);
     if (result) {
+      // update v realnem case pomoci socket.io (admin panel)
+      const io = req.app.get("io");
+      io.emit("gamesUpdated");
+
       return res.status(200).send({
         message: "Game updated",
         payload: result,
@@ -83,6 +92,10 @@ exports.deleteGame = async (req, res, next) => {
   try {
     const result = await Game.findByIdAndDelete(req.params.id);
     if (result) {
+      // update v realnem case pomoci socket.io (admin panel)
+      const io = req.app.get("io");
+      io.emit("gamesUpdated");
+
       return res.status(200).send({
         message: "Game deleted",
         payload: result,

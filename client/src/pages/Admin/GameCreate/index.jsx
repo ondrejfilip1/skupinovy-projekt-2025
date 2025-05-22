@@ -14,8 +14,6 @@ export default function GameCreate() {
   const [info, setInfo] = useState();
   const navigate = useNavigate();
 
-  if (localStorage.getItem("isAdmin") !== "true") return <NotFound />;
-
   const postForm = async () => {
     const product = await createGame(formData);
     if (product.status === 201) {

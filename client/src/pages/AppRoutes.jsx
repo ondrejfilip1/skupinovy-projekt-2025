@@ -20,6 +20,7 @@ import UserSettings from "./UserSettings";
 import Cursor from "@/components/Cursor";
 import GameUpdate from "./Admin/GameUpdate";
 import Payments from "./Payments";
+import AdminRoute from "./Admin/AdminRoute";
 
 export default function AppRoutes() {
   return (
@@ -37,7 +38,7 @@ export default function AppRoutes() {
           <Route path="/pribeh" element={<Chat />} />
           <Route path="/pribehy" element={<Menu />} />
           <Route path="/nastaveni" element={<UserSettings />} />
-          <Route path="/platby" element={<Payments/>}/>
+          <Route path="/platby" element={<Payments />} />
 
           {/* autentizace */}
           <Route path="/prihlaseni" element={<Login />} />
@@ -47,53 +48,26 @@ export default function AppRoutes() {
           <Route path="/*" element={<NotFound />} />
 
           {/* admin */}
-          <Route
-            path="/admin"
-            element={
-              <div className="no_style">
-                <Admin />
-              </div>
-            }
-          />
+          <Route path="/admin" element={<AdminRoute route={<Admin />} />} />
           <Route
             path="/admin/game-create"
-            element={
-              <div className="no_style">
-                <ProductCreateForm />
-              </div>
-            }
+            element={<AdminRoute route={<ProductCreateForm />} />}
           />
           <Route
             path="/admin/game-list"
-            element={
-              <div className="no_style">
-                <GameList />
-              </div>
-            }
+            element={<AdminRoute route={<GameList />} />}
           />
           <Route
             path="/admin/user-list"
-            element={
-              <div className="no_style">
-                <UserList />
-              </div>
-            }
+            element={<AdminRoute route={<UserList />} />}
           />
           <Route
             path="/admin/game/:id"
-            element={
-              <div className="no_style">
-                <GameView />
-              </div>
-            }
+            element={<AdminRoute route={<GameView />} />}
           />
           <Route
             path="/admin/game-update/:id"
-            element={
-              <div className="no_style">
-                <GameUpdate />
-              </div>
-            }
+            element={<AdminRoute route={<GameUpdate />} />}
           />
         </Routes>
       </BrowserRouter>

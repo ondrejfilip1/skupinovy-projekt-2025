@@ -24,8 +24,6 @@ export default function GameView() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
-  if (localStorage.getItem("isAdmin") !== "true") return <NotFound />;
-
   const load = async () => {
     const data = await getGameById(id);
     if (data.status === 500 || data.status === 404) return setLoaded(null);

@@ -1,4 +1,3 @@
-import NotFound from "../NotFound";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { CornerUpLeft } from "lucide-react";
@@ -14,6 +13,9 @@ import {
   ChartLegendContent,
 } from "@/components/ui/chart";
 import moment from "moment";
+import { io } from "socket.io-client";
+
+const socket = io("http://localhost:4000/");
 
 export default function Admin() {
   const chartConfig = {
@@ -27,8 +29,6 @@ export default function Admin() {
     },
   };
 
-  if (localStorage.getItem("isAdmin") !== "true") return <NotFound />;
-
   const [balance, setBalance] = useState(0);
   const [payouts, setPayouts] = useState(0);
   const [isLoaded, setLoaded] = useState(false);
@@ -37,6 +37,14 @@ export default function Admin() {
 
   useEffect(() => {
     stripeBalance();
+
+    socket.on("paymentIntentCreated", () => {
+      stripeBalance();
+    });
+
+    return () => {
+      socket.off("paymentIntentCreated");
+    };
   }, []);
 
   const stripeBalance = async () => {
@@ -63,7 +71,7 @@ export default function Admin() {
         // filtrovani spravnych paymentintentu
         .filter((ele) => ele !== undefined);
       setChartData(formattedData);
-      console.log(formattedData);
+      //console.log(formattedData);
       setLoaded(true);
     }
   };

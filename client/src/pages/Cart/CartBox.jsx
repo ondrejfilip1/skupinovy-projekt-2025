@@ -14,6 +14,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
+import LoadingSpinnerCyberpunk from "@/components/LoadingSpinnerCyberpunk";
 
 export default function CartBox(props) {
   const [product, setProduct] = useState();
@@ -48,11 +49,12 @@ export default function CartBox(props) {
     if (add) cart[props.index].amount += quantity;
     else if (cart[props.index].amount !== 1)
       cart[props.index].amount -= quantity;
-    else toast("Nemůžete mít méně než 1 produkt.", {
-      cancel: {
-        label: <X className="text_text" />,
-      },
-    });
+    else
+      toast("Nemůžete mít méně než 1 produkt.", {
+        cancel: {
+          label: <X className="text_text" />,
+        },
+      });
 
     setCurrentQuantity(cart[props.index].amount);
 
@@ -94,7 +96,10 @@ export default function CartBox(props) {
   if (!isLoaded) {
     return (
       <>
-        <p>Produkt se načítá</p>
+        <div className="my-6 flex items-center justify-center mx-12 relative min-h-[128px]">
+          <LoadingSpinnerCyberpunk />
+        </div>
+        <div className="background_text h-[1px] mx-12 opacity-50" />
       </>
     );
   }

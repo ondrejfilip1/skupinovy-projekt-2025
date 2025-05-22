@@ -6,7 +6,7 @@ import qr2 from "@/assets/qr2.svg";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { X } from "lucide-react";
 import { register } from "@/models/User";
 import { toast } from "sonner";
@@ -134,7 +134,7 @@ export default function Register() {
                 />
               </div>
               <Label>Zopakujte heslo</Label>
-              <div className="background_text p-[1px] button_cyberpunk w-full">
+              <div className="background_text p-[1px] button_cyberpunk w-full mb-2">
                 <Input
                   id="text"
                   name="password2"
@@ -146,6 +146,12 @@ export default function Register() {
                   onChange={handlePasswordCheck}
                   required
                 />
+              </div>
+              <div>
+                Máte již účet? <br />
+                <Link to="/prihlaseni" id="hover" className="underline">
+                  Zde se můžete přihlásit
+                </Link>
               </div>
               <div className="background_text p-[1px] button_cyberpunk w-full my-2">
                 <Button

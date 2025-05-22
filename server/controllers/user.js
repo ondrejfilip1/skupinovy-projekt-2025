@@ -37,6 +37,11 @@ exports.register = async (req, res, next) => {
           expiresIn: "30d",
         }
       );
+
+      // update v realnem case pomoci socket.io (admin panel)
+      const io = req.app.get("io");
+      io.emit("usersUpdated");
+
       return res.status(200).send({
         message: "User created",
         payload: result,
@@ -100,6 +105,10 @@ exports.deleteUser = async (req, res, next) => {
   try {
     const result = await User.findByIdAndDelete(req.params.id);
     if (result) {
+      // update v realnem case pomoci socket.io (admin panel)
+      const io = req.app.get("io");
+      io.emit("usersUpdated");
+
       return res.status(200).send({
         message: "User deleted",
         payload: result,
@@ -135,6 +144,10 @@ exports.changePassword = async (req, res, next) => {
     };
     const result = await User.findByIdAndUpdate(user._id, data);
     if (result) {
+      // update v realnem case pomoci socket.io (admin panel)
+      const io = req.app.get("io");
+      io.emit("usersUpdated");
+
       return res.status(200).send({
         message: "User password updated",
         payload: result,
@@ -161,6 +174,10 @@ exports.changeUsername = async (req, res, next) => {
     };
     const result = await User.findByIdAndUpdate(user._id, data);
     if (result) {
+      // update v realnem case pomoci socket.io (admin panel)
+      const io = req.app.get("io");
+      io.emit("usersUpdated");
+
       return res.status(200).send({
         message: "User name updated",
         payload: result,
@@ -180,13 +197,15 @@ exports.changeRole = async (req, res, next) => {
     const user = await User.findOne({ username });
     if (!user) return res.status(500).send({ message: "Invalid user" });
 
-
-    
     const data = {
       isAdmin: role,
     };
     const result = await User.findByIdAndUpdate(user._id, data);
     if (result) {
+      // update v realnem case pomoci socket.io (admin panel)
+      const io = req.app.get("io");
+      io.emit("usersUpdated");
+
       return res.status(200).send({
         message: "User role updated",
         payload: result,

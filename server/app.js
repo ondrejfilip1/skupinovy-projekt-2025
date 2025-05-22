@@ -6,6 +6,10 @@ const logger = require("morgan");
 const cors = require("cors");
 require("dotenv").config();
 const mongoose = require("mongoose");
+
+const http = require("http");
+const { Server } = require("socket.io");
+
 mongoose
   .connect(process.env.DB_KEY)
   .then(() => console.log("Database connected"))
@@ -18,6 +22,27 @@ const userRouter = require("./routes/user");
 const storyRouter = require("./routes/stories");
 
 const app = express();
+
+const server = http.createServer(app);
+
+const io = new Server(server, {
+  cors: {
+    // povolujem jen frontend a backend server
+    origin: ["http://localhost:5173", "http://localhost:3000"],
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
+});
+
+app.set("io", io);
+
+io.on("connection", (socket) => {
+  console.log("User connected:", socket.id);
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected:", socket.id);
+  });
+});
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -51,5 +76,10 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+const PORT = process.env.SERVER_PORT;
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+})
 
 module.exports = app;

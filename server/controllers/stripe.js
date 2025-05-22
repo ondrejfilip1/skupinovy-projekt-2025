@@ -45,6 +45,10 @@ exports.createPaymentIntent = async (req, res) => {
 exports.getPaymentIntent = async (req, res) => {
   try {
     const paymentIntent = await stripe.paymentIntents.retrieve(req.params.id);
+    // tohle by tu nemelo byt ale funguje to lol
+    // update v realnem case pomoci socket.io (admin panel)
+    const io = req.app.get("io");
+    io.emit("paymentIntentCreated");
 
     res.send({
       paymentIntent,

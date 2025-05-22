@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useState } from "react";
-import { Eye, Trash, UserCog } from "lucide-react";
+import { Eye, Trash, UserCog, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   AlertDialog,
@@ -23,6 +23,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { changeRole, deleteUser } from "@/models/User";
+import { toast } from "sonner";
 
 export default function UserBox(props) {
   const [showPass, setShowPass] = useState(false);
@@ -33,13 +34,59 @@ export default function UserBox(props) {
   const handleDelete = async () => {
     const data = await deleteUser(props._id);
 
-    if (data.status === 200) window.location.reload();
+    if (data.status === 200)
+      toast("User has been successfully deleted", {
+        unstyled: false,
+        cancel: {
+          label: <X className="text-black" />,
+        },
+        classNames: {
+          toast:
+            "no_style_component !rounded-xl !border-[#e5e5e5] !bg-white !toaster !text-sm",
+          title: "!text-sm",
+        },
+      });
+    else
+      toast("Error occurred when deleting an user", {
+        unstyled: false,
+        cancel: {
+          label: <X className="text-black" />,
+        },
+        classNames: {
+          toast:
+            "no_style_component !rounded-xl !border-[#e5e5e5] !bg-white !toaster !text-sm",
+          title: "!text-sm",
+        },
+      });
   };
 
   const handleRoleChange = async () => {
     const data = await changeRole(formData);
 
-    if (data.status === 200) window.location.reload();
+    if (data.status === 200)
+      toast("User role has been successfully changed", {
+        unstyled: false,
+        cancel: {
+          label: <X className="text-black" />,
+        },
+        classNames: {
+          toast:
+            "no_style_component !rounded-xl !border-[#e5e5e5] !bg-white !toaster !text-sm",
+          title: "!text-sm",
+        },
+      });
+    else
+      toast("Error occurred when updating an user role", {
+        unstyled: false,
+        cancel: {
+          label: <X className="text-black" />,
+        },
+        classNames: {
+          toast:
+            "no_style_component !rounded-xl !border-[#e5e5e5] !bg-white !toaster !text-sm",
+          title: "!text-sm",
+        },
+      });
   };
 
   const handleChange = (e) => {
@@ -47,7 +94,6 @@ export default function UserBox(props) {
       ...formData,
       role: e === "user" ? false : true,
     });
-    console.log(formData);
   };
 
   return (

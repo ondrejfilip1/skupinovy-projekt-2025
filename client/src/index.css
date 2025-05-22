@@ -415,3 +415,7 @@ body {
 .button_cyberpunkv1 .description {
   transform: scaleX(-1);
 }
+
+::selection {
+  background-color: #cfff5717;
+}

@@ -4,12 +4,13 @@ import { getAllUsers } from "@/models/User";
 import UserBox from "./UserBox";
 import { CornerUpLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { io } from "socket.io-client";
+
+const socket = io("http://localhost:4000/")
 
 export default function UserList() {
   const [users, setUsers] = useState();
   const [isLoaded, setLoaded] = useState(false);
-
-  if (localStorage.getItem("isAdmin") !== "true") return <NotFound />;
 
   const load = async () => {
     const data = await getAllUsers();
@@ -22,6 +23,14 @@ export default function UserList() {
 
   useEffect(() => {
     load();
+
+    socket.on("usersUpdated", () => {
+      load();
+    })
+
+    return () => {
+      socket.off("usersUpdated")
+    }
   }, []);
 
   if (isLoaded === null) {

@@ -79,7 +79,6 @@ export const getPayouts = async () => {
     method: "GET",
   });
   const data = await req.json();
-  console.log(data);
   return {
     status: req.status,
     payouts: data.payouts,

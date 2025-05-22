@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getAllGames } from "../../../models/Game";
 import GameBox from "./GameBox";
-import NotFound from "@/pages/NotFound";
 import { Button } from "@/components/ui/button";
 import { CornerUpLeft } from "lucide-react";
+import { io } from "socket.io-client";
+
+const socket = io("http://localhost:4000/");
 
 export default function GameList() {
   const [games, setGames] = useState();
   const [isLoaded, setLoaded] = useState(false);
-
-  if (localStorage.getItem("isAdmin") !== "true") return <NotFound />;
 
   const load = async () => {
     const data = await getAllGames();
@@ -23,6 +23,14 @@ export default function GameList() {
 
   useEffect(() => {
     load();
+
+    socket.on("gamesUpdated", () => {
+      load();
+    });
+
+    return () => {
+      socket.off("gamesUpdated");
+    };
   }, []);
 
   if (isLoaded === null) {
