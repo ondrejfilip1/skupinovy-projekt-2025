@@ -4,11 +4,13 @@ export default function Divider() {
   return (
     <>
       <svg
-        width="100%"
+        width="98%"
+        height="30"
         viewBox="0 0 1000 20"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
-        className="mt-36"
+        preserveAspectRatio="none"
+        className="mt-36 mx-auto"
       >
         <rect x="0" y="1" width="1" height="1" fill="#d5ff50" />
         <rect x="33" y="1" width="400" height="1" fill="#d5ff50" />

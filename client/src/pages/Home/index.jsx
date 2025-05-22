@@ -35,6 +35,7 @@ import bundle from "/cardImages/bundle.png";
 import map from "/cardImages/map.png";
 import dlc from "/cardImages/dlc.png";
 import game from "/cardImages/game.png";
+import rating from "/cardImages/rating.png";
 import char1 from "/characters/character1.png";
 import char2 from "/characters/character2.png";
 import char3 from "/characters/character3.png";
@@ -492,7 +493,12 @@ export default function Home() {
                 />
               </div>
               <div className="imageCard-glitch">
-                <ImageCard img="/bundle/complete/1.png" />
+                <ImageCard
+                  img={rating}
+                  title={
+                    "Hodnocení NIGHTGRID je venku!"
+                  }
+                />
               </div>
               <div className="imageCard-glitch">
                 <ImageCard
@@ -558,7 +564,7 @@ export default function Home() {
                           </p>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent
-                          className="button_cyberpunkv1 background_text border-none text-black w-[45vw] lg:hidden block"
+                          className="button_cyberpunkv1 background_text border-none text-black w-[45vw] -mt-3 lg:hidden block"
                           avoidCollisions={false}
                         >
                           <p className="description text-lg p-2">
