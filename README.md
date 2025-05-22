@@ -35,7 +35,7 @@ Server
 - Platební brána Stripe
 - Generování příběhů pomocí umělé inteligence
 - Ukládání, přejmenování a mazání příběhů
-- Přihlášení a registrace
+- Přihlášení, registrace a odhlášení
 - Uživatelské nastavení (změna jména a hesla)
 - Funkční a zabezpečený admin panel
 - Podstránky - Historie plateb, Hlavní stránka
