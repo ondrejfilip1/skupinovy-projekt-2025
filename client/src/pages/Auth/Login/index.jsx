@@ -10,11 +10,24 @@ import { login } from "@/models/User";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "sonner";
 import { X } from "lucide-react";
+import { useScramble } from "use-scramble";
 
 export default function Login() {
   const [formData, setFormData] = useState();
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+
+  const { ref } = useScramble({
+    text: "Přihlášení",
+    speed: 0.8,
+    tick: 1,
+    step: 1,
+    scramble: 2,
+    seed: 10,
+    chance: 1,
+    overdrive: false,
+    overflow: true,
+  });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -42,8 +55,8 @@ export default function Login() {
   return (
     <>
       <Header />
-      <div className="h_screen_fix border_main">
-        <div className="h_screen_fix max-h-full border_main_child relative">
+      <div className="min_h_screen_fix border_main">
+        <div className="min_h_screen_fix max-h-full border_main_child relative flex items-center justify-center">
           <div className="text-xs absolute -left-13.5 top-30 -rotate-90 z-10">
             NIGHTGRID PROTOCOL 0.2.1
           </div>
@@ -68,32 +81,38 @@ export default function Login() {
               6520-A44
             </div>
           </div>
-          <div className="text-center flex flex-col items-center justify-center m-10">
-            <h1 className="text-center text-4xl mb-6">Přihlášení</h1>
+          <div className="text-center flex flex-col items-center justify-center m-10 w-full">
+            <h1 className="text-center text-4xl mb-6" ref={ref}>
+              Přihlášení
+            </h1>
             <form
               className="flex flex-col gap-2 max-w-72 w-full"
               onSubmit={postForm}
             >
               <Label>Uživatelské jméno</Label>
-              <Input
-                id="text"
-                name="username"
-                className="rounded-none border_color !text-xl !py-6 placeholder_color"
-                type="text"
-                placeholder="Zadejte uživatelské jméno"
-                onChange={handleChange}
-                required
-              />
+              <div className="background_text p-[1px] button_cyberpunk w-full">
+                <Input
+                  id="text"
+                  name="username"
+                  className="rounded-none border-none !text-xl !py-6 placeholder_color w-full button_cyberpunk background_bg relative text_text"
+                  type="text"
+                  placeholder="Zadejte uživatelské jméno"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
               <Label>Heslo</Label>
-              <Input
-                id="text"
-                name="password"
-                className="rounded-none border_color !text-xl !py-6 placeholder_color"
-                type="password"
-                placeholder="Zadejte heslo"
-                onChange={handleChange}
-                required
-              />
+              <div className="background_text p-[1px] button_cyberpunk w-full mb-2">
+                <Input
+                  id="text"
+                  name="password"
+                  className="rounded-none border-none !text-xl !py-6 placeholder_color w-full button_cyberpunk background_bg relative text_text"
+                  type="password"
+                  placeholder="Zadejte heslo"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
               <div>
                 Nemáte ještě účet? <br />
                 <Link to="/registrace" id="hover" className="underline">

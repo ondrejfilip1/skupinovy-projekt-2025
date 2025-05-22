@@ -126,3 +126,23 @@ export const changeUsername = async (formData) => {
     message: data.message,
   };
 };
+
+export const changeRole = async (formData) => {
+  const token = localStorage.getItem("token");
+  const req = await fetch(`http://localhost:3000/user/roleChange`, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    method: "PUT",
+    body: JSON.stringify(formData),
+  });
+  const data = await req.json();
+  return {
+    status: req.status,
+    payload: data.payload,
+    message: data.message,
+  };
+};
+

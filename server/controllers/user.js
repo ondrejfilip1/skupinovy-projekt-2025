@@ -173,3 +173,29 @@ exports.changeUsername = async (req, res, next) => {
     res.status(500).send(err);
   }
 };
+
+exports.changeRole = async (req, res, next) => {
+  try {
+    const { role, username } = req.body;
+    const user = await User.findOne({ username });
+    if (!user) return res.status(500).send({ message: "Invalid user" });
+
+
+    
+    const data = {
+      isAdmin: role,
+    };
+    const result = await User.findByIdAndUpdate(user._id, data);
+    if (result) {
+      return res.status(200).send({
+        message: "User role updated",
+        payload: result,
+      });
+    }
+    res.status(500).send({
+      message: "User role not updated",
+    });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};

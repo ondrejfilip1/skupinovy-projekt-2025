@@ -40,6 +40,8 @@ export default function Chat() {
     ) {
       setMessages(stories[storyId].messages);
       scrollToBottom();
+      setHasGenerated(true)
+      setHasSaved(true)
     } else if (storyId) setNotFound(true);
   }, []);
 
@@ -52,13 +54,24 @@ export default function Chat() {
     setInput("");
   };
 
+  const sendAutoMessage = async (text) => {
+    const newMessages = [...messages, { text, user: "user" }];
+    setMessages(newMessages);
+    setInput(text);
+
+    const response = await fetchMessage(text, newMessages);
+
+    const updatedMessages = [...newMessages, { text: response, user: "bot" }];
+    setMessages(updatedMessages);
+  };
+
   const scrollToBottom = () => {
     setTimeout(() => {
       window.scrollTo({
         top: document.body.scrollHeight,
         behavior: "smooth",
       });
-    }, 10);
+    }, 1);
   };
 
   const fetchMessage = async (input, currentMessages) => {
@@ -166,20 +179,8 @@ export default function Chat() {
             <div className="background_text p-[1px] button_cyberpunk w-fit mb-4">
               <Button
                 id="hover"
-                onClick={async () => {
-                  const userMessage = [
-                    ...messages,
-                    { text: "Vygeneruj náhodný příběh", user: "user" },
-                  ];
-                  setMessages(userMessage);
-                  const response = await fetchMessage(
-                    "Vygeneruj náhodný příběh"
-                  );
-                  setMessages([
-                    ...userMessage,
-                    { text: response, user: "bot" },
-                  ]);
-                  setInput("");
+                onClick={() => {
+                  sendAutoMessage("Vygeneruj náhodný příběh");
                 }}
                 className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
               >
@@ -194,20 +195,8 @@ export default function Chat() {
                 <div className="background_text p-[1px] button_cyberpunk w-fit mb-4">
                   <Button
                     id="hover"
-                    onClick={async () => {
-                      const userMessage = [
-                        ...messages,
-                        { text: "Vybírám si první možnost", user: "user" },
-                      ];
-                      setMessages(userMessage);
-                      const response = await fetchMessage(
-                        "Vybírám si první možnost"
-                      );
-                      setMessages([
-                        ...userMessage,
-                        { text: response, user: "bot" },
-                      ]);
-                      setInput("");
+                    onClick={() => {
+                      sendAutoMessage("Vybírám si první možnost");
                     }}
                     className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
                   >
@@ -218,20 +207,8 @@ export default function Chat() {
                 <div className="background_text p-[1px] button_cyberpunk w-fit mb-4">
                   <Button
                     id="hover"
-                    onClick={async () => {
-                      const userMessage = [
-                        ...messages,
-                        { text: "Vybírám si druhou možnost", user: "user" },
-                      ];
-                      setMessages(userMessage);
-                      const response = await fetchMessage(
-                        "Vybírám si druhou možnost"
-                      );
-                      setMessages([
-                        ...userMessage,
-                        { text: response, user: "bot" },
-                      ]);
-                      setInput("");
+                    onClick={() => {
+                      sendAutoMessage("Vybírám si druhou možnost");
                     }}
                     className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
                   >
@@ -242,20 +219,8 @@ export default function Chat() {
                 <div className="background_text p-[1px] button_cyberpunk w-fit mb-4">
                   <Button
                     id="hover"
-                    onClick={async () => {
-                      const userMessage = [
-                        ...messages,
-                        { text: "Vybírám si třetí možnost", user: "user" },
-                      ];
-                      setMessages(userMessage);
-                      const response = await fetchMessage(
-                        "Vybírám si třetí možnost"
-                      );
-                      setMessages([
-                        ...userMessage,
-                        { text: response, user: "bot" },
-                      ]);
-                      setInput("");
+                    onClick={() => {
+                      sendAutoMessage("Vybírám si třetí možnost");
                     }}
                     className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
                   >

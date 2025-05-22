@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useState } from "react";
-import { Eye, Trash } from "lucide-react";
+import { Eye, Trash, UserCog } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   AlertDialog,
@@ -13,16 +13,41 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { deleteUser } from "@/models/User";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { changeRole, deleteUser } from "@/models/User";
 
 export default function UserBox(props) {
   const [showPass, setShowPass] = useState(false);
+  const [formData, setFormData] = useState({
+    username: props.username,
+  });
 
   const handleDelete = async () => {
-    // TODO
     const data = await deleteUser(props._id);
 
     if (data.status === 200) window.location.reload();
+  };
+
+  const handleRoleChange = async () => {
+    const data = await changeRole(formData);
+
+    if (data.status === 200) window.location.reload();
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      role: e === "user" ? false : true,
+    });
+    console.log(formData);
   };
 
   return (
@@ -52,34 +77,74 @@ export default function UserBox(props) {
             Zobrazit hash hesla
           </Button>
         )}
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button variant="destructive" className="!cursor-pointer">
-              <Trash size="icon" />
-            </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent className="no_style_component">
-            <AlertDialogHeader>
-              <AlertDialogTitle>
-                Opravdu chcete smazat uživatele?
-              </AlertDialogTitle>
-              <AlertDialogDescription>
-                Tato akce nelze vrátit zpět
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel className="!cursor-pointer">
-                Zpět
-              </AlertDialogCancel>
-              <AlertDialogAction
-                className="!cursor-pointer"
-                onClick={handleDelete}
+        <div className="flex gap-2">
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="destructive" className="!cursor-pointer">
+                <UserCog size="icon" />
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent className="no_style_component">
+              <AlertDialogHeader>
+                <AlertDialogTitle>Změna role uživatele</AlertDialogTitle>
+              </AlertDialogHeader>
+              <Select
+                defaultValue={props.isAdmin ? "admin" : "user"}
+                onValueChange={handleChange}
               >
-                Smazat
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Zvolte roli" />
+                </SelectTrigger>
+                <SelectContent className="no_style_component">
+                  <SelectGroup>
+                    <SelectLabel>Role</SelectLabel>
+                    <SelectItem value="user">Uživatel</SelectItem>
+                    <SelectItem value="admin">Administrátor</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+              <AlertDialogFooter>
+                <AlertDialogCancel className="!cursor-pointer">
+                  Zpět
+                </AlertDialogCancel>
+                <AlertDialogAction
+                  className="!cursor-pointer"
+                  onClick={handleRoleChange}
+                >
+                  Změnit
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="destructive" className="!cursor-pointer">
+                <Trash size="icon" />
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent className="no_style_component">
+              <AlertDialogHeader>
+                <AlertDialogTitle>
+                  Opravdu chcete smazat uživatele?
+                </AlertDialogTitle>
+                <AlertDialogDescription>
+                  Tato akce nelze vrátit zpět
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel className="!cursor-pointer">
+                  Zpět
+                </AlertDialogCancel>
+                <AlertDialogAction
+                  className="!cursor-pointer"
+                  onClick={handleDelete}
+                >
+                  Smazat
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
       </div>
       <div className="w-full h-px bg-black my-2 opacity-25" />
     </>

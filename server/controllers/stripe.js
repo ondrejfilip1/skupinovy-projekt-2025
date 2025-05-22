@@ -77,7 +77,7 @@ exports.getBalance = async (req, res) => {
 exports.getPayouts = async (req, res) => {
   try {
     const payouts = await stripe.paymentIntents.list({
-      limit: 1000,
+      limit: 10000,
     });
 
     res.send({

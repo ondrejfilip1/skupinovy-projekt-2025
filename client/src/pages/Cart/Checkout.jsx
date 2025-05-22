@@ -75,44 +75,47 @@ export default function Checkout() {
             </div>
           </div>
           <div className="h-8" />
-        {cart && cart.length > 0 ? (
-          <>
-            {clientSecret && stripePromise && (
-              <Elements
-                stripe={stripePromise}
-                options={{
-                  clientSecret: clientSecret,
-                  fonts: [
-                    {
-                      cssSrc:
-                        "https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap",
-                    },
-                  ],
-                  appearance: {
-                    variables: {
-                      colorPrimary: "#d0ff57",
-                      spacingUnit: "4px",
-                      colorText: "#d0ff57",
-                      colorBackground: "#1a1019",
-                      fontFamily: "Rajdhani",
-                      borderRadius: "0px",
-                      fontSizeBase: "1.25rem",
-                    },
-                    rules: {
-                      ".Input": {
-                        borderColor: "#d0ff57",
+          {cart && cart.length > 0 ? (
+            <>
+              <div className="my-2">
+                <h1 className="text-center text-4xl mb-6">Platba</h1>
+              </div>
+              {clientSecret && stripePromise && (
+                <Elements
+                  stripe={stripePromise}
+                  options={{
+                    clientSecret: clientSecret,
+                    fonts: [
+                      {
+                        cssSrc:
+                          "https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap",
+                      },
+                    ],
+                    appearance: {
+                      variables: {
+                        colorPrimary: "#d0ff57",
+                        spacingUnit: "4px",
+                        colorText: "#d0ff57",
+                        colorBackground: "#1a1019",
+                        fontFamily: "Rajdhani",
+                        borderRadius: "0px",
+                        fontSizeBase: "1.25rem",
+                      },
+                      rules: {
+                        ".Input": {
+                          borderColor: "#d0ff57",
+                        },
                       },
                     },
-                  },
-                }}
-              >
-                <CheckoutForm />
-              </Elements>
-            )}
-          </>
-        ) : (
-          <div className="m-auto text-center text-2xl">Košík je prázdný</div>
-        )}
+                  }}
+                >
+                  <CheckoutForm />
+                </Elements>
+              )}
+            </>
+          ) : (
+            <div className="m-auto text-center text-2xl">Košík je prázdný</div>
+          )}
           <div className="h-16" />
         </div>
       </div>

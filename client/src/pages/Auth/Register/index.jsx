@@ -10,12 +10,25 @@ import { useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
 import { register } from "@/models/User";
 import { toast } from "sonner";
+import { useScramble } from "use-scramble";
 
 export default function Register() {
   const [formData, setFormData] = useState();
   const [message, setMessage] = useState("");
   const [passCorrect, setPassCorrect] = useState(false);
   const navigate = useNavigate();
+
+  const { ref } = useScramble({
+    text: "Registrace",
+    speed: 0.8,
+    tick: 1,
+    step: 1,
+    scramble: 2,
+    seed: 10,
+    chance: 1,
+    overdrive: false,
+    overflow: true,
+  });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,7 +47,7 @@ export default function Register() {
 
   const postForm = async (e) => {
     e.preventDefault();
-    if (!passCorrect) return setMessage("Hesla se neshodují")
+    if (!passCorrect) return setMessage("Hesla se neshodují");
     const data = await register(formData);
     if (data.status === 200) {
       toast("Byli jste úspěšně zaregistrováni", {
@@ -55,8 +68,8 @@ export default function Register() {
   return (
     <>
       <Header />
-      <div className="h_screen_fix border_main">
-        <div className="h_screen_fix max-h-full border_main_child relative">
+      <div className="min_h_screen_fix border_main">
+        <div className="min_h_screen_fix max-h-full border_main_child relative flex items-center justify-center">
           <div className="text-xs absolute -left-13.5 top-30 -rotate-90 z-10">
             NIGHTGRID PROTOCOL 0.2.1
           </div>
@@ -81,51 +94,59 @@ export default function Register() {
               6520-A44
             </div>
           </div>
-          <div className="text-center flex flex-col items-center justify-center m-10">
-            <h1 className="text-center text-4xl mb-6">Registrace</h1>
+          <div className="text-center flex flex-col items-center justify-center m-10 w-full">
+            <h1 className="text-center text-4xl mb-6" ref={ref}>
+              Registrace
+            </h1>
             <form
               className="flex flex-col gap-2 max-w-72 w-full"
               onSubmit={postForm}
             >
               <Label>Uživatelské jméno</Label>
-              <Input
-                id="text"
-                name="username"
-                className="rounded-none border_color !text-xl !py-6 placeholder_color"
-                type="text"
-                minLength={3}
-                maxLength={20}
-                placeholder="Zadejte uživatelské jméno"
-                onChange={handleChange}
-                required
-              />
+              <div className="background_text p-[1px] button_cyberpunk w-full">
+                <Input
+                  id="text"
+                  name="username"
+                  className="rounded-none border-none !text-xl !py-6 placeholder_color w-full button_cyberpunk background_bg relative text_text"
+                  type="text"
+                  minLength={3}
+                  maxLength={20}
+                  placeholder="Zadejte uživatelské jméno"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
               <Label>Heslo</Label>
-              <Input
-                id="text"
-                name="password"
-                className="rounded-none border_color !text-xl !py-6 placeholder_color"
-                type="password"
-                minLength={8}
-                maxLength={64}
-                placeholder="Zadejte heslo"
-                onChange={(e) => {
-                  handleChange(e);
-                  handlePasswordCheck(e);
-                }}
-                required
-              />
+              <div className="background_text p-[1px] button_cyberpunk w-full">
+                <Input
+                  id="text"
+                  name="password"
+                  className="rounded-none border-none !text-xl !py-6 placeholder_color w-full button_cyberpunk background_bg relative text_text"
+                  type="password"
+                  minLength={8}
+                  maxLength={64}
+                  placeholder="Zadejte heslo"
+                  onChange={(e) => {
+                    handleChange(e);
+                    handlePasswordCheck(e);
+                  }}
+                  required
+                />
+              </div>
               <Label>Zopakujte heslo</Label>
-              <Input
-                id="text"
-                name="password2"
-                className="rounded-none border_color !text-xl !py-6 placeholder_color"
-                type="password"
-                minLength={8}
-                maxLength={64}
-                placeholder="Zopakujte heslo"
-                onChange={handlePasswordCheck}
-                required
-              />
+              <div className="background_text p-[1px] button_cyberpunk w-full">
+                <Input
+                  id="text"
+                  name="password2"
+                  className="rounded-none border-none !text-xl !py-6 placeholder_color w-full button_cyberpunk background_bg relative text_text"
+                  type="password"
+                  minLength={8}
+                  maxLength={64}
+                  placeholder="Zopakujte heslo"
+                  onChange={handlePasswordCheck}
+                  required
+                />
+              </div>
               <div className="background_text p-[1px] button_cyberpunk w-full my-2">
                 <Button
                   id="hover"

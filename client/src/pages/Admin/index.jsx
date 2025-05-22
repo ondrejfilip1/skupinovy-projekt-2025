@@ -111,7 +111,7 @@ export default function Admin() {
           <>
             <ChartContainer
               config={chartConfig}
-              className="max-h-130 w-full my-2"
+              className="max-h-130 w-full mt-4"
             >
               <BarChart accessibilityLayer data={chartData}>
                 <CartesianGrid vertical={false} />

@@ -99,11 +99,11 @@ export default function Payments() {
                     <Fragment key={item.paymentIntent.id}>
                       <div className="my-6 flex items-center mx-12 relative">
                         <div className="w-1/2">
-                          <div>ID Platby</div>
+                          <div className="text-xl">ID Platby</div>
                           <div className="font-normal text-sm mb-2">
                             {item.paymentIntent.id}
                           </div>
-                          <div>Částka</div>
+                          <div className="text-xl">Částka</div>
                           <div className="font-normal text-sm mb-2">
                             {`${
                               item.paymentIntent.amount / 100
@@ -111,13 +111,13 @@ export default function Payments() {
                           </div>
                         </div>
                         <div className="w-1/2">
-                          <div>Datum</div>
+                          <div className="text-xl">Datum</div>
                           <div className="font-normal text-sm mb-2">
                             {moment(item.paymentIntent.created * 1000)
                               .locale("cz")
                               .format("DD.MM.YYYY HH:mm")}
                           </div>
-                          <div>Stav</div>
+                          <div className="text-xl">Stav</div>
                           <div className="font-normal text-sm">
                             {item.paymentIntent.status === "succeeded"
                               ? "Úspěšný"
