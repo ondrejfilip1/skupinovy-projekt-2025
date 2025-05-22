@@ -441,8 +441,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative h-[105vh] w-full bg-[url(/home/background3.png)] bg-cover bg-center bg-no-repeat overflow-x-hidden">
-            <div className="absolute bottom-0 left-0 w-full h-[40vh] bg-[linear-gradient(180deg,_#0000,_#000000d4_72.46%,_#1a1019)]" />
+          <div className="relative h-[105vh] w-full bg-[url(/home/background3.png)] bg-cover bg-center bg-no-repeat overflow-x-hidden mask_background">
+            <div className="absolute bottom-0 left-0 w-full h-[40vh]" />
             <div className="absolute bottom-0 w-full">
               <div className="font-bold flex flex-col items-center mx-auto mb-50 overlay-glitch">
                 <h1 className="text_text background_bg tracking-widest md:w-[700px] w-[80vw] py-4 text-center sm:text-6xl text-4xl mb-4 uppercase">

@@ -21,6 +21,7 @@ import Cursor from "@/components/Cursor";
 import GameUpdate from "./Admin/GameUpdate";
 import Payments from "./Payments";
 import AdminRoute from "./Admin/AdminRoute";
+import AboutUs from "./AboutUs";
 
 export default function AppRoutes() {
   return (
@@ -39,6 +40,7 @@ export default function AppRoutes() {
           <Route path="/pribehy" element={<Menu />} />
           <Route path="/nastaveni" element={<UserSettings />} />
           <Route path="/platby" element={<Payments />} />
+          <Route path="/o-nas" element={<AboutUs />} />
 
           {/* autentizace */}
           <Route path="/prihlaseni" element={<Login />} />

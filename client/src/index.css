@@ -423,3 +423,7 @@ body {
 .no_style_component *::selection {
   background-color: #0074ffcc;
 }
+
+.mask_background {
+  mask-image: linear-gradient(#FFF 75%, transparent);
+}

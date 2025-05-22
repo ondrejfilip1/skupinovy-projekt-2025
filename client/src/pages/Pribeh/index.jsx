@@ -40,8 +40,8 @@ export default function Chat() {
     ) {
       setMessages(stories[storyId].messages);
       scrollToBottom();
-      setHasGenerated(true)
-      setHasSaved(true)
+      setHasGenerated(true);
+      setHasSaved(true);
     } else if (storyId) setNotFound(true);
   }, []);
 
@@ -126,6 +126,7 @@ export default function Chat() {
     localStorage.setItem("stories", JSON.stringify(stories));
     setHasSaved(true);
     setIsGenerating(false);
+    setInput("");
 
     return result;
   };

@@ -15,6 +15,7 @@ import {
   Shield,
   X,
   LogOut,
+  UsersRound,
 } from "lucide-react";
 import { Button } from "../ui/button";
 import {
@@ -78,6 +79,16 @@ export default function Header() {
             >
               <Gamepad />
               Hry
+            </Button>
+          </Link>
+                    <Link to="/o-nas">
+            <Button
+              className="text-2xl button_hover button_cyberpunk !py-5"
+              variant="ghost"
+              id="hover"
+            >
+              <UsersRound />
+              O nás
             </Button>
           </Link>
         </div>
