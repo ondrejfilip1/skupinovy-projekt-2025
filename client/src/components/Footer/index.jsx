@@ -18,7 +18,7 @@ export default function Footer() {
       <div className="mx-[22px] mb-[22px]">
         <div className="flex lg:flex-row flex-col justify-between ">
           <div>
-            <img src={Logo} alt="Logo" className="mb-4 lg:w-[300px] w-[200px] mx-auto" />
+            <img src={Logo} alt="Logo" className="mb-4 lg:w-[300px] w-[200px] mx-auto lg:pl-5 pr-0 " />
           </div>
 
           <div className="flex flex-col gap-y-3 lg:text-justify text-center lg:mx-0 mx-auto">
@@ -48,7 +48,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex flex-col lg:mx-0 mx-auto gap-y-3 lg:text-justify text-center">
+          <div className="flex flex-col lg:mx-0 mx-auto lg:pr-10 pr-0 gap-y-3 lg:text-justify text-center">
             <h2 className="text-2xl font-bold">Sociální sítě</h2>
             <div className="flex gap-4 lg:justify-normal justify-around">
               <Link to={"https://www.instagram.com/"}>

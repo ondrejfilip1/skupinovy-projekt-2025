@@ -18,6 +18,7 @@ import {
   Gamepad,
   ShoppingCart,
   Menu,
+  UsersRound,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -252,7 +253,7 @@ export default function Home() {
               <div className="bg-black md:w-[300px] w-[220px] pr-13 py-4 clip-slanted">
                 <img src={Logo} alt="logo" className="sm:w-[180px] ml-4" />
               </div>
-              <div className="flex gap-1 justify-end md:w-[420px] w-[25vw] bg-black pr-10 py-4 clip-slantedv1">
+              <div className="flex gap-1 justify-end md:w-[500px] w-[25vw] bg-black pr-10 py-4 clip-slantedv1">
                 <Link to={"/hry"} className="md:block hidden">
                   <Button
                     className="text-2xl font-semibold button_hover button_cyberpunk !py-5"
@@ -269,6 +270,15 @@ export default function Home() {
                     id="hover"
                   >
                     <p id="hover">Nákupní košík</p>
+                  </Button>
+                </Link>
+                <Link to="/o-nas" className="md:block hidden">
+                  <Button
+                    className="text-2xl button_hover button_cyberpunk !py-5"
+                    variant="ghost"
+                    id="hover"
+                  >
+                    O nás
                   </Button>
                 </Link>
 
@@ -418,6 +428,15 @@ export default function Home() {
                         >
                           <ShoppingCart className="text-black" />
                           Nákupní košík
+                        </DropdownMenuItem>
+                      </Link>
+                      <Link to="/o-nas">
+                        <DropdownMenuItem
+                          className="text-xl background_hover_darker"
+                          id="hover"
+                        >
+                          <UsersRound className="text-black" />
+                          O nás
                         </DropdownMenuItem>
                       </Link>
                     </div>

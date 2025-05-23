@@ -78,7 +78,9 @@ export default function Header() {
               id="hover"
             >
               <Gamepad />
-              Hry
+              <p className="md:block hidden" id="hover">
+                Hry
+              </p>
             </Button>
           </Link>
                     <Link to="/o-nas">
@@ -88,7 +90,9 @@ export default function Header() {
               id="hover"
             >
               <UsersRound />
-              O nás
+              <p className="md:block hidden" id="hover">
+                O nás
+              </p>
             </Button>
           </Link>
         </div>
