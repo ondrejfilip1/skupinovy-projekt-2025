@@ -37,13 +37,17 @@ export default function CharacterCard({ img, name, description }) {
               src={img}
               id="hover"
               alt=""
+              draggable={false}
               className="object-contain image-glitch max-h-[55vh] "
             />
             <p className="text-3xl text-center my-4 !mb-2 button_cyberpunk w-[13vw] mx-auto px-2 bg-[#d0ff57] text-[#1a1019]">
               {name}
             </p>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="button_cyberpunkv1 background_text border-none text-black w-[13vw] lg:block hidden" avoidCollisions={false}>
+          <DropdownMenuContent
+            className="button_cyberpunkv1 background_text border-none text-black w-[13vw] lg:block hidden"
+            avoidCollisions={false}
+          >
             <p className="description text-lg p-2">{description}</p>
           </DropdownMenuContent>
         </DropdownMenu>

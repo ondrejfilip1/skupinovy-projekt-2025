@@ -62,7 +62,7 @@ export default function GameView() {
   if (isLoaded === null) {
     return (
       <>
-        <p>Game nenalezen</p>
+        <p>Game not found</p>
       </>
     );
   }
@@ -70,7 +70,7 @@ export default function GameView() {
   if (!isLoaded) {
     return (
       <>
-        <p>Game se načítá...</p>
+        <p>Game is loading...</p>
       </>
     );
   }

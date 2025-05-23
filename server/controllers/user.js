@@ -164,6 +164,14 @@ exports.changePassword = async (req, res, next) => {
 exports.changeUsername = async (req, res, next) => {
   try {
     const { username_new, username, password } = req.body;
+
+    // jestli uzivatel uz neexistuje
+    console.log(username_new);
+    const findUser = await User.findOne({ username: username_new });
+    console.log(findUser);
+    if (findUser)
+      return res.status(500).send({ message: "User already exists" });
+
     const user = await User.findOne({ username });
 
     if (!user || !(await bcrypt.compare(password, user.password)))

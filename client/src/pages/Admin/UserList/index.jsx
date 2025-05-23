@@ -44,7 +44,7 @@ export default function UserList() {
   if (!isLoaded) {
     return (
       <>
-        <p>Loading...</p>
+        <p>Users are loading...</p>
       </>
     );
   }
