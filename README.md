@@ -44,10 +44,22 @@ Server
 - Podstránky
 
 ## ✅ TODO
-- O nás - podstránka
+- Dokončit prezentaci
+- Vytisknout coiny
 
 ## 🖼️ Screenshoty stránky
-<i>Připravujeme</i>
+<p align="center">Hlavní stránka</p>
+<img src="https://github.com/ondrejfilip1/skupinovy-projekt-2025/blob/main/readme-assets/hlavni_stranka.jpeg?raw=true">
+<p align="center">Nákupní košík</p>
+<img src="https://github.com/ondrejfilip1/skupinovy-projekt-2025/blob/main/readme-assets/nakupni_kosik.png?raw=true">
+<p align="center">Historie plateb</p>
+<img src="https://github.com/ondrejfilip1/skupinovy-projekt-2025/blob/main/readme-assets/historie_plateb.png?raw=true">
+<p align="center">Příběhy (generování)</p>
+<img src="https://github.com/ondrejfilip1/skupinovy-projekt-2025/blob/main/readme-assets/pribehy.png?raw=true">
+<p align="center">Příběhy (dashbboard)</p>
+<img src="https://github.com/ondrejfilip1/skupinovy-projekt-2025/blob/main/readme-assets/pribehy2.jpeg?raw=true">
+<p align="center">Admin panel</p>
+<img src="https://github.com/ondrejfilip1/skupinovy-projekt-2025/blob/main/readme-assets/admin_panel.jpeg?raw=true">
 
 ## 👥 Autoři
 
