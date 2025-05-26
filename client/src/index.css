@@ -427,3 +427,11 @@ body {
 .mask_background {
   mask-image: linear-gradient(#FFF 75%, transparent);
 }
+
+.mask_background_2 {
+  mask-image: linear-gradient(#FFF 50%, transparent);
+}
+
+.flip_rotate {
+  rotate: 180deg;
+}
