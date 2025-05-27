@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import croppedQr from "@/assets/qr1.svg";
 import { ArrowUpRight, PackageCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -96,7 +95,6 @@ export default function Completion() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

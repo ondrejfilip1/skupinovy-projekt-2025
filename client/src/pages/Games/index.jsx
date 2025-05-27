@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import croppedQr from "@/assets/qr1.svg";
 import qr2 from "@/assets/qr2.svg";
 import { useEffect, useState } from "react";
@@ -98,7 +97,6 @@ export default function Games() {
           </Link>*/}
         </div>
       </div>
-      <Footer />
     </>
   );
 }

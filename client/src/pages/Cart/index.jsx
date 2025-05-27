@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import croppedQr from "@/assets/qr1.svg";
 import qr2 from "@/assets/qr2.svg";
 import CartBox from "./CartBox";
@@ -134,7 +133,6 @@ export default function Cart() {
           <div className="h-16" />
         </div>
       </div>
-      <Footer />
     </>
   );
 }

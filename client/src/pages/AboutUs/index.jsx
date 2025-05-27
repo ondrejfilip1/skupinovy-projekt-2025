@@ -6,6 +6,7 @@ import qr2 from "@/assets/qr2.svg";
 import Divider from "./Divider";
 import { useEffect, useState } from "react";
 import { PowerGlitch } from "powerglitch";
+import Footer from "@/components/Footer";
 
 export default function AboutUs() {
   const [click, setClick] = useState(false);
@@ -135,6 +136,7 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

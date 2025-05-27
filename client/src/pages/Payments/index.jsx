@@ -6,7 +6,7 @@ import Loading from "@/components/Loading";
 import { getPaymentIntent } from "@/models/Stripe";
 import moment from "moment";
 import { cn } from "@/lib/utils";
-import Footer from "@/components/Footer";
+
 
 export default function Payments() {
   const [payments, setPayments] = useState([]);
@@ -139,7 +139,6 @@ export default function Payments() {
           <div className="h-16" />
         </div>
       </div>
-      <Footer />
     </>
   );
 }
