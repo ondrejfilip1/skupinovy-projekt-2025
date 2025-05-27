@@ -152,7 +152,7 @@ export default function Chat() {
       <div className="mx-auto container text-xl py-2">
         <div
           className={
-            "message-container" + (storyId || hasGenerated ? " pb-29" : "")
+            "message-container px-[22px] md:px-0" + (storyId || hasGenerated ? " pb-29" : "")
           }
         >
           {messages.map((message, index) => (
@@ -175,7 +175,7 @@ export default function Chat() {
           ))}
           {isGenerating && <Loading />}
         </div>
-        <div className="fixed bottom-4 w-full">
+        <div className="fixed bottom-4 w-full px-[22px] md:px-0">
           {!hasGenerated && !storyId && (
             <div className="background_text p-[1px] button_cyberpunk w-fit mb-4">
               <Button
