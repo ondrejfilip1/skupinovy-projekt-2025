@@ -3,11 +3,19 @@ import croppedQr from "@/assets/qr1.svg";
 import { motion } from "motion/react";
 import Background from "@/assets/about/background.png";
 import qr2 from "@/assets/qr2.svg";
-import Divider from "./divider";
-import { useEffect } from "react";
+import Divider from "./Divider";
+import { useEffect, useState } from "react";
 import { PowerGlitch } from "powerglitch";
 
 export default function AboutUs() {
+  const [click, setClick] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setClick(true);
+    }, 1000);
+  }, []);
+
   useEffect(() => {
     PowerGlitch.glitch(".glitch", {
       playMode: "hover",
@@ -37,6 +45,7 @@ export default function AboutUs() {
       pulse: false,
     });
   }, []);
+
   return (
     <>
       <Header />
@@ -79,7 +88,10 @@ export default function AboutUs() {
             <h1 className="text-center text-4xl mb-6">O nás</h1>
 
             <motion.div
-              className="w-full max-w-300 drop-shadow-lg glitch"
+              className={
+                "w-full max-w-300 drop-shadow-lg glitch " +
+                (!click ? "pointer-events-none" : "pointer-events-all")
+              }
               initial={{ opacity: 0, translateY: "12px" }}
               animate={{
                 opacity: 1,
@@ -99,7 +111,10 @@ export default function AboutUs() {
               <Divider className="!w-full" />
             </motion.div>
             <motion.div
-              className="w-full max-w-300 drop-shadow-lg glitch"
+              className={
+                "w-full max-w-300 drop-shadow-lg glitch " +
+                (!click ? "pointer-events-none" : "pointer-events-all")
+              }
               initial={{ opacity: 0, translateY: "12px" }}
               animate={{
                 opacity: 1,

@@ -274,7 +274,7 @@ export default function Home() {
                 </Link>
                 <Link to="/o-nas" className="md:block hidden">
                   <Button
-                    className="text-2xl button_hover button_cyberpunk !py-5"
+                    className="text-2xl font-semibold button_hover button_cyberpunk !py-5"
                     variant="ghost"
                     id="hover"
                   >
