@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { marked } from "marked";
 import Header from "@/components/Header";
 import {
@@ -8,6 +16,7 @@ import {
   SendHorizontal,
   Clapperboard,
   CornerUpRight,
+  ListTree,
 } from "lucide-react";
 import Loading from "./Loading";
 import { cn } from "@/lib/utils";
@@ -152,7 +161,8 @@ export default function Chat() {
       <div className="mx-auto container text-xl py-2">
         <div
           className={
-            "message-container px-[22px] md:px-0" + (storyId || hasGenerated ? " pb-29" : "")
+            "message-container px-[22px] md:px-0" +
+            (storyId || hasGenerated ? " pb-29" : "")
           }
         >
           {messages.map((message, index) => (
@@ -192,7 +202,7 @@ export default function Chat() {
           )}
           {hasGenerated && hasSaved && (
             <>
-              <div className="flex gap-4">
+              <div className="gap-4 lg:flex hidden">
                 <div className="background_text p-[1px] button_cyberpunk w-fit mb-4">
                   <Button
                     id="hover"
@@ -230,6 +240,57 @@ export default function Chat() {
                   </Button>
                 </div>
               </div>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="lg:hidden block">
+                  <div className="background_text p-[1px] button_cyberpunk w-fit mb-4">
+                    <Button
+                      id="hover"
+                      className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
+                    >
+                      Možnosti
+                      <ListTree />
+                    </Button>
+                  </div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="rounded-none border-none bg-transparent">
+                  <div className="background_text p-[1px] button_cyberpunk w-full mb-2">
+                    <Button
+                      id="hover"
+                      onClick={() => {
+                        sendAutoMessage("Vybírám si první možnost");
+                      }}
+                      className="button_cyberpunk w-full flex justify-between background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
+                    >
+                      Vybírám si první možnost
+                      <CornerUpRight />
+                    </Button>
+                  </div>
+                  <div className="background_text p-[1px] button_cyberpunk w-full mb-2">
+                    <Button
+                      id="hover"
+                      onClick={() => {
+                        sendAutoMessage("Vybírám si druhou možnost");
+                      }}
+                      className="button_cyberpunk w-full flex justify-between background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
+                    >
+                      Vybírám si druhou možnost
+                      <CornerUpRight />
+                    </Button>
+                  </div>
+                  <div className="background_text p-[1px] button_cyberpunk w-full mb-2">
+                    <Button
+                      id="hover"
+                      onClick={() => {
+                        sendAutoMessage("Vybírám si třetí možnost");
+                      }}
+                      className="button_cyberpunk w-full flex justify-between background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
+                    >
+                      Vybírám si třetí možnost
+                      <CornerUpRight />
+                    </Button>
+                  </div>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </>
           )}
 

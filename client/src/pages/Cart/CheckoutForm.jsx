@@ -34,18 +34,18 @@ export default function CheckoutForm() {
   };
 
   return (
-    <form
-      id="payment-form"
-      onSubmit={handleSubmit}
-      className="mx-12 my-6"
-    >
+    <form id="payment-form" onSubmit={handleSubmit} className="mx-12 my-6">
       <AddressElement options={{ mode: "shipping" }} className="mb-1" />
       <PaymentElement id="payment-element" />
       <div className="flex justify-between items-center">
         <Link to="/kosik">
           <div className="background_text p-[1px] button_cyberpunk w-fit my-6">
-            <Button id="hover" className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]">
-              <CornerUpLeft />Zpět
+            <Button
+              id="hover"
+              className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
+            >
+              <CornerUpLeft />
+              Zpět
             </Button>
           </div>
         </Link>
@@ -55,9 +55,7 @@ export default function CheckoutForm() {
             id="hover"
             className="button_cyberpunk background_bg relative text_text !text-xl py-6 px-4 focus:outline-none border-none focus-visible:border-ring focus-visible:ring-ring/0 focus-visible:ring-[0px]"
           >
-            <span id="button-text">
-              {isProcessing ? "Zpracovává se... " : "Zaplatit"}
-            </span>
+            {isProcessing ? "Zpracovává se... " : "Zaplatit"}
           </Button>
         </div>
       </div>

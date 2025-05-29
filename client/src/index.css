@@ -425,13 +425,38 @@ body {
 }
 
 .mask_background {
-  mask-image: linear-gradient(#FFF 75%, transparent);
+  mask-image: linear-gradient(#fff 75%, transparent);
 }
 
 .mask_background_2 {
-  mask-image: linear-gradient(#FFF 50%, transparent);
+  mask-image: linear-gradient(#fff 50%, transparent);
 }
 
 .flip_rotate {
   rotate: 180deg;
+}
+
+.hover_underline {
+  display: inline-block;
+  position: relative;
+  width: fit-content;
+}
+
+.hover_underline::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--text-color);
+  transition: transform 0.25s ease-out;
+  transform-origin: bottom right;
+  opacity: 0.8;
+}
+
+.hover_underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
