@@ -44,8 +44,7 @@ Server
 - Podstránky
 
 ## ✅ TODO
-- Dokončit prezentaci
-- Vytisknout coiny
+- Vše dokončeno
 
 ## 🖼️ Screenshoty stránky
 <p align="center">Hlavní stránka</p>
